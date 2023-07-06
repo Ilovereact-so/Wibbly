@@ -23,7 +23,7 @@ jobs:
     - run: pwd
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-    if: always()
+      if: always()
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
