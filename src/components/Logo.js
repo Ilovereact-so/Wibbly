@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import $ from 'jquery'
 import { Pallete1G } from '../constants'
 
 function Logo({loaded}) {
-    const[color, setColor] = useState("");
+    //const[color, setColor] = useState("");
     const data = {data:"h-[11px] rounded-[4px] bg-white"}
     useEffect(() => {
-      if(loaded == false){
+      if(loaded === false){
         StartColor()
       }
-      if(loaded == true){
+      if(loaded === true){
         Getcolor()
       }
     });
     
     const Getcolor = () => {
       let palette = window.localStorage.getItem("Palette")
-      if(palette = "Pallete1G"){      
+      if(palette === "Pallete1G"){      
         for(let index = 0; index < Pallete1G.length; index++) {
           // Do some stuff
           $('#b'+ (index  + 1)).css('background-color',Pallete1G[index].color);
