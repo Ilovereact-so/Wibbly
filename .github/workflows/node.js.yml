@@ -31,15 +31,27 @@ jobs:
 
     - run: npm install --force
     - run: CI=false npm run build --if-present
+      if: always()
     
     - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
+      if: always()
+      # You may pin to the exact commit or the version.
+      # uses: SamKirkland/FTP-Deploy-Action@8a24039354ee91000cb948cb4a1dbdf1a1b94a3c
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
+        # ftp server
         server: h22.seohost.pl
+        # ftp username
         username: Githubuser45036@srv45036.seohost.com.pl
+        # ftp password
         password: t8xl0K7484f7
+        # Server port to connect to (read your web hosts docs)
+        # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftps
-        local-dir: ./createup.dev/
+        # Folder to upload from, must end with trailing slash /
+        local-dir: ./build/
+        # Path to upload to on the server. Must end with trailing slash /
         server-dir: /public_html/
+        # Path and name of the state file - this file is used to track which files have been deployed
         exclude: |
           **/cgi-bin*
