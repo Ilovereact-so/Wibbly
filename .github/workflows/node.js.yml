@@ -44,7 +44,7 @@ jobs:
         # ftp username
         username: Githubuser45036@srv45036.seohost.com.pl
         # ftp password
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: t8xl0K7484f7
         # Server port to connect to (read your web hosts docs)
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftps
