@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Logo from './Logo'
 import { Pallete1 } from '../constants'
 import $ from 'jquery'
@@ -58,7 +58,7 @@ const Home = (loaded) => {
     <div className='flex justify-center items-center h-[100vh] relative'>
         <div style={{color: Pallete1[3].color}} id='Banner' className={`Banner absolute top-[-15px] text-[160px] opacity-20 font-bold font-Poppins z-10`}>CreateUp</div>
 
-        <div className={`w-[40vw] h-[65%] flex flex-col justify-end overflow-hidden ease-in duration-300 ${
+        <div className={`w-[0px] h-[65%] flex flex-col justify-end overflow-hidden ease-in duration-300 ${
             loaded.anim === true ? "w-[0px]" : "w-[40vw]"
         }`}>
             <div>
