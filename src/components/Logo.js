@@ -1,10 +1,28 @@
-import React, { useEffect} from 'react'
+import React, { useEffect, useState} from 'react'
 import $ from 'jquery'
-import { Pallete1G } from '../constants'
+import { Pallete0G, Pallete1G } from '../constants'
 
 function Logo({loaded}) {
     //const[color, setColor] = useState("");
     const data = {data:"h-[11px] rounded-[4px] bg-white"}
+    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
+
+
+    useEffect(() => {
+        const alertMessage = () => {
+          //alert('localStorage changed!');
+          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
+          console.log("localStorage changed!'")
+        }
+    
+        //window.localStorage.setItem("item", 'val 1');
+        window.addEventListener('Pallete', alertMessage);
+    
+        //Remove the event listener when the component unmounts
+        return () => {
+          window.removeEventListener("Pallete", alertMessage);
+        }
+      }, []);
     useEffect(() => {
       if(loaded === false){
         StartColor()
@@ -15,24 +33,37 @@ function Logo({loaded}) {
     });
     
     const Getcolor = () => {
-      let palette = window.localStorage.getItem("Palette")
-      if(palette === "Pallete1G"){      
+      if(localpallete[0].number === 0){  
+        for(let index = 0; index < Pallete0G.length; index++) {
+          // Do some stuff
+          $('#b'+ (index  + 1)).css('background-color',Pallete0G[index].color);
+        }
+      }
+      if(localpallete[0].number === 1){  
         for(let index = 0; index < Pallete1G.length; index++) {
           // Do some stuff
           $('#b'+ (index  + 1)).css('background-color',Pallete1G[index].color);
         }
-    }
+      }
     }
     
     const StartColor = () => {
-    window.localStorage.setItem("Palette", "Pallete1G");
+    //if(window.localStorage.getItem("Pallete") === "" || window.localStorage.getItem("Pallete") === null){
+    //  console.log('color', "set default")
+    //  window.localStorage.setItem("Pallete", "Pallete1");
+    //}
     const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     // Run some loop in async function
     (async () => {
       // Loop for 5 times
-      for(let index = 0; index < Pallete1G.length; index++) {
+      for(let index = 0; index < Pallete0G.length; index++) {
         // Do some stuff
-        $('#b'+ (index  + 1)).css('background-color',Pallete1G[index].color);
+        if(localpallete[0].number === 0){
+          $('#b'+ (index  + 1)).css('background-color',Pallete0G[index].color);
+        }
+        if(localpallete[0].number === 1){
+          $('#b'+ (index  + 1)).css('background-color',Pallete1G[index].color);
+        }
         $('#b'+ (index  + 1)).fadeOut().fadeIn('slow');
 
         console.log(`Some stuff ${index}`);

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Logo from './components/Logo';
 import $ from 'jquery'
 import Home from './components/Home';
+import { Pallete0 } from './constants';
 
 function App() {
 const [loaded, setLoaded] = useState(false)
@@ -11,9 +12,17 @@ const dc = $( document ).ready();
 
 const win = $( window ).on( "load");
 
+
+useEffect(() => {
+  if(JSON.parse(localStorage.getItem('Pallete')) === null || JSON.parse(localStorage.getItem('Pallete')) === ""){
+    window.localStorage.setItem("Pallete", JSON.stringify(Pallete0))
+    window.dispatchEvent(new Event("Pallete"))
+  }
+})
+
 setTimeout(()=>{
   if(dc && win){
-    console.log('nigndsjfnd')
+    //console.log('nigndsjfnd')
     setLoaded(true)
     postload()
     
