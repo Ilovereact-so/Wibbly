@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         'Poppins': ['Poppins', 'sans-serif'],
       },
+      dropShadow: {
+        'cartoon': '0px 8px 0px black',
+      },
     },
   },
   plugins: [],

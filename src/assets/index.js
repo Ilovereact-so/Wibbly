@@ -4,3 +4,5 @@ export { default as ImagePallete3 } from "./Pallete3.png";
 export { default as ImagePallete4 } from "./Pallete4.png";
 export { default as ImagePallete5 } from "./Pallete5.png";
 export { default as ImagePallete6 } from "./Pallete6.png";
+export { default as usemelogo } from "./useme-logo.png";
+export { default as githublogo } from "./github-mark.png";
