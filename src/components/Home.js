@@ -3,6 +3,7 @@ import Logo from './Logo'
 import $ from 'jquery'
 import Navbar from './Navbar'
 import PalleteSection from './PalleteSection'
+import Aboatme from './Aboatme'
 
 const Home = (loaded) => {
 
@@ -86,6 +87,7 @@ const Home = (loaded) => {
         }else if(scroll < 400){
             $("#Banner").css('opacity','1')
         }
+        
     });
 
 
@@ -100,12 +102,19 @@ const Home = (loaded) => {
     };
 
     $(window).on('resize scroll', function() {
+        var scroll = $(window).scrollTop();
         if ($('.UXPsysanim').isInViewport()) {
             console.log("SI")
             setBtn(true)
         } else {
             console.log("nope")
             setBtn(false)
+        }
+        //console.log(scroll)
+        //console.log($('#Aboatme').offset().top)
+        
+        if ($('#Aboatme').offset().top < (scroll + 400)) {
+            $("#Banner").css("opacity","0")
         }
     });
 
@@ -143,7 +152,7 @@ const Home = (loaded) => {
                     <p style={{color: localpallete[1].color}} className='text-[17] font-bold font-Poppins'>{hours + ":" + minutes}</p>
                 </div>
             </div>
-            <div className='right-0 fixed top-[14vh] flex flex-col items-end'>
+            <div className='right-0 fixed top-[14vh] z-[10] flex flex-col items-end'>
                 <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`h-[157px] w-[37px] cursor-pointer hover:w-[48px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
                         btn === true ? "w-[48px]" : ""
                     }`}>
@@ -160,6 +169,9 @@ const Home = (loaded) => {
             </div>
         </div>
         <PalleteSection/>
+        <div id='Aboatme' className='overflow-hidden' >
+            <Aboatme/>
+        </div>
     </div>
   )
 }

@@ -19,3 +19,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.levitation {
+  animation: bouge 8s infinite alternate-reverse;
+  
+}
+.levitationS {
+  animation: bouge 8s infinite alternate-reverse;
+  animation-delay: -4s;
+}
+
+@keyframes bouge {
+  /*starting point and angle (same angle as choosen into .levitation)*/
+  from {
+    transform: translateY(-50px);
+  }
+  /* ending point and angle */
+  to {
+    transform: translateY(100px);
+  }
+}
