@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# CreateUp.pl website directory
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -41,7 +41,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Go to createup.pl and contact with me [CreateUp](http://srv45036.seohost.com.pl).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
@@ -49,22 +49,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### UI/UX make with adobe XD
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![our UI/UX](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/UI-UX.png?raw=true)
