@@ -51,4 +51,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/c
 
 ### UI/UX make with adobe XD
 
-![our UI/UX](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/UI-UX.png?raw=true)
+![our UI/UX](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/design-UI.png?raw=true)
