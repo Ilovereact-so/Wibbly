@@ -76,21 +76,21 @@ const PalleteSection = () => {
     }
 
   return (
-    <div id='UXPsys' className='h-[100vh] w-full flex justify-center  items-center relative '>
-        <div className='w-[40vw] h-[65%] px-[35px] bg-[#F6F7F8] rounded-[49px] mr-12'>
+    <div id='UXPsys' className='h-[100vh] w-full flex ss:flex-row flex-col-reverse justify-center  items-center relative '>
+        <div className='ss:w-[40vw] w-auto ss:h-[65%] h-auto ss:px-[35px] px-[18px] bg-[#F6F7F8] ss:rounded-[49px] rounded-[20px] ss:ml-0 ml-8 mr-12'>
             <div className='pl-[25px] flex items-center mt-6'>
                 <i className="gg-options text-black scale-125"></i>
                 <div className='flex flex-col ml-12'>
-                    <p className='font-bold font-Poppins text-[21px]'>Change</p>
-                    <p className='font-Poppins text-[21px]'>your Color pallete</p>
+                    <p className='font-bold font-Poppins ss:text-[21px] text-[9px]'>Change</p>
+                    <p className='font-Poppins ss:text-[21px] text-[9px]'>your Color pallete</p>
                 </div>
             </div>
-            <div className=' mt-10'>
-                <div className='grid grid-template-columns saturate-50 hover:saturate-100 xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 ease-in-out duration-300 w-full h-full justify-center items-center'>
+            <div className=' ss:mt-10 mt-6 mb-8 ss:mb-0'>
+                <div className='grid grid-template-columns saturate-50 hover:saturate-100 xl:grid-cols-4 lg:grid-cols-3 ss:grid-cols-2 grid-cols-4 ease-in-out duration-300 w-full h-full justify-center items-center'>
                     {Pallets.map((item, index) => (
                         <div
                             id={"pallete" + index}
-                            className={`p-4 cursor-pointer rounded-md lg:m-2 m-4 bg-white`}
+                            className={`ss:p-4 p-2 cursor-pointer rounded-md lg:m-2 ss:m-4 m-[4px] bg-white`}
                             key={index}
                             onClick={()=>handleClick(index)} // setCheckpallete(index)
                         >
@@ -102,21 +102,21 @@ const PalleteSection = () => {
             </div>
             <div></div>
         </div>
-        <div className='w-[40vw] h-[65%] ml-12 mb-[50px] flex flex-col justify-start items-center'>
+        <div className='ss:w-[40vw] w-full ss:h-[65%] h-auto ss:ml-12 ml-0 ss:pl-0 pl-[30px]   mb-[50px] flex flex-col justify-start ss:items-center items-start'>
             <div>
-                <p className='font-Poppins font-bold text-[46px]'>Zmień</p>
-                <p className='font-Poppins text-[26px] mb-16'>kolory strony z podanych palet kolorów </p>
-                <p className='font-Poppins text-[19px] mb-2'>Aktualnie wybrana paleta kolorów</p>\
+                <p className='font-Poppins font-bold ss:text-[46px] text-[29px]'>Zmień</p>
+                <p className='font-Poppins ss:text-[26px] text-[15px] ss:mb-16 mb-8'>kolory strony z podanych palet kolorów </p>
+                <p className='font-Poppins ss:text-[19px] text-[12px] mb-2'>Aktualnie wybrana paleta kolorów</p>\
                 {Pallete0.map((item, index) => (
                     <div
                         key={index}
                         style={{backgroundColor: localpallete[index].color}}
-                        className={`h-[55px] rounded-full font-Poppins flex items-center pl-8 mb-[12px] ease-in-out duration-300 mr-[80px] ${index > 1 ? "text-black" : "text-white"}`}
+                        className={`ss:h-[55px] h-[36px] rounded-full font-Poppins ss:text-[16px] text-[9px] flex items-center pl-8 mb-[12px] ease-in-out duration-300 mr-[80px] ${index > 1 ? "text-black" : "text-white"}`}
                     >
                         {item.color}
                     </div>
                 ))}
-                <div className='UXPsysanim text-[24px] font-bold font-Poppins h-[70px] bg-black cursor-pointer  text-white rounded-full flex justify-center items-center mt-[70px]'>Select and save</div>
+                <div className='UXPsysanim ss:text-[24px] ss:relative absolute bottom-0 ss:w-auto w-[70%] ss:left-0 left-[50%] translate-x-[-50%] text-[15px] font-bold font-Poppins ss:h-[70px] h-[54px] bg-black cursor-pointer  text-white rounded-full flex justify-center items-center mt-[70px]'>Select and save</div>
             </div>
         </div>
     </div>
