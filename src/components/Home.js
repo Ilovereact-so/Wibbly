@@ -4,6 +4,8 @@ import $ from 'jquery'
 import Navbar from './Navbar'
 import PalleteSection from './PalleteSection'
 import Aboatme from './Aboatme'
+import Main from '../Main.scss'
+import "./Home-word.js"
 
 const Home = (loaded) => {
 
@@ -12,9 +14,20 @@ const Home = (loaded) => {
     const [hours, setHours] = useState("")
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
     const [btn, setBtn] = useState(false)
+    const [windowW, setWindowW] = useState()
+    const scale = 0.00125
 
+    $(window).on('resize scroll', function() {
+        setWindowW($(window).innerWidth())
+        if(windowW <= 730){
+            $(".Banner").css("transform", 'scale('+ windowW * scale +')')
+        }else{
+            $(".Banner").css("transform", 'scale(1)')
+        }
+      });
 
     useEffect(() => {
+        
         const alertMessage = () => {
           //alert('localStorage changed!');
           setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
@@ -50,7 +63,15 @@ const Home = (loaded) => {
     
     $( document ).ready(function(){
         getTime();
+        setWindowW($(window).innerWidth())
+        if(windowW <= 730){
+            $(".Banner").css("transform", 'scale('+ windowW * scale +')')
+        }else{
+            $(".Banner").css("transform", 'scale(1)')
+        }
     });
+
+    
     
     function getTime(){
         const date = new Date();
@@ -102,14 +123,25 @@ const Home = (loaded) => {
     };
 
     $(window).on('resize scroll', function() {
-        var scroll = $(window).scrollTop();
+
+        var scroll = $(window).scrollTop();//
         if ($('.UXPsysanim').isInViewport()) {
-            console.log("SI")
+            //console.log("SI")
             setBtn(true)
         } else {
-            console.log("nope")
+            //console.log("nope")
             setBtn(false)
         }
+        // if ($('#ABMain').isInViewport()) {
+        //     $(".ReactContener").animate({
+        //         height: "0",
+        //     },300)
+        // }else{
+        //     $(".ReactContener").animate({
+        //         height: "100%",
+        //     },300)
+        // }
+
         //console.log(scroll)
         //console.log($('#Aboatme').offset().top)
         
@@ -127,40 +159,40 @@ const Home = (loaded) => {
     $('-webkit-scrollbar-thumb').css('background',localpallete[1].color)
   return (
     <div>
-        <div className='flex justify-center items-center h-[100vh] relative'>
-            <div style={{color: localpallete[3].color}} id='Banner' className={`Banner fixed top-[-10px] text-[160px] opacity-20 font-bold ease-in-out duration-300  font-Poppins z-[-1]`}>CreateUp</div>
+        <div className='flex lg:flex-row flex-col-reverse ss:justify-center justify-start items-center lg:mt-0 ss:mt-[185px] mt-[10px] h-[100vh] relative'>
+            <div style={{color: localpallete[3].color}} id='Banner' className={`Banner fixed ss:top-[-10px] top-[-20px] md:text-[160px] text-[123px] opacity-20 font-bold ease-in-out duration-300  font-Poppins z-[-1]`}>CreateUp</div>
 
-            <div className={`w-[0px] h-[65%] flex flex-col justify-end overflow-hidden ease-in duration-300 ${
-                loaded.anim === true ? "w-[0px]" : "w-[40vw]"
+            <div className={`left-Home w-[0px] ss:h-[65%] h-[40%]  flex flex-col justify-end overflow-hidden ease-in duration-300 ${
+                loaded.anim === true ? "w-[0px]" : "lg:w-[40vw] w-full lg:px-0 px-[8vw]"
             }`}>
                 <div>
-                <p className='text-black font-bold font-Poppins text-[40px] mb-6'>Create your website</p>
-                <p className='text-black font-Poppins text-[19px] mb-6'>Utwórz własną stronę internetową</p>
-                <table className='w-[25vw] mb-20'>
+                <p className='text-black font-bold font-Poppins ss:text-[40px] text-[25px] mb-6 word'></p>
+                <p className='text-black font-Poppins ss:text-[19px] text-[13px] mb-6'>Utwórz własną stronę internetową</p>
+                <table className='lg:w-[25vw] w-full mb-20'>
                     <tr><td className={`${table.td}`}>systemy/aplikacje webowe</td><td className={`${table.td}`}>portale internetowe</td></tr>
                     <tr><td className={`${table.td}`}>strony wizytówki</td></tr>
                 </table>
-                <div className='bg-black h-[70px] text-white font-bold font-Poppins text-[22px] flex justify-center items-center cursor-pointer rounded-full mr-[12vw] mb-5'>Get Started</div>
+                <div className='bg-black ss:h-[70px] h-[50px] text-white font-bold font-Poppins ss:text-[22px] text-[15px] flex justify-center items-center cursor-pointer rounded-full lg:mr-[12vw] mb-5'>Get Started</div>
                 </div>
             </div>
 
-            <div className={`w-[40vw] h-[65%] bg-[#F6F7F8] opacity-80 rounded-[49px] flex flex-col justify-center items-center ease-in duration-300 relative ${
+            <div className={`lg:w-[40vw] w-[70vw] ss:h-[100%] lg:h-[65%] h-[40%] bg-[#F6F7F8] opacity-80 rounded-[49px] flex flex-col justify-center items-center ease-in duration-300 relative ${
                 loaded.anim === true ? "bg-white" : "bg-[#F6F7F8]"
             }`}>
                 <Logo loaded={true}/>
                 <div className='absolute bottom-14 flex justify-center items-center'>
-                    <p style={{color: localpallete[1].color}} className='text-[17] font-bold font-Poppins'>{hours + ":" + minutes}</p>
+                    <p style={{color: localpallete[1].color}} className='ss:text-[17] text-[12px] font-bold font-Poppins'>{hours + ":" + minutes}</p>
                 </div>
             </div>
             <div className='right-0 fixed top-[14vh] z-[10] flex flex-col items-end'>
-                <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`h-[157px] w-[37px] cursor-pointer hover:w-[48px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
-                        btn === true ? "w-[48px]" : ""
+                <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
+                        btn === true ? "w-[37px]" : ""
                     }`}>
-                    <i className="gg-options text-white"></i>
+                    <i className="gg-options text-white scale-[0.8]"></i>
                 </a>
                 <Navbar/>
             </div>
-            <div className='absolute z-10 w-full flex justify-center items-center bottom-[20px]'>
+            <div className='absolute z-10 w-full hidden lg:flex justify-center items-center bottom-[20px]'>
                 <div className={`arrow bg-[#F6F7F8] w-[80px] h-[80px] rounded-full flex justify-center items-start ease-in-out duration-300`}>
                     <div style={{backgroundColor: localpallete[0].color}} className={`w-[55px] h-[55px] rounded-full top-0 cursor-pointer hover:top-[-4px] ease-in-out duration-100 relative flex justify-center items-center`}>
                         <i className="gg-arrow-down text-white"></i>
@@ -175,6 +207,6 @@ const Home = (loaded) => {
     </div>
   )
 }
-const table = {td:"text-[12px] text-black font-Poppins "}
+const table = {td:"ss:text-[12px] text-[9px] text-black font-Poppins "}
 
 export default Home

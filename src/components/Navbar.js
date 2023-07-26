@@ -22,8 +22,8 @@ const Navbar = () => {
       }, []);
   return (
     <div>
-        <div style={{backgroundColor: localpallete[3].color}} className='h-[157px] w-[37px] hover:w-[48px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
-            <i className="gg-menu-cake"></i>
+        <div style={{backgroundColor: localpallete[3].color}} className='ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
+            <i className="gg-menu-cake scale-[0.8]"></i>
         </div>
     </div>
   )

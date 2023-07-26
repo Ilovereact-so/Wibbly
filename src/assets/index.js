@@ -6,3 +6,4 @@ export { default as ImagePallete5 } from "./Pallete5.png";
 export { default as ImagePallete6 } from "./Pallete6.png";
 export { default as usemelogo } from "./useme-logo.png";
 export { default as githublogo } from "./github-mark.png";
+export { default as reactlogo } from "./React-logo.png";
