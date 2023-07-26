@@ -15,6 +15,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  --scrollbarBG: #F6F7F8;
+  --thumbBG: #d9d9d9;
+}
+body::-webkit-scrollbar {
+  width: 11px;
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -27,6 +41,18 @@ code {
 .levitationS {
   animation: bouge 8s infinite alternate-reverse;
   animation-delay: -4s;
+}
+.reactlogo{
+  animation: rotate_infinite 8s infinite;
+}
+
+@keyframes rotate_infinite {
+  from {
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes bouge {

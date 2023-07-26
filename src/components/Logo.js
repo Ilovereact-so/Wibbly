@@ -6,7 +6,22 @@ function Logo({loaded}) {
     //const[color, setColor] = useState("");
     const data = {data:"h-[11px] rounded-[4px] bg-white"}
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
+    const [windowW, setWindowW] = useState()
+    const scale = 0.000825
 
+    $(window).on('resize scroll', function() {
+      setWindowW($(window).innerWidth())
+      
+    });
+    $( document ).ready(function(){
+      setWindowW($(window).innerWidth())
+
+      if(windowW <= 730){
+        $(".logo-Home").css("transform", 'scale('+ windowW * scale +')')
+      }else{
+          $(".logo-Home").css("transform", 'scale(1)')
+      }
+  });
 
     useEffect(() => {
         const alertMessage = () => {
@@ -72,9 +87,9 @@ function Logo({loaded}) {
       }
     })();
     }
-
+      //windowW * scale
   return (
-    <div className='w-full flex flex-col justify-center items-center '>
+    <div className={`logo-Home w-full flex flex-col justify-center items-center`}>
         <div id='b1' className={`w-[79px] ${data.data}`}></div>
         <div id='b2' className={`w-[125px] relative top-[-1px] ${data.data} `}></div>
         <div id='b3' className={`w-[147px] relative top-[-2px] ${data.data} `}></div>

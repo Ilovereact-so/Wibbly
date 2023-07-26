@@ -5,6 +5,8 @@ import $ from 'jquery';
 const PalleteSection = () => {
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
 
+    //$("body::-webkit-scrollbar-track").css("background","red");
+
     $("#pallete"+ localpallete[0].number).css("background-color",Pallets[localpallete[0].number].selectcolor)
     useEffect(() => {
         const alertMessage = () => {
@@ -84,11 +86,11 @@ const PalleteSection = () => {
                 </div>
             </div>
             <div className=' mt-10'>
-                <div className='grid grid-template-columns saturate-50 hover:saturate-100 grid-cols-4 ease-in-out duration-300 w-full h-full justify-center items-center'>
+                <div className='grid grid-template-columns saturate-50 hover:saturate-100 xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 ease-in-out duration-300 w-full h-full justify-center items-center'>
                     {Pallets.map((item, index) => (
                         <div
                             id={"pallete" + index}
-                            className={`p-4 cursor-pointer rounded-md m-2 bg-white`}
+                            className={`p-4 cursor-pointer rounded-md lg:m-2 m-4 bg-white`}
                             key={index}
                             onClick={()=>handleClick(index)} // setCheckpallete(index)
                         >
