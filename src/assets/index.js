@@ -7,3 +7,6 @@ export { default as ImagePallete6 } from "./Pallete6.png";
 export { default as usemelogo } from "./useme-logo.png";
 export { default as githublogo } from "./github-mark.png";
 export { default as reactlogo } from "./React-logo.png";
+export { default as Createuplogo } from "./Createup-logo.svg";
+export { default as Arrowsscrollv } from "./arrows-scroll-v.svg";
+export { default as Arrow} from "./Arrow.svg";

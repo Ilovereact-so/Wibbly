@@ -13,7 +13,7 @@ module.exports = {
         'cartoonB': '0px 8px 0px #5e5e5e',
       },
       screens: {
-        'ss': '400px',
+        'ss': '450px',
         // => @media (min-width: 640px) { ... }
       },
     },

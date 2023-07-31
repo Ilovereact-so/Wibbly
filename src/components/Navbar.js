@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Pallete1 } from '../constants'
+import { NavbarList } from '../constants'
+import { Arrow, Createuplogo } from '../assets';
 
 const Navbar = () => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
@@ -22,10 +23,30 @@ const Navbar = () => {
       }, []);
   return (
     <div>
-        <div style={{backgroundColor: localpallete[3].color}} className='ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
-            <i className="gg-menu-cake scale-[0.8]"></i>
+      <div className='w-[50vw] relative h-full left-[-12px] '>
+        <div style={{backgroundColor: localpallete[3].color}} className='h-[100vh] sticky top-0 px-4'>
+            <div className='flex justify-around items-center pt-8'>
+              <div className='p-[4px] border-black border-2 rounded-[18px]'><img src={Createuplogo} className="w-[50px] h-[50px]"/></div>
+              <div><p className='font-bold font-Poppins text-[26px]'>CreateUp  navbar</p></div>
+            </div>
+            <div>
+            {NavbarList.map((item, index) => (
+              <div
+                key={index}
+                className="w-full flex px-9 justify-between py-4"
+                >
+                <img src={Arrow} className='w-[17px]'/>
+                <div className='mx-4 flex items-center'>
+                  <p className='pr-5'>{item.text}</p>
+                  <i className={item.icon} alt={item.alt}></i>
+                </div>
+              </div>
+              ))}
+            </div>
         </div>
+      </div>
     </div>
+    
   )
 }
 

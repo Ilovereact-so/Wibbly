@@ -116,7 +116,7 @@ const PalleteSection = () => {
                         {item.color}
                     </div>
                 ))}
-                <div className='UXPsysanim ss:text-[24px] ss:relative absolute bottom-0 ss:w-auto w-[70%] ss:left-0 left-[50%] translate-x-[-50%] text-[15px] font-bold font-Poppins ss:h-[70px] h-[54px] bg-black cursor-pointer  text-white rounded-full flex justify-center items-center mt-[70px]'>Select and save</div>
+                <div className='UXPsysanim ss:text-[24px] ss:static absolute bottom-0 ss:w-auto w-[70%] ss:left-0 left-[50%] ss:translate-x-0 translate-x-[-50%] text-[15px] font-bold font-Poppins ss:h-[70px] h-[54px] bg-black cursor-pointer  text-white rounded-full flex justify-center items-center mt-[70px]'>Select and save</div>
             </div>
         </div>
     </div>
