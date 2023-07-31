@@ -1,4 +1,26 @@
 import { ImagePallete1,ImagePallete2, ImagePallete3, ImagePallete4, ImagePallete5, ImagePallete6 } from "../assets";
+  export const NavbarList = [
+    {
+      text: "Strona główna",
+      alt: "Home-icon",
+      icon: "gg-home",
+    },
+    {
+      text: "Paleta strony",
+      alt: "ColorPallete-icon",
+      icon: "gg-color-bucket",
+    },
+    {
+      text: "O nas",
+      alt: "Aboutus-icon",
+      icon: "gg-feed",
+    },
+    {
+      text: "Kreator wyboru",
+      alt: "SelectionChoose",
+      icon: "gg-board",
+    },
+  ];
   export const Pallete0 = [
       {
         color: "#8294C4",

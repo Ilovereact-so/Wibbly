@@ -4,6 +4,7 @@ import Logo from './components/Logo';
 import $ from 'jquery'
 import Home from './components/Home';
 import { Pallete0 } from './constants';
+import "./components/ResponsiveScriptScale.js"
 
 function App() {
 const [loaded, setLoaded] = useState(false)
