@@ -147,8 +147,7 @@ const Home = (loaded) => {
     $(window).on('resize scroll', function() {
 
         var scroll = $(window).scrollTop();//
-        if ($('.UXPsysanim').isInViewport()) {
-            //console.log("SI")
+        if ($('#UXPsys').isInViewport()) {
             setBtn(true)
         } else {
             //console.log("nope")
@@ -230,7 +229,7 @@ const Home = (loaded) => {
                         nav === true ? "mm:translate-x-0 translate-x-[100%] mm:scale-[1] scale-x-[-1] scale-y-[1]" : ""
                     }`}>
                         <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
-                                btn === true ? "w-[37px]" : ""
+                                btn === true ? "w-[37px] ss:w-[47px]" : ""
                             }`}>
                             <i className="gg-options text-white scale-[0.8]"></i>
                         </a>
