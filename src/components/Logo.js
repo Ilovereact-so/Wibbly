@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react'
 import $ from 'jquery'
-import { Pallete0G, Pallete1G } from '../constants'
+import { Pallete0G, Pallete1G, Pallete2G, Pallete3G, Pallete4G, Pallete5G } from '../constants'
 
 function Logo({loaded}) {
     //const[color, setColor] = useState("");
@@ -60,6 +60,30 @@ function Logo({loaded}) {
           $('#b'+ (index  + 1)).css('background-color',Pallete1G[index].color);
         }
       }
+      if(localpallete[0].number === 2){  
+        for(let index = 0; index < Pallete2G.length; index++) {
+          // Do some stuff
+          $('#b'+ (index  + 1)).css('background-color',Pallete2G[index].color);
+        }
+      }
+      if(localpallete[0].number === 3){  
+        for(let index = 0; index < Pallete3G.length; index++) {
+          // Do some stuff
+          $('#b'+ (index  + 1)).css('background-color',Pallete3G[index].color);
+        }
+      }
+      if(localpallete[0].number === 4){  
+        for(let index = 0; index < Pallete4G.length; index++) {
+          // Do some stuff
+          $('#b'+ (index  + 1)).css('background-color',Pallete4G[index].color);
+        }
+      }
+      if(localpallete[0].number === 5){  
+        for(let index = 0; index < Pallete5G.length; index++) {
+          // Do some stuff
+          $('#b'+ (index  + 1)).css('background-color',Pallete5G[index].color);
+        }
+      }
     }
     
     const StartColor = () => {
@@ -79,6 +103,19 @@ function Logo({loaded}) {
         if(localpallete[0].number === 1){
           $('#b'+ (index  + 1)).css('background-color',Pallete1G[index].color);
         }
+        if(localpallete[0].number === 2){
+          $('#b'+ (index  + 1)).css('background-color',Pallete2G[index].color);
+        }
+        if(localpallete[0].number === 3){
+          $('#b'+ (index  + 1)).css('background-color',Pallete3G[index].color);
+        }
+        if(localpallete[0].number === 4){
+          $('#b'+ (index  + 1)).css('background-color',Pallete4G[index].color);
+        }
+        if(localpallete[0].number === 5){
+          $('#b'+ (index  + 1)).css('background-color',Pallete5G[index].color);
+        }
+        
         $('#b'+ (index  + 1)).fadeOut().fadeIn('slow');
 
         console.log(`Some stuff ${index}`);
