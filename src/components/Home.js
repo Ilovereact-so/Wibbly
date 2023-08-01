@@ -180,7 +180,7 @@ const Home = (loaded) => {
     }
     $('-webkit-scrollbar-thumb').css('background',localpallete[1].color)
   return (
-    <div id="App-Main" className='flex ease-in-out duration-300'>
+    <div id="App-Main" className='flex ease-in-out duration-300 relative'>
         <div className='w-[100vw] flex flex-col h-full'>
             <div id="Home" className='flex lg:flex-row flex-col-reverse ss:justify-center justify-start items-center lg:mt-0 ss:mt-[185px] mt-[10px] h-[100vh] relative'>
                 <div style={{color: localpallete[3].color}} id='Banner' className={`Banner fixed ss:top-[-10px] top-[-20px] md:text-[160px] text-[123px] opacity-20 font-bold ease-in-out duration-300  font-Poppins z-[-1]`}>CreateUp</div>
@@ -207,16 +207,6 @@ const Home = (loaded) => {
                         <p style={{color: localpallete[1].color}} className='ss:text-[17] text-[12px] font-bold font-Poppins'>{hours + ":" + minutes}</p>
                     </div>
                 </div>
-                <div className='right-0 fixed top-[14vh] z-[10] flex flex-col items-end'>
-                    <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
-                            btn === true ? "w-[37px]" : ""
-                        }`}>
-                        <i className="gg-options text-white scale-[0.8]"></i>
-                    </a>
-                    <div style={{backgroundColor: localpallete[3].color}} onClick={()=> handleClick("nav")} className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
-                        <i className="gg-menu-cake scale-[0.8]"></i>
-                    </div>
-                </div>
                 <div className='absolute z-10 w-full hidden lg:flex justify-center items-center bottom-[20px]'>
                     <div className={`arrow bg-[#F6F7F8] w-[80px] h-[80px] rounded-full flex justify-center items-start ease-in-out duration-300`}>
                         <div id='navdot' style={{backgroundColor: localpallete[0].color}} onClick={()=> handleClick(true)} className={`w-[55px] h-[55px] rounded-full top-0 cursor-pointer hover:top-[-4px] ease-in-out duration-100 relative flex justify-center items-center ${
@@ -231,7 +221,23 @@ const Home = (loaded) => {
             <div id='Aboatme' className='overflow-hidden' >
                 <Aboatme/>
             </div>
+            
+            
         </div>
+        <div className='absolute top-0 right-0 flex h-full'>
+                <div className='relative'>
+                    <div className='right-0 sticky top-[14vh] z-[10] flex flex-col items-end'>
+                        <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
+                                btn === true ? "w-[37px]" : ""
+                            }`}>
+                            <i className="gg-options text-white scale-[0.8]"></i>
+                        </a>
+                        <div style={{backgroundColor: localpallete[3].color}} onClick={()=> handleClick("nav")} className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
+                            <i className="gg-menu-cake scale-[0.8]"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <Navbar/>
     </div>
   )
