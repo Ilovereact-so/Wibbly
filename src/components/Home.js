@@ -199,7 +199,7 @@ const Home = (loaded) => {
                     </div>
                 </div>
 
-                <div className={`lg:w-[40vw] mt-[100px] w-[70vw] ss:h-[100%] md:min-h-[500px] lg:h-[65%] h-[40%] bg-[#F6F7F8] opacity-80 rounded-[49px] flex flex-col justify-center items-center ease-in duration-300 relative ${
+                <div className={`lg:w-[40vw] md:mt-0 mt-[100px] py-[80px] w-[70vw] ss:h-[100%] md:min-h-[500px] lg:h-[65%] h-[40%] bg-[#F6F7F8] opacity-80 rounded-[49px] flex flex-col justify-center items-center ease-in duration-300 relative ${
                     loaded.anim === true ? "bg-white" : "bg-[#F6F7F8]"
                 }`}>
                     <Logo loaded={true}/>
@@ -226,7 +226,9 @@ const Home = (loaded) => {
         </div>
         <div className='absolute top-0 right-0 flex h-full'>
                 <div className='relative'>
-                    <div className='right-0 sticky top-[14vh] z-[10] flex flex-col items-end'>
+                    <div className={`right-0 sticky top-[14vh] z-[10] flex flex-col items-end ease-in-out duration-300 ${
+                        nav === true ? "mm:translate-x-0 translate-x-[100%] mm:scale-[1] scale-x-[-1] scale-y-[1]" : ""
+                    }`}>
                         <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
                                 btn === true ? "w-[37px]" : ""
                             }`}>
