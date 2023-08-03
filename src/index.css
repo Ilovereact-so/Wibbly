@@ -12,6 +12,8 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/bell.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/shield.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/toggle-off.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/close.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/check-o.css');
 
 body {
   margin: 0;
@@ -24,6 +26,9 @@ body {
 
 #root{
   overflow-x: clip
+}
+.color-black{
+  filter: invert(100%) sepia(100%) saturate(100%) brightness(0%) contrast(100%);
 }
 .color-white{
   filter: invert(100%) sepia(93%) saturate(1%) hue-rotate(257deg) brightness(108%) contrast(100%);

@@ -25,6 +25,37 @@ import { ImagePallete1,ImagePallete2, ImagePallete3, ImagePallete4, ImagePallete
       link: "#Home"
     },
   ];
+
+  export const Offer1 = [
+    {
+      title: "System logowania",
+      check: 0,
+    },
+    {
+      title: "Support developerów - 4 mies ",
+      check: 1,
+    },
+    {
+      title: "Animacje grafik (.gif) - 2 max ",
+      check: 1,
+    },
+    {
+      title: "System cms",
+      check: 0,
+    },
+    {
+      title: "Analityka google",
+      check: 1,
+    },
+    {
+      title: "Dostep do plików (in real time)",
+      check: 1,
+    },
+    {
+      title: "Pozycjonowanie",
+      check: 1,
+    },
+  ];
   export const Pallete0 = [
       {
         color: "#8294C4",
