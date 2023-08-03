@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Offer1 } from '../constants';
+import { Offer1, Offer2, Offer3 } from '../constants';
 import { Arrow, Arrowsscrollv } from '../assets';
 
 const Offer = () => {
@@ -21,10 +21,10 @@ const Offer = () => {
       }, []);
 
   return (
-    <div className='h-[100vh] relative'>
-        <div style={{color: localpallete[1].color}} className='absolute top-0 text-center w-full z-1'><p className='font-bold font-Poppins text-[322px]'>Oferta</p></div>
+    <div id='Offer' className='h-[100vh] relative'>
+        <div style={{color: localpallete[1].color}} className='absolute top-0 text-center w-full z-1'><p className='font-bold font-Poppins xl:text-[322px] lg:text-[300px] md:text-[230px] sm:text-[175px] ss:text-[145px] text-[100px]'>Oferta</p></div>
         <div className='flex w-full h-full relative z-2'>
-            <div className='w-[66vw] pt-[100px] bg-[#b7b7b752] flex items-center justify-evenly'>
+            <div className='w-[66vw] pt-[100px] relative bg-[#b7b7b752] flex items-center justify-evenly'>
                 <div className='bg-[#F6F7F8] w-auto inline-flex flex-col p-9 pb-5 rounded-[40px]'>
                     <p className='font-Poppins font-bold text-[23px] mb-5'>Strona "wizytówka" </p>
                     <div className='inline-flex flex-col mr-10'>
@@ -55,10 +55,10 @@ const Offer = () => {
                 </div>
 
                 <div className='bg-[#F6F7F8] w-auto inline-flex flex-col p-9 pb-5 rounded-[40px]'>
-                    <p className='font-Poppins font-bold text-[23px] mb-5'>Strona "wizytówka" </p>
+                    <p className='font-Poppins font-bold text-[23px] mb-5'>Strona "wizytówka" Level 2 </p>
                     <div className='inline-flex flex-col mr-10'>
                     {
-                        Offer1.map((item, index)=>(
+                        Offer2.map((item, index)=>(
                             <div
                             key={index}
                             className="flex"
@@ -77,14 +77,45 @@ const Offer = () => {
                     }
                     </div>
                     <div className='flex flex-col px-10 mt-8'>
-                        <div className='bg-white font-Poppins font-bold text-[20px] p-4 rounded-full flex justify-center items-center'>&gt; 900zł</div>
+                        <div className='bg-white font-Poppins font-bold text-[20px] p-4 rounded-full flex justify-center items-center'>&gt; 1400 zł</div>
                         <div className='flex items-center justify-center relative top-[-10px]'><div className='bg-black p-4 px-14 rounded-full'><img src={Arrow} className='color-white rotate-[270deg]'/></div></div>
                     </div>
                     
                 </div>
                 
+                <div className='absolute bottom-4 right-10 font-Poppins text-[14px]'><p>cena zależy od wymagań i wielkości projektu</p></div>
+                
             </div>
-            <div className='w-auto'></div>
+            <div className='flex w-[34vw] justify-center items-center mt-[130px]'>
+                <div className='bg-[#F6F7F8] w-auto inline-flex flex-col p-9 pb-5 rounded-[40px]'>
+                        <p className='font-Poppins font-bold text-[23px] mb-5'>Strona/Aplikacja webowa </p>
+                        <div className='inline-flex flex-col mr-10'>
+                        {
+                            Offer3.map((item, index)=>(
+                                <div
+                                key={index}
+                                className="flex"
+                                >
+                                    <i className={`mr-3 ${
+                                        item.check === 1 ? "gg-check-o border-transparent color-black" : "gg-close"
+                                    }`}
+                                    style={{color: localpallete[1].color}}
+                                    ></i>
+                                    <p className='inline font-Poppins text-[18px] mb-4'>
+                                        {item.title}
+                                    </p>
+                                </div>
+                                
+                            ))
+                        }
+                        </div>
+                        <div className='flex flex-col px-10 mt-8'>
+                            <div className='bg-white font-Poppins font-bold text-[20px] p-4 rounded-full flex justify-center items-center'>&gt; 2300 zł</div>
+                            <div className='flex items-center justify-center relative top-[-10px]'><div className='bg-black p-4 px-14 rounded-full'><img src={Arrow} className='color-white rotate-[270deg]'/></div></div>
+                        </div>
+                        
+                    </div>
+            </div>
         </div>
     </div>
   )
