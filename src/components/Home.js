@@ -6,6 +6,7 @@ import PalleteSection from './PalleteSection'
 import Aboatme from './Aboatme'
 import Main from '../Main.scss'
 import "./Home-word.js"
+import Offer from './Offer'
 
 const Home = (loaded) => {
 
@@ -189,7 +190,7 @@ const Home = (loaded) => {
                 }`}>
                     <div>
                     <p className='text-black font-bold font-Poppins ss:text-[40px] text-[25px] mt-[30px] mb-6 word'></p>
-                    <p className='text-black font-Poppins ss:text-[19px] text-[13px] mb-6'>Utwórz własną stronę internetową</p>
+                    <p className='text-black font-Poppins ss:text-[19px] text-[13px] mb-6'>Tworzymy strony internetowe</p>
                     <table className='lg:w-[25vw] w-full mb-20'>
                         <tr><td className={`${table.td}`}>systemy/aplikacje webowe</td><td className={`${table.td}`}>portale internetowe</td></tr>
                         <tr><td className={`${table.td}`}>strony wizytówki</td></tr>
@@ -220,25 +221,25 @@ const Home = (loaded) => {
             <div id='Aboatme' className='overflow-hidden' >
                 <Aboatme/>
             </div>
-            
-            
+            <Offer/>
+
         </div>
         <div className='absolute top-0 right-0 flex h-full'>
-                <div className='relative'>
-                    <div className={`right-0 sticky top-[14vh] z-[10] flex flex-col items-end ease-in-out duration-300 ${
-                        nav === true ? "mm:translate-x-0 translate-x-[100%] mm:scale-[1] scale-x-[-1] scale-y-[1]" : ""
-                    }`}>
-                        <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
-                                btn === true ? "w-[37px] ss:w-[47px]" : ""
-                            }`}>
-                            <i className="gg-options text-white scale-[0.8]"></i>
-                        </a>
-                        <div style={{backgroundColor: localpallete[3].color}} onClick={()=> handleClick("nav")} className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
-                            <i className="gg-menu-cake scale-[0.8]"></i>
-                        </div>
+            <div className='relative'>
+                <div className={`right-0 sticky top-[14vh] z-[10] flex flex-col items-end ease-in-out duration-300 ${
+                    nav === true ? "mm:translate-x-0 translate-x-[100%] mm:scale-[1] scale-x-[-1] scale-y-[1]" : ""
+                }`}>
+                    <a href='#UXPsys' style={{backgroundColor: localpallete[1].color}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center ${
+                            btn === true ? "w-[37px] ss:w-[47px]" : ""
+                        }`}>
+                        <i className="gg-options text-white scale-[0.8]"></i>
+                    </a>
+                    <div style={{backgroundColor: localpallete[3].color}} onClick={()=> handleClick("nav")} className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'>
+                        <i className="gg-menu-cake scale-[0.8]"></i>
                     </div>
                 </div>
             </div>
+        </div>
         <Navbar/>
     </div>
   )
