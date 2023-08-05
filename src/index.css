@@ -24,6 +24,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+*::selection {
+  color:white;
+  background: rgb(116, 116, 116);
+  }
 #root{
   overflow-x: clip
 }

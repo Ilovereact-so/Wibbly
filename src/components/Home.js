@@ -196,7 +196,7 @@ const Home = (loaded) => {
                         <tr><td className={`${table.td}`}>systemy/aplikacje webowe</td><td className={`${table.td}`}>portale internetowe</td></tr>
                         <tr><td className={`${table.td}`}>strony wizytówki</td></tr>
                     </table>
-                    <div className='bg-black ss:h-[70px] h-[50px] text-white font-bold font-Poppins ss:text-[22px] text-[15px] flex justify-center items-center cursor-pointer rounded-full lg:mr-[12vw] mb-5'>Get Started</div>
+                    <a href='#Offer' className='bg-black ss:h-[70px] h-[50px] text-white font-bold font-Poppins ss:text-[22px] text-[15px] flex justify-center items-center cursor-pointer rounded-full lg:mr-[12vw] mb-5'>Get Started</a>
                     </div>
                 </div>
 

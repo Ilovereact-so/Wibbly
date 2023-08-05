@@ -25,7 +25,7 @@ const Offer = () => {
         <div style={{color: localpallete[1].color}} className='absolute top-0 text-center w-full z-1'><p className='font-bold font-Poppins xl:text-[322px] lg:text-[300px] md:text-[230px] sm:text-[175px] ss:text-[145px] text-[100px]'>Oferta</p></div>
         <div className='flex sm:flex-row flex-col w-full h-full relative z-2'>
             <div className='lg:w-[66vw] sm:w-[50vw] w-full pt-[100px] ss:px-0 px-8 relative bg-[#b7b7b752] flex lg:flex-row flex-col items-center justify-evenly'>
-                <div className='bg-[rgba(246,247,248,0.82)] ss:w-auto  w-full inline-flex flex-col 2xl:p-9 sm:p-8 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 lg:mb-0 mb-[50px] rounded-[40px]'>
+                <div className='bg-[rgba(246,247,248,0.82)] hover:bg-[rgba(246,247,248)] ease-in-out duration-300 ss:w-auto  w-full inline-flex flex-col 2xl:p-9 sm:p-8 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 lg:mb-0 mb-[50px] rounded-[40px]'>
                     <p className='font-Poppins font-bold 2xl:text-[23px] xl:text-[19px] text-[17px] mb-5'>Strona "wizytówka" </p>
                     <div className='inline-flex flex-col 2xl:mr-10 sm:mr-5 mr-[60px]'>
                     {
@@ -54,7 +54,7 @@ const Offer = () => {
                     
                 </div>
 
-                <div className='bg-[rgba(246,247,248,0.82)] ss:w-auto w-full inline-flex flex-col 2xl:p-9 sm:p-8 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 rounded-[40px] lg:mb-0 mb-[100px] '>
+                <div className='bg-[rgba(246,247,248,0.82)] hover:bg-[rgba(246,247,248)] ease-in-out duration-300 ss:w-auto w-full inline-flex flex-col 2xl:p-9 sm:p-8 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 rounded-[40px] lg:mb-0 mb-[100px] '>
                     <p className='font-Poppins font-bold 2xl:text-[23px] xl:text-[19px] text-[17px] mb-5'>Strona "wizytówka" Level 2 </p>
                     <div className='inline-flex flex-col 2xl:mr-10 sm:mr-5 mr-[60px]'>
                     {
@@ -88,7 +88,7 @@ const Offer = () => {
             </div>
 
             <div className='flex lg:w-[34vw] sm:w-[50vw] w-full justify-center ss:px-0 px-8 items-center lg:pt-[130px] sm:py-0 py-8 relative'>
-                <div className='bg-[rgba(246,247,248,0.82)] ss:w-auto w-full inline-flex flex-col sm:p-9 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 rounded-[40px]'>
+                <div className='bg-[rgba(246,247,248,0.82)] hover:bg-[rgba(246,247,248)] ease-in-out duration-300 ss:w-auto w-full inline-flex flex-col sm:p-9 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 rounded-[40px]'>
                         <p className='font-Poppins font-bold 2xl:text-[23px] xl:text-[19px] text-[17px] mb-5'>Strona/Aplikacja webowa </p>
                         <div className='inline-flex flex-col 2xl:mr-10 sm:mr-5 mr-[60px]'>
                         {
