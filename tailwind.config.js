@@ -17,6 +17,9 @@ module.exports = {
         'mm': '650px',
         // => @media (min-width: 640px) { ... }
       },
+      backgroundImage: {
+        'triangle': "url('/src/assets/Triangle.svg')",
+      }
     },
   },
   plugins: [],
