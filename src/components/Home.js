@@ -7,6 +7,7 @@ import Aboatme from './Aboatme'
 import Main from '../Main.scss'
 import "./Home-word.js"
 import Offer from './Offer'
+import Footer from './Footer'
 
 const Home = (loaded) => {
 
@@ -222,6 +223,7 @@ const Home = (loaded) => {
                 <Aboatme/>
             </div>
             <Offer/>
+            <Footer/>
 
         </div>
         <div className='absolute top-0 right-0 flex h-full'>
