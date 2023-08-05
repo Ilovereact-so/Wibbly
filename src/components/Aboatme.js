@@ -46,8 +46,8 @@ const Aboatme = () => {
                   <p className='font-Poppins lg:text-[20px] md:text-[17px] text-[14px] mb-[100px]'>Cała obecna strona
                     jest dostępna do podglądu na GitHubie(całość na
                     linencji….). </p>
-                  <div className='lg:h-[70px] h-[48px] bg-white lg:w-[350px] md:w-[300px] w-[50%] rounded-full xl:static absolute bottom-16 flex items-center justify-between lg:px-11 px-8'>
-                      <p className='font-Poppins lg:text-[21px] text-[15px] font-bold'>1 / 2</p>
+                  <div className='lg:h-[70px] h-[48px] bg-white lg:w-[350px] md:w-[300px] w-[40%] rounded-full xl:static absolute bottom-16 flex items-center justify-between lg:px-11 px-8'>
+                      <p className='font-Poppins lg:text-[21px] md:text-[15px] text-[13px] font-bold'>1 / 2</p>
                       <div className='lg:w-[40px] lg:h-[40px] w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center cursor-pointer' onClick={()=>handleclick()}>
                         <i className="gg-arrow-down text-white rotate-[270deg] scale-[0.75]"></i>
                       </div>
