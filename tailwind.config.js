@@ -11,6 +11,7 @@ module.exports = {
       dropShadow: {
         'cartoon': '0px 8px 0px #f3f3f3',
         'cartoonB': '0px 8px 0px #5e5e5e',
+        'bottomRight': '-20px -12px 4px #CECFD0',
       },
       screens: {
         'ss': '450px',
