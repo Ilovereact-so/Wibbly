@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@react-three/drei": "^9.57.3",
+    "@react-three/fiber": "^8.12.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/three": "^0.155.0",
     "jquery": "^3.7.0",
     "nth-check": "^2.1.1",
     "react": "^18.2.0",
@@ -14,6 +17,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.1",
     "react-scripts": "^5.0.1",
+    "three": "^0.150.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

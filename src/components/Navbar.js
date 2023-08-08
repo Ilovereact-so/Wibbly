@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { NavbarList } from '../constants'
 import { Arrow, Createuplogo } from '../assets';
 import $ from "jquery"
+import {useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
   const [option,setOption] = useState(0)
 
-
+  const navigate = useNavigate();
     useEffect(() => {
         const alertMessage = () => {
           //alert('localStorage changed!');
@@ -91,7 +92,7 @@ const Navbar = () => {
               <div className='bg-[rgba(255,255,255,0.52)] w-full rounded-[46px] flex flex-col-reverse items-center py-6 px-8'>
                 <div className='flex justify-between w-full'>
                   <div className='mm:w-[60px] mm:h-[60px] w-[50px] h-[50px] rounded-full flex justify-center items-center bg-black'><img src={Createuplogo} className='color-white w-[35px]'/></div>
-                  <div className='font-Poppins font-bold text-white mm:text-[18px] text-[13px] h-full flex justify-center items-center bg-black mm:w-[228px] rounded-full mm:px-0 px-10 '>Zaloguj się</div>
+                  <div onClick={()=>  navigate("/login")} className='font-Poppins font-bold text-white mm:text-[18px] text-[13px] h-full flex justify-center items-center cursor-pointer bg-black mm:w-[228px] rounded-full mm:px-0 px-10 '>Zaloguj się</div>
                 </div>
                 <div className='p-6 px-8 mb-8 bg-[rgba(195,195,195,0.2)] rounded-[20px] w-full h-full '>
                   <div className='w-full flex justify-end items-center mb-8'><p className='text-[#929292] mm:text-[16px] text-[13px] font-Poppins'>Notifications</p><i className='gg-bell text-[#929292] scale-[0.9] ml-5'></i></div>
