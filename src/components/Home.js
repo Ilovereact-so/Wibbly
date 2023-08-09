@@ -134,27 +134,31 @@ const Home = (loaded) => {
         }
         
     });
+        $.fn.isInViewport = function() {
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
 
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
 
-    $.fn.isInViewport = function() {
-        var elementTop = $(this).offset().top;
-        var elementBottom = elementTop + $(this).outerHeight();
-    
-        var viewportTop = $(window).scrollTop();
-        var viewportBottom = viewportTop + $(window).height();
-    
-        return elementBottom > viewportTop && elementTop < viewportBottom;
-    };
+            return elementBottom > viewportTop && elementTop < viewportBottom;
+        };
 
     $(window).on('resize scroll', function() {
+            var scroll = $(window).scrollTop();//
+            if ($('#UXPsys').isInViewport()) {
+                setBtn(true)
+            } else {
+                //console.log("nope")
+                setBtn(false)
+            }
 
-        var scroll = $(window).scrollTop();//
-        if ($('#UXPsys').isInViewport()) {
-            setBtn(true)
-        } else {
-            //console.log("nope")
-            setBtn(false)
-        }
+            if ($('#Aboatme').offset().top < (scroll + 400)) {
+                $("#Banner").css("opacity","0")
+            }
+
+        
+        
         // if ($('#ABMain').isInViewport()) {
         //     $(".ReactContener").animate({
         //         height: "0",
@@ -168,9 +172,7 @@ const Home = (loaded) => {
         //console.log(scroll)
         //console.log($('#Aboatme').offset().top)
         
-        if ($('#Aboatme').offset().top < (scroll + 400)) {
-            $("#Banner").css("opacity","0")
-        }
+        
     });
 
     if(loaded.anim === true){
