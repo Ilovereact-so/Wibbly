@@ -17,6 +17,7 @@ module.exports = {
         'ss': '450px',
         'mm': '650px',
         'll': '825px',
+        '1xl': '1420px',
         // => @media (min-width: 640px) { ... }
       },
       backgroundImage: {
