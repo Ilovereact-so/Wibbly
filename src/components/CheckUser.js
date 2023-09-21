@@ -26,8 +26,8 @@ const CheckUser = ({ click }) => {
         setValidate(pattern)
       }
     }
-    const checkaccount_database_URL = window.location.href + "/api/checkaccount"
-    const login_database_URL = window.location.href + "/api/login"
+    const checkaccount_database_URL = "/api/checkaccount"
+    const login_database_URL = "/api/login"
 
     useEffect(() => {
       
