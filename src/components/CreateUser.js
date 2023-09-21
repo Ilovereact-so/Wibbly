@@ -50,8 +50,8 @@ const CreateUser = ({click}) => {
       setPValidate(e_pattern)
     }
     
-    const signup_database_URL = "/api/signupuser"
-    const searchaccount_database_URL = "/api/searchaccount"
+    const signup_database_URL = window.location.protocol + window.location.hostname + "/api/signupuser"
+    const searchaccount_database_URL = window.location.protocol + window.location.hostname + "/api/searchaccount"
 
      
 
