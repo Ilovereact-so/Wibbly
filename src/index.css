@@ -15,6 +15,7 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/close.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/check-o.css');
 
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -31,7 +32,18 @@ body {
 #root{
   overflow-x: clip
 }
+.autofilinputred:-webkit-autofill{
+  -webkit-text-fill-color: rgb(220, 38, 38)
+}
+
+.waiting-form{
+  filter: contrast(0.8) opacity(0.4);
+}
+
 #text-login{
+  writing-mode: vertical-rl
+}
+#text-register{
   writing-mode: vertical-rl
 }
 .color-black{
