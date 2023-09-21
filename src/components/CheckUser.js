@@ -26,9 +26,16 @@ const CheckUser = ({ click }) => {
         setValidate(pattern)
       }
     }
-    const checkaccount_database_URL = window.location.protocol + window.location.hostname + "/api/checkaccount"
-    const login_database_URL = window.location.protocol + window.location.hostname + "/api/login"
-
+    var checkaccount_database_URL;
+    var login_database_URL;
+    if (process.env.NODE_ENV == 'production') {
+      checkaccount_database_URL = "https://srv45036.seohost.com.pl/api/checkaccount"
+      login_database_URL = "https://srv45036.seohost.com.pl/api/login"
+    } else {
+      checkaccount_database_URL = "http://localhost:3000/api/checkaccount"
+      login_database_URL = "http://localhost:3000/api/login"
+    }
+    
     useEffect(() => {
       
       if(click === true && status === "checkUser"){

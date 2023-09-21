@@ -49,9 +49,16 @@ const CreateUser = ({click}) => {
       //console.log(e, e_pattern)
       setPValidate(e_pattern)
     }
+    var signup_database_URL;
+    var searchaccount_database_URL;
+    if (process.env.NODE_ENV == 'production') {
+      signup_database_URL = "https://srv45036.seohost.com.pl/api/signupuser"
+      searchaccount_database_URL = "https://srv45036.seohost.com.pl/api/searchaccount"
+    } else {
+      signup_database_URL = "http://localhost:3000/api/signupuser"
+      searchaccount_database_URL = "http://localhost:3000/api/searchaccount"
+    }
     
-    const signup_database_URL = window.location.protocol + window.location.hostname + "/api/signupuser"
-    const searchaccount_database_URL = window.location.protocol + window.location.hostname + "/api/searchaccount"
 
      
 
