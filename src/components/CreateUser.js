@@ -50,16 +50,17 @@ const CreateUser = ({click}) => {
       setPValidate(e_pattern)
     }
     
-    const database_URL = window.location.href + "/api/signupuser"
+    const signup_database_URL = window.location.href + "/api/signupuser"
+    const searchaccount_database_URL = window.location.href + "/api/searchaccount"
 
      
 
       useEffect(() => {
         
         if(click === true && status === "createPass" && p_validate === true){
-          console.log(database_URL)
+          console.log(signup_database_URL)
           $.ajax({
-            url:database_URL,
+            url:signup_database_URL,
             type:"POST",
             data: CreateData,
             crossDomain: true,
@@ -76,9 +77,9 @@ const CreateUser = ({click}) => {
         }
       
         if(click === true && status === "createUser" && e_validate === true && u_validate === true && val_element === ''){
-          console.log(database_URL)
+          console.log(searchaccount_database_URL)
           $.ajax({
-            url:"http://localhost:3003/api/searchaccount",
+            url:searchaccount_database_URL,
             type:"POST",
             data: send,
             crossDomain: true,

@@ -26,13 +26,15 @@ const CheckUser = ({ click }) => {
         setValidate(pattern)
       }
     }
-    
+    const checkaccount_database_URL = window.location.href + "/api/checkaccount"
+    const login_database_URL = window.location.href + "/api/login"
+
     useEffect(() => {
       
       if(click === true && status === "checkUser"){
         console.log(send)
         $.ajax({
-          url:"http://localhost:3003/api/checkaccount",
+          url:checkaccount_database_URL,
           type:"POST",
           data: send,
           crossDomain: true,
@@ -83,7 +85,7 @@ const CheckUser = ({ click }) => {
         }
         console.log(correctdata)
         $.ajax({
-          url:"http://localhost:3003/api/login",
+          url:login_database_URL,
           type:"POST",
           data: correctdata,
           crossDomain: true,
