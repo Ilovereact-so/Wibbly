@@ -56,7 +56,7 @@ const CreateUser = ({click}) => {
       searchaccount_database_URL = "https://srv45036.seohost.com.pl/api/searchaccount"
     } else {
       signup_database_URL = "http://localhost:3000/api/signupuser"
-      searchaccount_database_URL = "http://localhost:3000/api/searchaccount"
+      searchaccount_database_URL = "https://srv45036.seohost.com.pl/api/searchaccount"
     }
     
 
@@ -86,7 +86,7 @@ const CreateUser = ({click}) => {
         if(click === true && status === "createUser" && e_validate === true && u_validate === true && val_element === ''){
           console.log(searchaccount_database_URL)
           $.ajax({
-            url:searchaccount_database_URL,
+            url:"https://srv45036.seohost.com.pl/api/searchaccount",
             type:"POST",
             data: send,
             crossDomain: true,
