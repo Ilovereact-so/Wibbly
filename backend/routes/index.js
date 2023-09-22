@@ -4,14 +4,14 @@ const userController = require('../controller/user');
 const app = express();
 const router = express.Router();
 
-router.post('/checkaccount', (req ,res) => {
+router.post('/api/checkaccount', (req ,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     //res.set(cors())
     //res.send({ "msg": req.body })
     console.log(req.body)
     userController.checkAccount(req, res)
 });
-router.post('searchaccount', (req ,res) => {
+router.post('/api/searchaccount', (req ,res) => {
     res.set('Access-Control-Allow-Origin', '*');
     //res.set(cors())
     //res.send({ "msg": req.body })
