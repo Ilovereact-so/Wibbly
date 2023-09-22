@@ -52,11 +52,11 @@ const CreateUser = ({click}) => {
     var signup_database_URL;
     var searchaccount_database_URL;
     if (process.env.NODE_ENV == 'production') {
-      signup_database_URL = "https://srv45036.seohost.com.pl/api/signupuser"
-      searchaccount_database_URL = "https://srv45036.seohost.com.pl/api/searchaccount"
+      signup_database_URL = "https://api.srv45036.seohost.com.pl/api/signupuser"
+      searchaccount_database_URL = "https://api.srv45036.seohost.com.pl/api/searchaccount"
     } else {
       signup_database_URL = "http://localhost:3000/api/signupuser"
-      searchaccount_database_URL = "https://srv45036.seohost.com.pl/api/searchaccount"
+      searchaccount_database_URL = "https://localhost:3003/api/searchaccount"
     }
     
 
@@ -86,7 +86,7 @@ const CreateUser = ({click}) => {
         if(click === true && status === "createUser" && e_validate === true && u_validate === true && val_element === ''){
           console.log(searchaccount_database_URL)
           $.ajax({
-            url:"https://srv45036.seohost.com.pl/api/searchaccount",
+            url:searchaccount_database_URL,
             type:"POST",
             data: send,
             crossDomain: true,
