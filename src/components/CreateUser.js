@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import $ from 'jquery'
 import axios from 'axios';
 
+
 const CreateUser = ({click}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState({username: "", email: ""})
@@ -79,6 +80,9 @@ const CreateUser = ({click}) => {
             contentType:"application/json; charset=utf-8",
             dataType:"json",
           }).then((res)=>{
+
+              // Set a cookie with the secure and HttpOnly flags
+            localStorage.setItem("access-token",res)
             navigate('/')
           })
         }

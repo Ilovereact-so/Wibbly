@@ -13,6 +13,10 @@ class userService {
     const { username, email } = userDto;
     return userDAO.searchAccount(username, email);
   }
+  authUser(userDto) {
+    const {access_token} = userDto;
+    return userDAO.authUser(access_token);
+  }
   async signupUser(userDto) {
     const { username, email, password } = userDto;
     const hashPassword = await password
