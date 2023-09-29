@@ -1,8 +1,9 @@
-import $, { post } from 'jquery'
+import $ from 'jquery'
 import React, {useEffect, useState } from 'react'
-import {json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import "jquery-ui";
+import Auth from './Auth';
 
 const CheckUser = ({ click }) => {
     const navigate = useNavigate()
@@ -28,7 +29,7 @@ const CheckUser = ({ click }) => {
     }
     var checkaccount_database_URL;
     var login_database_URL;
-    if (process.env.NODE_ENV == 'production') {
+    if (process.env.NODE_ENV === 'production') {
       checkaccount_database_URL = "https://api.srv45036.seohost.com.pl/api/checkaccount"
       login_database_URL = "https://api.srv45036.seohost.com.pl/api/login"
     } else {
@@ -58,7 +59,7 @@ const CheckUser = ({ click }) => {
           setLogindata(res)
           //-----------------------
           $("#form-user > div").css("transition","ease-in-out 200ms").css("transform",'translateX(-100%)').css("opacity","0")
-          let form =  $("#form-user > div").css('opacity')
+          //let form =  $("#form-user > div").css('opacity')
           setTimeout(()=>{
             $("#form-user > div").css("transition","ease-in-out 0ms").css("transform",'translateX(0)')
           },200)
@@ -75,6 +76,7 @@ const CheckUser = ({ click }) => {
             setValidate(false)
           }
         })
+
       }else if (click === true && status === "enterPassword" && validate === true){
         var correctdata;
         if(logindata === "username"){
@@ -104,11 +106,16 @@ const CheckUser = ({ click }) => {
           contentType:"application/json; charset=utf-8",
           dataType:"json",
         }).then((res)=>{
-          console.log(res)
-          setValidate(res)
-          if(res){
-            console.log('niga')
+          if(res !== false){
+            console.log(res)
+            localStorage.setItem("at",res)
+            navigate("/")
+            Auth();
+          }else{
+            console.log(res)
+            setValidate(res)
           }
+          
         })
       }
     })

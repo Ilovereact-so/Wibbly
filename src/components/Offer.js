@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Offer1, Offer2, Offer3 } from '../constants';
-import { Arrow, Arrowsscrollv } from '../assets';
+import { Arrow} from '../assets';
 
 const Offer = () => {
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))

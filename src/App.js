@@ -14,6 +14,7 @@ const dc = $( document ).ready();
 const win = $( window ).on( "load");
 
 
+
 useEffect(() => {
   if(JSON.parse(localStorage.getItem('Pallete')) === null || JSON.parse(localStorage.getItem('Pallete')) === ""){
     window.localStorage.setItem("Pallete", JSON.stringify(Pallete0))
@@ -33,6 +34,7 @@ setTimeout(()=>{
 const postload = () => {
   setTimeout(()=>{
     setPostloaded(false)
+    
   },100)
   
 }

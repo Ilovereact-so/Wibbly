@@ -2,14 +2,40 @@ import React, { useEffect, useState } from 'react'
 import { NavbarList } from '../constants'
 import { Arrow, Createuplogo } from '../assets';
 import $ from "jquery"
-import {useNavigate } from 'react-router-dom';
+import {useLocation, useNavigate } from 'react-router-dom';
+import Auth from './Auth';
 
 const Navbar = () => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
   const [option,setOption] = useState(0)
-
   const navigate = useNavigate();
+    // $( document ).ready(function(){
+
+      // if(data.access_token !== null){
+      //   console.log(data, "reload data")
+      //   $.ajax({
+      //     url:auth,
+      //     type:"POST",
+      //     data: data,
+      //     crossDomain: true,
+      //     headers: {
+      //       "accept": "application/json",
+      //       "Access-Control-Allow-Origin":"*"
+      //     },
+      //     xhrFields: {cors: false},
+      //     contentType:"application/json; charset=utf-8",
+      //     dataType:"json",
+      //   }).then((res)=>{
+      //     console.log(res)
+      //     localStorage.setItem("at",res.at)
+      //     localStorage.setItem("rt",res.rt)
+      //   });
+      // }
+    
+    // });
+  
     useEffect(() => {
+      
         const alertMessage = () => {
           //alert('localStorage changed!');
           setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
@@ -38,7 +64,7 @@ const Navbar = () => {
         if($('#Aboatme').isInViewport()) {
           //console.log("nope")
           setOption(2)
-      }
+        }
         // if ($('#ABMain').isInViewport()) {
         //     $(".ReactContener").animate({
         //         height: "0",

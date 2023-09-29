@@ -25,6 +25,18 @@ class UserController {
       console.error(err);
     }
   }
+  async authUser(req, res) {
+    try {
+      const id = await userService.authUser(req.body);
+      if(id != null){
+        res.status(201).json(id);
+      }else{
+        res.status(403).json(id);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   async checkAccount(req, res) {
     try {

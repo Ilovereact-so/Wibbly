@@ -19,6 +19,7 @@ const User = () => {
 
   const navigate = useNavigate()
   
+
   const Next = () => {
     
     $("#form-user").addClass('waiting-form')
@@ -29,9 +30,13 @@ const User = () => {
     },500)
     setTimeout(()=>{
       setClick(false)
-    },700)
+      //console.log("click-false")
+    },520)
   }
-  
+
+
+ 
+ 
     
   //console.log(validateEmail())
     useEffect(() => {

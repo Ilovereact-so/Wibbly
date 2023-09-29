@@ -9,10 +9,12 @@ import {
 } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import User from './components/User';
-import R_User from './components/R_User';
+import RUser from './components/RUser';
+import Auth from './components/Auth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+Auth();
 
 
 root.render(
@@ -21,7 +23,8 @@ root.render(
       <Routes>
           <Route exact path='/' element={<App/>}></Route>
           <Route exact path='/login' element={<User/>}></Route>
-          <Route exact path='/signup' element={<R_User/>}></Route>
+          {/** eslint-disable-next-line*/}
+          <Route exact path='/signup' element={<RUser/>}></Route>
           {/** <Route path='*' element={<NotFound/>}/>*/}
       </Routes>
   </BrowserRouter>

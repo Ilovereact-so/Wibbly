@@ -118,7 +118,7 @@ function Logo({loaded}) {
         
         $('#b'+ (index  + 1)).fadeOut().fadeIn('slow');
 
-        console.log(`Some stuff ${index}`);
+        //console.log(`Some stuff ${index}`);
         // Wait for timeout 1000 ms
         await timeout(30);
       }

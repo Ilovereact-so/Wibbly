@@ -35,6 +35,14 @@ router.post('/api/login', (req ,res) => {
     userController.loginUser(req, res)
 });
 
+router.post('/api/auth', (req ,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    //res.set(cors())
+    //res.send({ "msg": req.body })
+    console.log(req.body)
+    userController.authUser(req, res)
+});
+
 router.post('/api/register', userController.registerUser);
 
 module.exports = router;
