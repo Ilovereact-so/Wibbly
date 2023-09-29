@@ -1,12 +1,9 @@
-import React, { Suspense, useEffect, useState } from 'react'
-import $, { post } from 'jquery'
+import React, { useEffect, useState } from 'react'
+import $ from 'jquery'
 import { Canvas } from '@react-three/fiber'
 import { Model } from '../3D/Character';
-import { OrbitControls } from '@react-three/drei';
-import Logo from './Logo';
-import {json, useNavigate } from 'react-router-dom';
-import axios, { Axios } from 'axios';
-import CheckUser from './CheckUser';
+import {useNavigate } from 'react-router-dom';
+
 import CreateUser from './CreateUser';
 
 const R_User = () => {
@@ -76,7 +73,7 @@ const R_User = () => {
         ball.style.position = 'absolute';
         ball.style.zIndex = 1000;
         const dockleft = $('#dockScroll').offset().left;
-        const docktop = $('#dockScroll').offset().top;
+        //const docktop = $('#dockScroll').offset().top;
         ball.style.backgroundColor = localpallete[1].color
         //document.body.append(ball);
         // move it out of any current parents directly into body

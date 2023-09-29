@@ -33,6 +33,8 @@ const Home = (loaded) => {
       });
 
     useEffect(() => {
+
+        
         
         const alertMessage = () => {
           //alert('localStorage changed!');
@@ -134,6 +136,7 @@ const Home = (loaded) => {
         }
         
     });
+    useEffect(()=>{
         $.fn.isInViewport = function() {
             var elementTop = $(this).offset().top;
             var elementBottom = elementTop + $(this).outerHeight();
@@ -143,6 +146,8 @@ const Home = (loaded) => {
 
             return elementBottom > viewportTop && elementTop < viewportBottom;
         };
+    })
+        
 
     $(window).on('resize scroll', function() {
             var scroll = $(window).scrollTop();//
