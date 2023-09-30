@@ -138,31 +138,34 @@ const Home = (loaded) => {
     });
     useEffect(()=>{
         $.fn.isInViewport = function() {
-            var elementTop = $(this).offset().top;
-            var elementBottom = elementTop + $(this).outerHeight();
-
-            var viewportTop = $(window).scrollTop();
-            var viewportBottom = viewportTop + $(window).height();
-
-            return elementBottom > viewportTop && elementTop < viewportBottom;
+            if(this[0] != null){
+                var elementTop = $(this).offset().top;
+                var elementBottom = elementTop + $(this).outerHeight();
+    
+                var viewportTop = $(window).scrollTop();
+                var viewportBottom = viewportTop + $(window).height();
+    
+                return elementBottom > viewportTop && elementTop < viewportBottom;
+            }   
         };
     })
         
 
-    $(window).on('resize scroll', function() {
+    $(window).on('resize scroll',function() {
             var scroll = $(window).scrollTop();//
-            if ($('#UXPsys').isInViewport()) {
+            if($('#UXPsys').isInViewport()) {
                 setBtn(true)
             } else {
                 //console.log("nope")
                 setBtn(false)
             }
 
-            if ($('#Aboatme').offset().top < (scroll + 400)) {
-                $("#Banner").css("opacity","0")
+            if($('#Aboatme')[0] != null){
+                if ($('#Aboatme').offset().top < (scroll + 400) ) {
+                    $("#Banner").css("opacity","0")
+                }
             }
 
-        
         
         // if ($('#ABMain').isInViewport()) {
         //     $(".ReactContener").animate({
