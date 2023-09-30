@@ -20,7 +20,7 @@ $(window).on('resize scroll', function() {
         
     //}
 
-    if(windowW < 1025){
+    if(windowW < 1013){
         if((windowH - 400) < windowW ){
             $("#UXPsys").addClass('properties');
             $("#Home").addClass('properties');
