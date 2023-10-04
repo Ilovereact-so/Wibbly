@@ -33,8 +33,8 @@ const CheckUser = ({ click }) => {
       checkaccount_database_URL = "https://api.srv45036.seohost.com.pl/api/checkaccount"
       login_database_URL = "https://api.srv45036.seohost.com.pl/api/login"
     } else {
-      checkaccount_database_URL = "http://localhost:3000/api/checkaccount"
-      login_database_URL = "http://localhost:3000/api/login"
+      checkaccount_database_URL = "http://localhost:3003/api/checkaccount"
+      login_database_URL = "http://localhost:3003/api/login"
     }
     
     useEffect(() => {
