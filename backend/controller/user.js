@@ -72,6 +72,23 @@ class UserController {
     }
   }
 
+  async logoutUser(req, res) {
+    try {
+      const id = await userService.logoutUser(req.body);
+      if(id != null){
+        if(id == 'email' || id == 'username'){
+          res.status(409).json(id);
+        }else{
+          res.status(201).json(id);
+        }      
+      }else{
+        res.status(403).json(id);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   async registerUser(req, res) {
     try {
       const id = await userService.registerUser(req.body);
