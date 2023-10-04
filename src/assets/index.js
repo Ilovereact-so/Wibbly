@@ -10,3 +10,4 @@ export { default as reactlogo } from "./React-logo.png";
 export { default as Createuplogo } from "./Createup-logo.svg";
 export { default as Arrowsscrollv } from "./arrows-scroll-v.svg";
 export { default as Arrow} from "./Arrow.svg";
+export { default as Figurka} from "./figurka2.png";

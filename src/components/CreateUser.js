@@ -56,7 +56,7 @@ const CreateUser = ({click}) => {
       signup_database_URL = "https://api.srv45036.seohost.com.pl/api/signupuser"
       searchaccount_database_URL = "https://api.srv45036.seohost.com.pl/api/searchaccount"
     } else {
-      signup_database_URL = "http://localhost:3000/api/signupuser"
+      signup_database_URL = "http://localhost:3003/api/signupuser"
       searchaccount_database_URL = "https://localhost:3003/api/searchaccount"
     }
     

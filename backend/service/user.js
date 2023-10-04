@@ -22,6 +22,10 @@ class userService {
     const hashPassword = await password
     return userDAO.signupUser(username, email, hashPassword);
   }
+  async logoutUser(userDto) {
+    const { at, rt } = userDto;
+    return userDAO.logoutUser(at, rt);
+  }
 }
 
 module.exports = new userService();

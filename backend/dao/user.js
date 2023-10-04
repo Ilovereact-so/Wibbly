@@ -86,21 +86,47 @@ async loginUser(password, userdata, usertype){
   async authUser(access_token){
     
     var secret = '';
-    var decoded = jwt.decode(access_token, secret, 'HS512');
-    console.log(decoded?.user_id,"json")
-    const [oat] = await db("oauth_access_tokens")
-    .where({access_token:access_token, user_id:decoded?.user_id})
-    console.log(oat, "decoded")
-    if(oat != null) {
-      return getRefreshToken(access_token, decoded)
-    }else{
+    const Jwtdecode = () => {
+      try {
+        return jwt.decode(access_token, secret, 'HS512');
+      } catch (e) {
+        console.log("err")
+        return false;
+      } 
+    };
+    if(Jwtdecode() == false)
+    {
+      //console.log(Jwtdecode())
       return false
+    }else{
+      const res = Jwtdecode();
+      console.log(res?.user_id,"json")
+      const [oat] = await db("oauth_access_tokens")
+      .where({access_token:access_token, user_id:res?.user_id})
+      console.log(oat, "oat", res, "res")
+      if(oat != null) {
+        return getRefreshToken({access_token, decoded:res})
+      }else{
+        return false
+      }
     }
+    
 
-    async function getRefreshToken(access_token, decoded) {
+    // jwt.decode(access_token, secret, 'HS512')
+    // .then(async (res)=>{
+      
+      
+    // })
+    // .catch((err)=>{
+    //   return false
+    // });
+    
 
+    async function getRefreshToken({access_token, decoded}) {
+      //console.log(decoded,"niga")
       if( await db("oauth_access_tokens").where({access_token:access_token, user_id:decoded?.user_id}).del()){
         await db("oauth_refresh_tokens").where({id: decoded?.rt_id}).del()
+        
         const [user_data] = await db('users')
         var payload_user = {
           username : user_data?.username,
@@ -159,7 +185,24 @@ async loginUser(password, userdata, usertype){
     }
     
   }
+
+  async logoutUser(at, rt) {
+    const [db_at] = await db('oauth_access_tokens')
+    .where({access_token: at})
+    const [db_rt] = await db('oauth_refresh_tokens')
+    .where({refresh_token: rt})
+
+    if(db_at != null && db_rt != null){
+      await db('oauth_access_tokens').where({access_token: at}).del()
+      await db('oauth_refresh_tokens').where({refresh_token: rt}).del()
+      return true
+    }else {
+      return false
+    }
+    
+  }
     
 }
+
 
 module.exports = new userDAO();
