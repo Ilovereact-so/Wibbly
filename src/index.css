@@ -39,6 +39,18 @@ body {
 .waiting-form{
   filter: contrast(0.8) opacity(0.4);
 }
+#menu{
+  filter: opacity(0.7);
+}
+#promt{
+  box-shadow: 0px 0px 20px 1px black;
+  filter: opacity(0.8);
+  backdrop-filter: blur(6px);
+  background-color: #2f2f2f;
+  opacity: 1;
+  background: radial-gradient(circle, transparent 20%, #2f2f2f 20%, #2f2f2f 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #2f2f2f 20%, #2f2f2f 80%, transparent 80%, transparent) 27.5px 27.5px, linear-gradient(#000000 2.2px, transparent 2.2px) 0 -1.1px, linear-gradient(90deg, #000000 2.2px, #2f2f2f 2.2px) -1.1px 0;
+  background-size: 55px 55px, 55px 55px, 27.5px 27.5px, 27.5px 27.5px;
+}
 
 #text-login{
   writing-mode: vertical-rl

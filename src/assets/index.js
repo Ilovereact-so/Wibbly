@@ -11,3 +11,7 @@ export { default as Createuplogo } from "./Createup-logo.svg";
 export { default as Arrowsscrollv } from "./arrows-scroll-v.svg";
 export { default as Arrow} from "./Arrow.svg";
 export { default as Figurka} from "./figurka2.png";
+export { default as Konfigurator} from "./Konfigurator.png";
+export { default as Support} from "./Support.png";
+export { default as Settings} from "./Settings.png";
+export { default as Messages} from "./Messages.png";
