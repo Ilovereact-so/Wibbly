@@ -1,16 +1,27 @@
-import React, { StrictMode } from 'react';
+import React, { StrictMode, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   Routes,
-  Route
+  Route,
+  useNavigate,
 } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import User from './components/User';
 import RUser from './components/RUser';
 import Auth from './components/Auth';
+import MainProfile from './components/Profile/MainProfile';
+
+
+
+export const Index = () => {
+  const navigate = useNavigate()
+  useEffect(()=>{
+    navigate("/")
+  },[])
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -25,7 +36,8 @@ root.render(
           <Route exact path='/login' element={<User/>}></Route>
           {/** eslint-disable-next-line*/}
           <Route exact path='/signup' element={<RUser/>}></Route>
-          {/** <Route path='*' element={<NotFound/>}/>*/}
+          <Route exact path='/profile' element={<MainProfile/>}></Route>
+          <Route path='*' element={<Index/>}/>
       </Routes>
   </BrowserRouter>
 </StrictMode>
@@ -35,3 +47,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
