@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Model6_Figurka } from '../../3D/Figurka6'
 import { decodeToken } from 'react-jwt'
 import $ from 'jquery'
@@ -8,7 +8,8 @@ import KonfiguratorCard from './KonfiguratorCard'
 import SupportCard from './SupportCard'
 import MessagesCard from './MessagesCard'
 import SettingsCard from './SettingsCard'
-import { Konfigurator, Messages, Settings, Support } from '../../assets'
+import { Home, Konfigurator, Messages, Settings, Support } from '../../assets'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 const MainProfile = () => {
     const [logged, setLogged] = useState(localStorage.getItem('rt'))
@@ -17,6 +18,8 @@ const MainProfile = () => {
     const [H_option, setH_option] = useState({1:'', 2:'',3:'',4:''})
     const [W_option, setW_option] = useState({1:'', 2:'',3:'',4:''})
     const [distance_option, setDistance_option] = useState({1:'', 2:'',3:'',4:''})
+
+    const navigate = useNavigate()
     function user() {
         if(logged != null){
             const myDecodedToken = decodeToken(logged);
@@ -61,58 +64,77 @@ const MainProfile = () => {
         });
 
     }
+    const Calculate_Index = () => {
+        var scroll = $(window).scrollTop()
+        const windowH = ($(window).height() - 200) / 2 ;
+        var themost = 0;
+        var themostindex = 0;
+        var i = 1
+        
+        do{
+            //console.log(i)
+            var state = W_option[i] + L_option[i];
+            //console.log(windowH, T_option[i])
+            if(themost < state && (T_option[i] - scroll) > windowH){
+                themost = state;
+                themostindex = i -1;
+                //console.log(themostindex)
+                
+            }
+            
+            if(i === 4){
+                //console.log(themostindex)
+                return themostindex
+            }
+            i = i + 1
+        }while (i < 5)
+        //console.log(themost, themostindex)
+    }
 
-    const MenuPos = () => {
+     const MenuPos = () => {
         //Calcualte_T_option()
         //Calcualte_H_option()
         Calcualte_L_option()
         Calcualte_W_option()
-        
-
-        //var menuH = $('#menu').height();
-        //var menuTop = $('#menu').offset().top;
-        //var menuLeft = $('#menu').offset().left;
-        //var TgreanZone = menuH/2 + menuTop 
-        //console.log(T_option)
-        var i = 0
-        do{
-            var state = W_option[i] + L_option[i];
-            //console.log(i);
-            //setDistance_option({: state})
-            i = i + 1
-        }while (i < 5)
-        
-        //console.log(distance_option)
-        
-
-        //console.log(menuTop, menuLeft)
-        return 1
+        Calcualte_T_option()
+        //console.log(Calculate_Index())
     }
+    useEffect(()=>{
+        Reload()
+    },[])
 
-    $(window).on('resize scroll',function() {
+    const Reload = () =>{
         MenuPos()
         var scroll = $(window).scrollTop();
         var max_scroll = $(window).height()
-        var oneDeg = max_scroll / 360 //degre
-        var deg = scroll / oneDeg
+        const startDeg = 30 //choose strart position
+        var oneDeg = max_scroll / 360 //degree
+        var deg = scroll / oneDeg + startDeg
         var antyDeg = 360 - deg
         //console.log(deg)
         $('#menu').css('transform','rotate('+ deg +'deg)')
-        $('.optionA').css('transform','rotate('+ antyDeg +'deg) translateY(-50%)')
-        $('.optionB').css('transform','rotate('+ antyDeg +'deg) translateX(-50%)')
+        $('.optionA').css('transform','rotate('+ antyDeg +'deg) translateY(-50%) scale(0.8)')
+        $('.optionB').css('transform','rotate('+ antyDeg +'deg) translateX(-50%) scale(0.8)')
         $('.menu_infoText').css('transform','rotate('+ antyDeg +'deg)')
+    }
+
+    $(window).on('resize scroll',function() {
+        Reload()
     });
 
   return (
     <div className='flex w-full h-[200vh]'> {/**Background */}
         <div id='Main' className='flex w-full h-[100vh] fixed'>
-            <div className='flex justify-center w-full float-right h-auto m-[40px] relative z-[2] bg-[rgba(236,236,236,0.55)] rounded-[40px]'>
+            <div className='flex justify-center w-full float-right h-auto m-[40px] z-[2] bg-[rgba(236,236,236,0.55)] relative rounded-[40px]'>
+            <div onClick={() => navigate("/")} className='absolute top-7 left-7 flex justify-center rounded-[30px] cursor-pointer items-center bg-white'>
+                <img src={Home} className='px-7 py-3 scale-[0.8]'/>
+            </div>
                 <div className='w-[57vw] h-full  flex justify-center items-center mr-[50px]'>
                     <div className='w-[45vw] h-[45vw] flex justify-center items-center'>
-                        <div id='menu' className='rounded-full relative bg-[#EBE9E9] backdrop-blur-[2px] w-full flex justify-center items-center h-full'>
+                        <div id='menu' className='rounded-full relative bg-[rgba(169,169,169,0.16)] backdrop-blur-[10px] w-full flex justify-center items-center h-full'>
                             <div className='flex flex-col menu_infoText'>
-                                <p className='text-[17px] font-Poppins text-[#707070] pb-2'>Wybrano:</p>
-                                <p className='text-[20px] font-Poppins font-bold text-[#707070]'>Konfigurator</p>
+                                <p className='text-[17px] font-Poppins text-black pb-2'>Wybrano:</p>
+                                <p className='text-[20px] font-Poppins font-bold text-black'>Konfigurator</p>
                             </div>
                             <div className='absolute w-full h-full'>
                                 <img src={Konfigurator} id='Configure' className='optionA absolute right-[-100px] origin-top top-[50%] translate-y-[-50%]' ></img>
@@ -133,11 +155,7 @@ const MainProfile = () => {
                             konfiguratora witryn lub nawiązać z nami kontakt
                         </p>
                     </div>
-                    <div id="promt" className='w-full h-auto min-h-[450px] py-[30px] px-[40px] rounded-[50px] mb-[50px]'>
-                            <div>
-                                {Prompt[1].element}
-                            </div>
-                    </div>
+                    {Prompt[Calculate_Index()].element}
                 </div>
             </div>
 

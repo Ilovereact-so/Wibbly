@@ -1,11 +1,12 @@
 import $ from 'jquery'
+import { debounce } from 'lodash'
 import React, {useState } from 'react'
 
 let windowW 
 let windowH
 
 
-$(window).on('resize scroll', function() {
+$(window).on('resize scroll', debounce(async () => {
     windowW = $(window).innerWidth()
     windowH = $(window).innerHeight()
 
@@ -35,7 +36,7 @@ $(window).on('resize scroll', function() {
         $("#Home").removeClass('properties'); 
         $("#Aboatme > div > div").removeClass('propertiesP'); 
     }
-})
+},100))
 
 
 

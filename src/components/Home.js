@@ -8,6 +8,7 @@ import Main from '../Main.scss'
 import "./Home-word.js"
 import Offer from './Offer'
 import Footer from './Footer'
+import { debounce } from 'lodash';
 
 const Home = (loaded) => {
 
@@ -20,22 +21,35 @@ const Home = (loaded) => {
     const [nav, setNav] = useState(false)
     const scale = 0.00125
 
-    $(window).on('resize scroll', function() {
-        setWindowW($(window).innerWidth())
-        if(windowW <= 730){
-            $(".Banner").css("transform", 'scale('+ windowW * scale +')')
-        }else{
-            $(".Banner").css("transform", 'scale(1)')
-        }
-        if(nav === true){
-            handleClick(false)
-        }
-      });
+    useEffect(() => {
+        const handleResizeScroll = debounce(() => {
+          setWindowW(window.innerWidth);
+      
+          if (window.innerWidth <= 730) {
+            $(".Banner").css("transform", 'scale(' + window.innerWidth * scale + ')');
+          } else {
+            $(".Banner").css("transform", 'scale(1)');
+          }
+      
+          if (nav === true) {
+            handleClick(false);
+          }
+        }, 100); // Czas opóźnienia w milisekundach
+      
+        // Dodajemy obsługę zdarzeń z opóźnieniem
+        window.addEventListener('resize', handleResizeScroll);
+        window.addEventListener('scroll', handleResizeScroll);
+      
+        return () => {
+          // Usuwamy obsługę zdarzeń
+          window.removeEventListener('resize', handleResizeScroll);
+          window.removeEventListener('scroll', handleResizeScroll);
+        };
+      }, [nav]); // Pamiętaj o dodaniu 'nav' do zależności useEffect
+      
 
     useEffect(() => {
 
-        
-        
         const alertMessage = () => {
           //alert('localStorage changed!');
           setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
@@ -69,15 +83,18 @@ const Home = (loaded) => {
         });
     })
     
-    $( document ).ready(function(){
+    $( document ).ready( debounce(async () => {
         getTime();
-        setWindowW($(window).innerWidth())
-        if(windowW <= 730){
-            $(".Banner").css("transform", 'scale('+ windowW * scale +')')
-        }else{
-            $(".Banner").css("transform", 'scale(1)')
-        }
-    });
+        
+            
+            setWindowW($(window).innerWidth())
+            if(windowW <= 730){
+                $(".Banner").css("transform", 'scale('+ windowW * scale +')')
+            }else{
+                $(".Banner").css("transform", 'scale(1)')
+            }
+        },300)
+    );
 
     
     const handleClick = (data) => {
@@ -126,16 +143,15 @@ const Home = (loaded) => {
     }
     //console.log(loaded.anim)
 
-    $(window).scroll(function (event) {
-        
+    $(window).scroll(debounce(async () => {
         var scroll = $(window).scrollTop();
         if(scroll >= 400){
             $("#Banner").css('opacity','0.5')
         }else if(scroll < 400){
             $("#Banner").css('opacity','1')
         }
-        
-    });
+    },100)
+    );
     useEffect(()=>{
         $.fn.isInViewport = function() {
             if(this[0] != null){
@@ -151,14 +167,15 @@ const Home = (loaded) => {
     })
         
 
-    $(window).on('resize scroll',function() {
+    $(window).on('resize scroll', debounce(async () => {
+        
             var scroll = $(window).scrollTop();//
-            if($('#UXPsys').isInViewport()) {
-                setBtn(true)
-            } else {
-                //console.log("nope")
-                setBtn(false)
-            }
+            // if($('#UXPsys').isInViewport()) {
+            //     setBtn(true)
+            // } else {
+            //     //console.log("nope")
+            //     setBtn(false)
+            // }
 
             if($('#Aboatme')[0] != null){
                 if ($('#Aboatme').offset().top < (scroll + 400) ) {
@@ -180,8 +197,8 @@ const Home = (loaded) => {
         //console.log(scroll)
         //console.log($('#Aboatme').offset().top)
         
-        
-    });
+        },100)
+    );
 
     if(loaded.anim === true){
         $("#Banner").animate({

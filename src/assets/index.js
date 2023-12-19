@@ -15,3 +15,4 @@ export { default as Konfigurator} from "./Konfigurator.png";
 export { default as Support} from "./Support.png";
 export { default as Settings} from "./Settings.png";
 export { default as Messages} from "./Messages.png";
+export { default as Home} from "./Home.svg";

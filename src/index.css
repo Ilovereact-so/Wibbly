@@ -40,16 +40,22 @@ body {
   filter: contrast(0.8) opacity(0.4);
 }
 #menu{
-  filter: opacity(0.7);
+  
+}
+#promt_M{
+  background-position: center;
+  background-size: cover;
+  filter: opacity(0.9);
+  backdrop-filter: blur(6px);
 }
 #promt{
-  box-shadow: 0px 0px 20px 1px black;
-  filter: opacity(0.8);
-  backdrop-filter: blur(6px);
-  background-color: #2f2f2f;
-  opacity: 1;
-  background: radial-gradient(circle, transparent 20%, #2f2f2f 20%, #2f2f2f 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #2f2f2f 20%, #2f2f2f 80%, transparent 80%, transparent) 27.5px 27.5px, linear-gradient(#000000 2.2px, transparent 2.2px) 0 -1.1px, linear-gradient(90deg, #000000 2.2px, #2f2f2f 2.2px) -1.1px 0;
-  background-size: 55px 55px, 55px 55px, 27.5px 27.5px, 27.5px 27.5px;
+  /*box-shadow: 0px 0px 20px 1px black;*/
+  
+  backdrop-filter: blur(20px);
+  background-color: #161616;
+  opacity: 0.9;
+  background: radial-gradient(circle, transparent 20%, #161616 20%, #161616 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #161616 20%, #161616 80%, transparent 80%, transparent) 32.5px 32.5px, linear-gradient(#000000 2.6px, transparent 2.6px) 0 -1.3px, linear-gradient(90deg, #000000 2.6px, #161616 2.6px) -1.3px 0;
+  background-size: 65px 65px, 65px 65px, 32.5px 32.5px, 32.5px 32.5px;
 }
 
 #text-login{

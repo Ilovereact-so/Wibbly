@@ -8,6 +8,7 @@ import {json, useNavigate } from 'react-router-dom';
 import axios, { Axios } from 'axios';
 import CheckUser from './CheckUser';
 import CreateUser from './CreateUser';
+import { debounce } from 'lodash';
 
 const User = () => {
   const scale_l = 3.272727272727273; // window height() / text font size
@@ -60,11 +61,11 @@ const User = () => {
         }
       }, []);
 
-    $(window).on('resize scroll', function() {
+    $(window).on('resize scroll', debounce(async () => {
       let winH = $(window).height()
       $('#text-login').css('font-size', winH / scale_l )
       $('#text-register').css('font-size', winH / scale_r )
-    })
+    },100))
     $( document ).ready(function(){
       let winH = $(window).height()
       $('#text-login').css('font-size', winH / scale_l )

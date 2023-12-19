@@ -57,7 +57,7 @@ const CreateUser = ({click}) => {
       searchaccount_database_URL = "https://api.srv45036.seohost.com.pl/api/searchaccount"
     } else {
       signup_database_URL = "http://localhost:3003/api/signupuser"
-      searchaccount_database_URL = "https://localhost:3003/api/searchaccount"
+      searchaccount_database_URL = "http://localhost:3003/api/searchaccount"
     }
     
 
@@ -82,7 +82,7 @@ const CreateUser = ({click}) => {
           }).then((res)=>{
 
               // Set a cookie with the secure and HttpOnly flags
-            localStorage.setItem("access-token",res)
+            localStorage.setItem("at",res)
             navigate('/')
           })
         }
