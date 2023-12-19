@@ -22,6 +22,7 @@ module.exports = {
       },
       backgroundImage: {
         'triangle': "url('/src/assets/Triangle.svg')",
+        'MessagesCard': "url('/src/assets/MessageBg.png')",
       }
     },
   },

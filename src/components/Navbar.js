@@ -8,6 +8,7 @@ import { isExpired, decodeToken } from "react-jwt";
 import { Canvas } from '@react-three/fiber';
 import { Model3_figurka } from '../3D/Figurka3';
 import { Model6_Figurka } from '../3D/Figurka6';
+import { debounce } from 'lodash';
 
 const Navbar = () => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
@@ -76,7 +77,7 @@ const Navbar = () => {
       }, []);
 
 
-      $(window).on('resize scroll', function() {
+      $(window).on('resize scroll', debounce(async () => {
 
         var scroll = $(window).scrollTop();//
         if ($('#Home').isInViewport()) {
@@ -103,7 +104,7 @@ const Navbar = () => {
         //console.log(scroll)
         //console.log($('#Aboatme').offset().top)
       
-    });
+    },100));
 
   return (
     <div>
@@ -142,8 +143,8 @@ const Navbar = () => {
             <div className='md:mx-14 mx-4 flex mb-12'>
               <div className='bg-[rgba(255,255,255,0.52)] w-full rounded-[46px] flex flex-col-reverse items-center py-6 px-8'>
                 <div className='flex justify-between w-full items-end'>
-                  <div className='h-full w-[90px] left-[-20px] relative flex justify-start items-end'>
-                    <div className='absolute translate-x-[-50%] left-[58%] z-[1] h-full contrast-75'>
+                  <div className='h-full w-[90px] cursor-pointer overflow-hidden left-[-20px] relative flex justify-start items-end'>
+                    <div onClick={()=>logged !== null ? navigate("/profile") : ""} className=' absolute translate-x-[-50%] left-[58%] z-[1] h-full contrast-75'>
                     {logged !== null ? 
                         <Canvas>
                           <Model6_Figurka/>

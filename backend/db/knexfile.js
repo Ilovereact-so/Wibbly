@@ -6,7 +6,7 @@ module.exports = {
     connection: {
       host : 'localhost',
       port : 3306,
-      database: 'knex_tutorial',
+      database: 'knexdb',
       user: 'root',
       password: null,
     },
