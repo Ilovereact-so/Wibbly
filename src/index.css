@@ -39,9 +39,7 @@ body {
 .waiting-form{
   filter: contrast(0.8) opacity(0.4);
 }
-#menu{
-  
-}
+
 #promt_M{
   background-position: center;
   background-size: cover;
