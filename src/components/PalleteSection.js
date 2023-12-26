@@ -113,7 +113,7 @@ const PalleteSection = () => {
                         style={{backgroundColor: localpallete[index].color}}
                         className={` md:h-[55px] h-[36px] rounded-full font-Poppins md:text-[16px] text-[9px] flex items-center pl-8 mb-[12px] ease-in-out duration-300 mr-[80px] ${index > 1 ? "text-black" : "text-white"}`}
                     >
-                        {item.color}
+                        {localpallete[index].color}
                     </div>
                 ))}
                 <div className='UXPsysanim md:text-[24px] md:static absolute bottom-0 md:w-auto w-[70%] md:left-0 left-[50%] md:translate-x-0 translate-x-[-50%] text-[15px] font-bold font-Poppins md:h-[70px] h-[54px] bg-black cursor-pointer  text-white rounded-full flex justify-center items-center mt-[70px]'>Select and save</div>

@@ -144,7 +144,7 @@ const Navbar = () => {
               <div className='bg-[rgba(255,255,255,0.52)] w-full rounded-[46px] flex flex-col-reverse items-center py-6 px-8'>
                 <div className='flex justify-between w-full items-end'>
                   <div className='h-full w-[90px] cursor-pointer overflow-hidden left-[-20px] relative flex justify-start items-end'>
-                    <div onClick={()=>logged !== null ? navigate("/profile") : ""} className=' absolute translate-x-[-50%] left-[58%] z-[1] h-full contrast-75'>
+                    <div onClick={()=>logged !== null ? navigate("/profile") : ""} className=' absolute translate-x-[-50%] left-[58%] z-[1] h-full opacity-[0.85] contrast-[0.8]'>
                     {logged !== null ? 
                         <Canvas>
                           <Model6_Figurka/>
@@ -152,7 +152,7 @@ const Navbar = () => {
                         : ""
                     }
                       </div>
-                    <div className={`mm:w-[60px] relative left-[20px] mm:h-[60px] w-[50px] h-[50px] rounded-full flex justify-center items-center bg-white ${logged !== null ? "bg-white" : "color-white"} `}>
+                    <div className={`mm:w-[60px] relative left-[20px] mm:h-[60px] w-[50px] h-[50px] rounded-full flex justify-center items-center bg-white ${logged !== null ? "bg-[white]" : "color-white"} `}>
                       {logged !== null ? 
                       ""
                       : 
