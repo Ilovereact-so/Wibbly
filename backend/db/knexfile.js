@@ -25,7 +25,7 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      host: process.env.DB_HOST,
+      host: process.env.DB_HOST, //change
       port: 3306,
       database: process.env.DB_NAME,
       user: process.env.DB_USER,
