@@ -10,6 +10,7 @@ import MessagesCard from './MessagesCard'
 import SettingsCard from './SettingsCard'
 import { Home, Konfigurator, Messages, Settings, Support } from '../../assets'
 import { Navigate, useNavigate } from 'react-router-dom'
+import { debounce } from 'lodash'
 
 const MainProfile = () => {
     const [logged, setLogged] = useState(localStorage.getItem('rt'))
@@ -141,16 +142,19 @@ const MainProfile = () => {
         var oneDeg = max_scroll / 360 //degree
         var deg = scroll / oneDeg + startDeg
         var antyDeg = 360 - deg
-        //console.log(deg)
+        //var windowW = $(window).width()
+        //var scale = windowW / 1444.8
+        //console.log(scale)
         $('#menu').css('transform','rotate('+ deg +'deg)')
         $('.optionA').css('transform','rotate('+ antyDeg +'deg) translateY(-50%) scale(0.8)')
         $('.optionB').css('transform','rotate('+ antyDeg +'deg) translateX(-50%) scale(0.8)')
         $('.menu_infoText').css('transform','rotate('+ antyDeg +'deg)')
     }
 
-    $(window).on('resize scroll',function() {
+    $(window).on('resize scroll', debounce(async () => {
+        
         Reload()
-    });
+    }));
 
   return (
     <div className='flex w-full h-[200vh]'> {/**Background */}

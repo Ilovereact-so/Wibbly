@@ -10,8 +10,6 @@ export function Model6_Figurka(props) {
   const { nodes, materials } = useGLTF('/figurka6.gltf')
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
   const materiall = new THREE.MeshPhongMaterial({ 
-    
-    doubleSided: true,
     color: localpallete[1].color,
   });
   useEffect(() => {
