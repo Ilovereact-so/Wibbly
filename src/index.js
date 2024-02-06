@@ -12,7 +12,8 @@ import { BrowserRouter } from "react-router-dom";
 import User from './components/User';
 import RUser from './components/RUser';
 import Auth from './components/Auth';
-import MainProfile from './components/Profile/MainProfile';
+import Motiontest from './components/Motiontest';
+import MainContainer from './components/NewProfile/MainContainer';
 
 
 
@@ -36,7 +37,8 @@ root.render(
           <Route exact path='/login' element={<User/>}></Route>
           {/** eslint-disable-next-line*/}
           <Route exact path='/signup' element={<RUser/>}></Route>
-          <Route exact path='/profile' element={<MainProfile/>}></Route>
+          <Route exact path='/profile' element={<MainContainer/>}></Route>
+          <Route exact path='/mm' element={<Motiontest/>}></Route>
           <Route path='*' element={<Index/>}/>
       </Routes>
   </BrowserRouter>

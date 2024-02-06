@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { githublogo, reactlogo, usemelogo } from '../assets';
 import $ from "jquery"
 
-const Aboatme = () => {
+const Aboatme = ({r}) => {
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
     const [slide, setSlide] = useState(1);
     useEffect(() => {
@@ -34,7 +34,7 @@ const Aboatme = () => {
         //console.log("drop");
       }
         return (
-        <div id='ABMain' className='flex ease-in-out duration-300'>
+        <div id='ABMain' ref={r} className='flex ease-in-out duration-300'>
             <div className='lg:h-[130vh] h-auto xl:h-[100vh]'>
               <div style={{backgroundColor: localpallete[2].color}} className='h-full w-[100vw] flex xl:flex-row flex-col relative'>
                 <div className='flex flex-col justify-center lg:ml-[80px] ml-0 lg:px-0 px-12 xl:w-[30vw] lg:w-[60vw] w-full lg:mt-20 mt-8 xl:mt-0'>

@@ -144,7 +144,7 @@ async loginUser(password, userdata, usertype){
         const new_access_token = jwt.encode(payload, ss, 'HS512');
         
         await db("oauth_access_tokens")
-        .insert({access_token: new_access_token, user_id:decoded?.user_id})
+        .insert({access_token: new_access_token, user_id:decoded.user_id})
 
         const return_data = {at : new_access_token, rt: refresh_token}
   
