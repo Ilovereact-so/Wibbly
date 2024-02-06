@@ -18,6 +18,7 @@ module.exports = {
         'mm': '650px',
         'll': '825px',
         '1xl': '1420px',
+        '01xl':'1360px'
         // => @media (min-width: 640px) { ... }
       },
       backgroundImage: {

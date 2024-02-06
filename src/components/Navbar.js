@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { NavbarList } from '../constants'
 import { Arrow, Createuplogo, Figurka } from '../assets';
 import $ from "jquery"
@@ -9,8 +9,9 @@ import { Canvas } from '@react-three/fiber';
 import { Model3_figurka } from '../3D/Figurka3';
 import { Model6_Figurka } from '../3D/Figurka6';
 import { debounce } from 'lodash';
+import { useTransform, motion, useScroll } from 'framer-motion';
 
-const Navbar = () => {
+const Navbar = ({refs}) => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
   const [option,setOption] = useState(0)
   const navigate = useNavigate();
@@ -77,34 +78,72 @@ const Navbar = () => {
       }, []);
 
 
-      $(window).on('resize scroll', debounce(async () => {
+    //   $(window).on('resize scroll', debounce(async () => {
 
-        var scroll = $(window).scrollTop();//
-        if ($('#Home').isInViewport()) {
-            //console.log("SI")
-            setOption(0)
-        } if($('#UXPsys').isInViewport()) {
-            //console.log("nope")
-            setOption(1)
-        }
-        if($('#Aboatme').isInViewport()) {
-          //console.log("nope")
-          setOption(2)
-        }
-        // if ($('#ABMain').isInViewport()) {
-        //     $(".ReactContener").animate({
-        //         height: "0",
-        //     },300)
-        // }else{
-        //     $(".ReactContener").animate({
-        //         height: "100%",
-        //     },300)
-        // }
+    //     var scroll = $(window).scrollTop();//
+    //     if ($('#Home').isInViewport()) {
+    //         //console.log("SI")
+    //         setOption(0)
+    //     } if($('#UXPsys').isInViewport()) {
+    //         //console.log("nope")
+    //         setOption(1)
+    //     }
+    //     if($('#Aboatme').isInViewport()) {
+    //       //console.log("nope")
+    //       setOption(2)
+    //     }
+    //     // if ($('#ABMain').isInViewport()) {
+    //     //     $(".ReactContener").animate({
+    //     //         height: "0",
+    //     //     },300)
+    //     // }else{
+    //     //     $(".ReactContener").animate({
+    //     //         height: "100%",
+    //     //     },300)
+    //     // }
 
-        //console.log(scroll)
-        //console.log($('#Aboatme').offset().top)
+    //     //console.log(scroll)
+    //     //console.log($('#Aboatme').offset().top)
       
-    },100));
+    // },100));
+  
+  const Menu = ({index, item}) => {
+
+    const { scrollYProgress } = useScroll({
+      target: refs[index],
+      offset: ["start end", "end start"],
+    });
+
+    const min = 0.3;
+    const max = 0.8;
+
+    const backgroundColor = useTransform(scrollYProgress,  (pos) => {
+      
+      return pos >= min && pos < max ? "rgba(255,255,255,0.52)" : null; 
+    })
+
+    const fontWeight = useTransform(scrollYProgress,  (pos) => {
+      
+      return pos >= min && pos < max ? "bold" : null; 
+    })
+
+
+    return(
+      <motion.a
+        key={index}
+        onClick={()=> setOption(index)} // 0 - Home ... 
+        href={item.link}
+        style={{backgroundColor, fontWeight}}
+        className={`w-full flex px-9 justify-between py-3 my-2 rounded-[21px] hover:bg-[rgba(255,255,255,0.52)] cursor-pointer `}
+        >
+        <img src={Arrow} className='w-[10px]'/>
+        <div className={`flex items-center justify-end`}>
+          <p className='mm:text-[16px] text-[14px] font-Poppins'>{item.text}</p>
+          <i className={`${item.icon}  ml-8 `} alt={item.alt}></i>
+        </div>
+      </motion.a>
+    )
+  }
 
   return (
     <div>
@@ -117,21 +156,8 @@ const Navbar = () => {
               <div><p className='font-bold font-Poppins mm:text-[24px] text-[19px]'>CreateUp  navbar</p></div>
             </div>
             <div className='mt-14 mm:px-6 px-4 mm:pl-0 pl-10'>
-            {NavbarList.map((item, index) => (
-              <a
-                key={index}
-                onClick={()=> setOption(index)} // 0 - Home ... 
-                href={item.link}
-                className={`w-full flex px-9 justify-between py-3 my-2 rounded-[21px] hover:bg-[rgba(255,255,255,0.52)] cursor-pointer ${
-                  index === option ? "bg-[rgba(255,255,255,0.52)] font-bold" : ""
-                }`}
-                >
-                <img src={Arrow} className='w-[10px]'/>
-                <div className={`flex items-center justify-end`}>
-                  <p className='mm:text-[16px] text-[14px] font-Poppins'>{item.text}</p>
-                  <i className={`${item.icon}  ml-8 `} alt={item.alt}></i>
-                </div>
-              </a>
+              {NavbarList.map((item, index) => (
+                <Menu index={index} item={item}/>
               ))}
             </div>
           </div>
@@ -176,6 +202,59 @@ const Navbar = () => {
       </div>
     </div>
     
+  )
+}
+
+
+export const NavBtn = ({r}) => {
+  const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
+
+
+  const { scrollYProgress } = useScroll({
+    target: r,
+    offset: ["start end", "end start"],
+  });
+
+  const min = 0.3;
+  const max = 0.8;
+
+  const width = useTransform(scrollYProgress,  (pos) => {
+    if(window.innerWidth > 450){
+      return pos >= min && pos < max ? "47px" : null; 
+    }else if(window.innerWidth <= 450){
+      return pos >= min && pos < max ? "47px" : null; 
+    }
+    
+  })
+
+  useEffect(() => {
+      
+    const alertMessage = () => {
+      //alert('localStorage changed!');
+      setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
+      console.log("localStorage changed!'")
+    }
+
+    //window.localStorage.setItem("item", 'val 1');
+    window.addEventListener('Pallete', alertMessage);
+
+    //Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("Pallete", alertMessage);
+    }
+  }, []);
+  
+  return(
+    <div className='flex flex-col items-end'>
+      <motion.a href='#UXPsys' style={{backgroundColor: localpallete[1].color, width}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center `}>{/**${
+              btn === true ? "w-[37px] ss:w-[47px]" : ""
+          } */}
+          <i className="gg-color-bucket text-white scale-[0.8]"></i>
+      </motion.a>
+      <div id='openMenu-Btn' style={{backgroundColor: localpallete[3].color}}  className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'> {/**onClick={()=> handleClick("nav")} */}
+          <i className="gg-menu-cake scale-[0.8]"></i>
+      </div>
+    </div>
   )
 }
 

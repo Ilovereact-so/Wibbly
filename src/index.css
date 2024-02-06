@@ -14,6 +14,13 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/toggle-off.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/close.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/check-o.css');
+/*profile */
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/ghost-character.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/ui-kit.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/search.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/home-alt.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/color-bucket.css');
 
 
 body {
@@ -39,7 +46,12 @@ body {
 .waiting-form{
   filter: contrast(0.8) opacity(0.4);
 }
-
+#content-blur{
+  backdrop-filter: blur(8px);
+}
+.options-profile{
+  transition: width ease-in-out 300ms;
+}
 #promt_M{
   background-position: center;
   background-size: cover;
