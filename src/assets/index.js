@@ -16,3 +16,4 @@ export { default as Support} from "./Support.png";
 export { default as Settings} from "./Settings.png";
 export { default as Messages} from "./Messages.png";
 export { default as Home} from "./Home.svg";
+export { default as PathProfilelogo} from "./Path-Profile_logo.svg";

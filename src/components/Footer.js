@@ -77,7 +77,7 @@ const Footer = () => {
                 <p className='font-bold font-Poppins xl:text-[28px] lg:text-[24px] md:text-[18px] sm:text-[16px] text-[13px] ss:static absolute ss:w-auto w-full justify-center flex items-center text-white'>CreateUp</p>
             </div>
             <div className='flex ll:h-full items-center ss:justify-end ss:mt-0 mt-3 justify-center ll:right-10 top-0 ll:absolute'>
-                <p className='font-Poppins lg:text-[14px] sm:text-[12px] text-[10px] text-white '>ⓒ 2023 | Wszystkie prawa zastrzeżone</p>
+                <p className='font-Poppins lg:text-[14px] sm:text-[12px] text-[10px] text-white '>ⓒ 2024 | Wszystkie prawa zastrzeżone</p>
             </div>
             
         </div>

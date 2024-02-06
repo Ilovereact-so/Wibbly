@@ -11,6 +11,7 @@ import SettingsCard from './SettingsCard'
 import { Home, Konfigurator, Messages, Settings, Support } from '../../assets'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { debounce } from 'lodash'
+import { motion } from "framer-motion";
 
 const MainProfile = () => {
     const [logged, setLogged] = useState(localStorage.getItem('rt'))
@@ -136,7 +137,7 @@ const MainProfile = () => {
 
     const Reload = async () =>{
         await MenuPos()
-        var scroll = $(window).scrollTop();
+        var scroll = $(window).scrollTop(); 
         var max_scroll = $(window).height()
         const startDeg = 30 //choose strart position
         var oneDeg = max_scroll / 360 //degree
@@ -151,9 +152,9 @@ const MainProfile = () => {
         $('.menu_infoText').css('transform','rotate('+ antyDeg +'deg)')
     }
 
-    $(window).on('resize scroll', debounce(async () => {
+    $(window).on('scroll', debounce(async () => {
         
-        Reload()
+        //Reload()
     }));
 
   return (
@@ -166,7 +167,7 @@ const MainProfile = () => {
                 <div onClick={() => navigate("/")} className='absolute bottom-7 left-7 flex justify-center rounded-full cursor-pointer items-center bg-white'>
                     <p className='text-black text-[17px] font-bold font-Poppins px-20 py-4'>Wyloguj się</p>
                 </div>
-                <div className='w-[57vw] h-full flex justify-center items-center mr-[70px] pl-[100px] bg-[rgba(236,236,236,0.55)] rounded-[40px]'>
+                <div className='w-[57vw] 1xl:flex first-letter: h-full hidden justify-center items-center mr-[70px] pl-[100px] bg-[rgba(236,236,236,0.55)] rounded-[40px]'>
                     <div className='w-[40vw] h-[40vw] flex justify-center items-center'>
                         <div id='menu' style={{backgroundColor: localpallete[2].color}} className='rounded-full relative bg-[rgba(169,169,169,0.16)] backdrop-blur-[10px] w-full flex justify-center items-center h-full'>
                             <div className='flex flex-col menu_infoText'>

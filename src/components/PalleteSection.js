@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Pallete0, Pallete1, Pallete2, Pallete3, Pallete4, Pallete5, Pallets } from '../constants'
 import $ from 'jquery';
 
-const PalleteSection = () => {
+const PalleteSection = ({r}) => {
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
 
     //$("body::-webkit-scrollbar-track").css("background","red");
@@ -76,7 +76,7 @@ const PalleteSection = () => {
     }
 
   return (
-    <div id='UXPsys' className='h-[100vh] mb-[100px] w-full flex md:flex-row flex-col-reverse justify-center  items-center relative '>
+    <div id='UXPsys' ref={r} className='h-[100vh] mb-[100px] w-full flex md:flex-row flex-col-reverse justify-center  items-center relative '>
         <div className=' md:w-[40vw] w-auto md:h-[65%] h-auto md:px-[35px] ss:px-[25px] px-[18px] bg-[#F6F7F8] md:rounded-[49px] rounded-[20px] md:ml-0 ss:ml-16 ml-8 ss:mr-16 mr-12'>
             <div className='pl-[25px] flex items-center mt-6'>
                 <i className="gg-options text-black scale-125"></i>

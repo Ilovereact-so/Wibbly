@@ -26,6 +26,39 @@ import { ImagePallete1,ImagePallete2, ImagePallete3, ImagePallete4, ImagePallete
     },
   ];
 
+
+
+  export const NavbarProfile = [
+    {
+      text: "Część Startowa",
+      alt: "Home-icon",
+      icon: "gg-home-alt",
+      link: "#Start",
+    },
+    {
+      text: "Konfigurator",
+      alt: "Configurate-icon",
+      icon: "gg-ui-kit mr-[6px]",
+      link: "#Config",
+
+    },
+    {
+      text: "Ustawienia",
+      alt:  "Settings-icon",
+      icon: "gg-toggle-off",
+      link: "#Settings",
+
+    },
+    {
+      text: "Pomoc",
+      alt: "Help-icon",
+      icon: "gg-ghost-character",
+      link: "#Help",
+
+    },
+  ];
+
+
   export const Offer1 = [
     {
       title: "System logowania",
