@@ -1,54 +1,50 @@
-# CreateUp.pl website directory
+![our UI/UX](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/AdobeXD-clip.mp4?raw=true)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Version](https://img.shields.io/npm/v/react-svg.svg)](https://www.npmjs.com/package/react-native-svg)
+[![NPM](https://img.shields.io/npm/dm/react-svg.svg)](https://www.npmjs.com/package/react-native-svg)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+> 📚 To projekt Aplikacji webowej dziłającej na zasadzie portfolio developera która umożliwia na łatwy dostęp do komunikacji w obębie zachcianek klienta propo widoku strony/ budowy itd.
+>Strona ma na celu ułatwienie w dobraniu odpowiedniego wyglądu przez Designera UX/UI. Wgląd oto do kodu strony jako pokazanie możliwości developerskich.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Install React App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm npm install --save
+```
 
-### `npm test`
+Start Aplication
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+cd .\public\
+npm start
+```
 
-### `npm run build`
+Install Server (local nodemon server)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cd .\backend\
+npm npm install --save
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Start Server
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+cd .\backend\
+npm run dev
+```
 
-### `npm run eject`
+## About Server
+By móc w pełni korzystac z aplikacji (wraz z bazą danych) potrzebujesz lokalnie uruchomić mysql np. dzięki użyciu xampa i tam stworzyć baze danych odpowiadająca tej
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+By utworzyć odpowiednie tabele skorzystaj z migracji knex`a
+1. `cd .\backend\`
+2. `npx knex migrate:latest --knexfile ./db/knexfile.js`
+3. Przejdz do folderu `/db/migration/` by zaimportować wszystkie pliki po kolei
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Done
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-Go to createup.pl and contact with me [CreateUp](http://srv45036.seohost.com.pl).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### UI/UX make with adobe XD
-
-![our UI/UX](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/design-UI.png?raw=true)
+> ✅ Morzesz sie cieszyć z poprawne dziłającej aplikacji z pełnym zasięgiem kodu
