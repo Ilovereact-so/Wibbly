@@ -1,4 +1,4 @@
-![our UI/UX](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/AdobeXD-clip.mp4?raw=true)
+<video src="https://github.com/Ilovereact-so/Createup/blob/main/src/assets/AdobeXD-clip.mp4"></video>
 
 [![Version](https://img.shields.io/npm/v/react-svg.svg)](https://www.npmjs.com/package/react-native-svg)
 [![NPM](https://img.shields.io/npm/dm/react-svg.svg)](https://www.npmjs.com/package/react-native-svg)
