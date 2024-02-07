@@ -1,4 +1,4 @@
-![Game Process](https://github.com/Ilovereact-so/Createup/blob/main/src/assets/AdobeXD-clip.mp4)
+https://github.com/Ilovereact-so/Createup/blob/main/src/assets/AdobeXD-clip.mp4?width=200&height=200
 
 [![Version](https://img.shields.io/npm/v/react-svg.svg)](https://www.npmjs.com/package/react-native-svg)
 [![NPM](https://img.shields.io/npm/dm/react-svg.svg)](https://www.npmjs.com/package/react-native-svg)
