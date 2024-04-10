@@ -21,6 +21,7 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/home-alt.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/color-bucket.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/add.css');
 
 
 body {
@@ -72,6 +73,9 @@ body {
   writing-mode: vertical-rl
 }
 #text-register{
+  writing-mode: vertical-rl
+}
+#text-firstInfo{
   writing-mode: vertical-rl
 }
 .color-black{

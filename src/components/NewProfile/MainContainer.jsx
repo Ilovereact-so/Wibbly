@@ -6,7 +6,7 @@ import $ from 'jquery'
 import { AnimatePresence, animate, motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { Arrow, Createuplogo, PathProfilelogo } from '../../assets';
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import ConfigCard from './Config';
 import Start from './Start';
 import { debounce } from 'lodash';
 
@@ -196,11 +196,8 @@ const MainContainer = () => {
               </Canvas>
           </div>
           <Start r={Home}/>
-          <div ref={Config} className="w-full h-[100vh] pl-6 pr-10 py-11 relative z-[2]">
-              <div id='content-blur' className=' bg-[rgb(236,236,236,0.56)] rounded-3xl w-full h-full'>
-
-              </div>
-          </div>
+          <ConfigCard r={Config}/>
+          
           <div ref={Settings} className="w-full h-[100vh] pl-6 pr-10 py-11 relative z-[2]">
               <div id='content-blur' className=' bg-[rgb(236,236,236,0.56)] rounded-3xl w-full h-full'>
 

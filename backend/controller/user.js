@@ -89,14 +89,27 @@ class UserController {
     }
   }
 
-  async registerUser(req, res) {
+  // async registerUser(req, res) {viewProject
+  //   try {
+  //     const id = await userService.registerUser(req.body);
+  //     res.status(201).json(id);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+  async viewProject(req, res) {
     try {
-      const id = await userService.registerUser(req.body);
-      res.status(201).json(id);
+      const id = await userService.viewProject(req.body);
+      if(id != null){
+        res.status(201).json(id);
+      }else{
+        res.status(403).json(id);
+      }
     } catch (err) {
       console.error(err);
     }
   }
+
 }
 
 module.exports = new UserController();
