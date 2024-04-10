@@ -26,6 +26,10 @@ class userService {
     const { at, rt } = userDto;
     return userDAO.logoutUser(at, rt);
   }
+  async viewProject(userDto) {
+    const {access_token} = userDto;
+    return userDAO.viewProject(access_token);
+  }
 }
 
 module.exports = new userService();
