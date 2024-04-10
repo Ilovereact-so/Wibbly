@@ -170,7 +170,7 @@ const Navbar = ({refs}) => {
               <div className='bg-[rgba(255,255,255,0.52)] w-full rounded-[46px] flex flex-col-reverse items-center py-6 px-8'>
                 <div className='flex justify-between w-full items-end'>
                   <div className='h-full w-[90px] cursor-pointer overflow-hidden left-[-20px] relative flex justify-start items-end'>
-                    <div onClick={()=>logged !== null ? navigate("/profile") : ""} className=' absolute translate-x-[-50%] left-[58%] z-[1] h-full opacity-[0.85] contrast-[0.8]'>
+                    <div id='profile-Btn' onClick={()=>logged !== null ? navigate("/profile") : ""} className=' absolute translate-x-[-50%] left-[58%] z-[1] h-full opacity-[0.85] contrast-[0.8]'>
                     {logged !== null ? 
                         <Canvas>
                           <Model6_Figurka/>

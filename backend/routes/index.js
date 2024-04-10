@@ -50,6 +50,15 @@ router.post('/api/logout', (req ,res) => {
     userController.logoutUser(req, res)
 });
 
-router.post('/api/register', userController.registerUser);
+router.post('/api/viewprojects', (req ,res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    //res.set(cors())
+    //res.send({ "msg": req.body })
+    console.log(req.body)
+    userController.viewProject(req, res)
+});
+
+//router.post('/api/register', userController.registerUser);
+
 
 module.exports = router;

@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
 const user = require('../service/user');
 const randomToken = require('random-token');
+const e = require('express');
+const { useState } = require('react');
 
 class userDAO {
 async loginUser(password, userdata, usertype){
@@ -200,6 +202,53 @@ async loginUser(password, userdata, usertype){
       return false
     }
     
+  }
+
+  async viewProject(access_token){
+    const [db_at] = await db('oauth_access_tokens')
+    .where({access_token})
+
+    var secret = '';
+      const Jwtdecode = () => {
+        try {
+          return jwt.decode(access_token, secret, 'HS512');
+        } catch (e) {
+          console.log("err")
+          return false;
+        } 
+      };
+
+    if(db_at !== null){
+      if(Jwtdecode() == false)
+      {
+        //console.log(Jwtdecode())
+        return false
+      }else{
+        const res = Jwtdecode();
+        console.log(res?.user_id,"user_id")
+
+        const db_projects = await db('users_projects')
+        .where({user_id:res?.user_id})
+
+        if(db_projects !== null){
+          const data = db_projects//[]?.project //jwt.decode(db_projects?.project, secret, 'HS512');
+          //const nn = db_projects[0]?.project
+          // const [data, setData] = useState(db_projects[0]?.project)
+          // for (let index = 1; index < db_projects?.length; index++) {
+          //   //console.log(db_projects[index]?.project, index)
+          //   setData(data.concat(db_projects[index]?.project))
+          //   console.log(data, index)
+          // }
+          //console.log(data)
+          return data
+        }
+
+      }
+    }
+  }
+
+  async createProject(user_id, project){
+    await db("project")
   }
     
 }
