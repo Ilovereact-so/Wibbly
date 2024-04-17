@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {motion} from 'framer-motion';
-const ProjectCard = ({item, index, refCard, isIndex}) => {
+const ProjectCard = ({item, index, refCard, isIndex, ProjectL, offCard}) => {
     const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
     useEffect(() => {
 
@@ -19,9 +19,11 @@ const ProjectCard = ({item, index, refCard, isIndex}) => {
         }
       }, []);
   return (
-    <motion.div key={index} ref={refCard} style={{background: "linear-gradient(153deg, "+ localpallete[1].color +", "+ localpallete[3].color +")"}} className={`absolute w-[240px] h-[300px] font-Poppins inline-flex flex-col justify-between rounded-[55px] p-3 py-4 m-2 ${
-      index === isIndex || index === isIndex + 2  ? "opacity-60" : ""
-    }`}>
+    <motion.div key={index} ref={refCard} animate={index === isIndex ? {opacity: 0.6} : ""} style={ 
+      offCard === 1 ? {background: "linear-gradient(153deg, "+ localpallete[1].color +", "+ localpallete[3].color +")"} :
+      index === isIndex + 1 || (isIndex == ProjectL-1 && index <= -ProjectL + (isIndex + 1))? {background: "linear-gradient(180deg, "+ localpallete[1].color +", "+ localpallete[3].color +")"} :
+      index === isIndex ? {background: "linear-gradient(207deg, "+ localpallete[1].color +", "+ localpallete[3].color +")"} : ""
+    } className={`PropertyCard absolute w-[240px] h-[300px] font-Poppins inline-flex flex-col justify-between rounded-[55px] p-3 py-4 m-2`}>
       <div className='flex flex-col w-full'>
         <div className='flex w-full justify-between px-4'>
             <div className='flex flex-col text-white m-4 mb-1'>
@@ -34,7 +36,7 @@ const ProjectCard = ({item, index, refCard, isIndex}) => {
             </div>
         </div>
         <div className='w-full px-4 '>
-          <div style={{backgroundColor:localpallete[1].color}} className='text-[17px] w-full rounded-full flex justify-center items-center border-solid border-[2px] py-2 opacity-[0.8] text-white backdrop-opacity-60 border-[rgb(255,255,255,0.45)]'>{item?.name}</div>
+          <div style={{backgroundColor:localpallete[1].color}} className='text-[17px] w-full rounded-full flex justify-center items-center py-2 opacity-[0.8] text-white backdrop-opacity-60'>{item?.name}</div>
           <div className='flex justify-between font-Poppins mt-5'>
             <p className='font-bold text-[10px] text-black'>created at:</p>
             <p className='text-black text-[11px]'>2024-02-18 16:24:22</p>
