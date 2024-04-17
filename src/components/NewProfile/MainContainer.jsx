@@ -58,16 +58,15 @@ const MainContainer = () => {
   var max = 0.97
 
   const BlokL_opacity = useTransform(scrollXProgress,  (pos) => {
-      
     return pos > min ? "1" : "0"; 
   })
   const BlokR_opacity = useTransform(scrollXProgress,  (pos) => {
-      
     return pos > max ? "0" : "1"; 
   })
 
-    // ------------------- mobile
 
+
+    // ------------------- mobile
   const Card = ({item, index})=>{
     //const item.ref[index] = useRef()
     const min = 0.3;
@@ -79,7 +78,6 @@ const MainContainer = () => {
 
 
     const backgroundColor = useTransform(scrollYProgress,  (pos) => {
-      
       return pos >= min && pos < max ? "white" : null; 
     })
     const opacity = useTransform(scrollYProgress,  (pos) => {
@@ -144,13 +142,22 @@ const MainContainer = () => {
     )
   }
   const MobileCard = ({item, index})=>{
-    
+
+     const handleClick = () =>{
+      SetIndex(index)
+
+      var elementpos = $("#mobile-menu-card" + index).position().left
+      var scrollP = $("#menu-slide-container").scrollLeft()
+      console.log(elementpos, "elementpos")
+      console.log(scrollP, "scrollpos")
+      $("#menu-slide-container").animate({scrollLeft : (elementpos + scrollP)})
+     }
     return (
       <motion.div
         key={index}
-        id='mobile-menu-card'
-        onClick={()=> SetIndex(index)}
-        className={`flex items-center p-[15px] mx-1 rounded-full px-[50px] cursor-pointer ${isIndex === index ? 'bg-white' : 'text-[#959595]'}`}
+        id={"mobile-menu-card" + index}
+        onClick={()=> handleClick ()}
+        className={`flex items-center p-[15px] mx-1 rounded-full ease-in-out duration-200 transition-colors px-[50px] cursor-pointer ${isIndex === index ? 'bg-white' : 'text-[#959595]'}`}
       >
         <i alt={item.alt} className={`${item.icon}  `}></i>
         <a className={`font-Poppins font-normal ml-4 text-[12px] `}
@@ -172,7 +179,7 @@ const MainContainer = () => {
 
   if(width >= 768 ){
   return(
-    <motion.div className="w-[100vw] h-[400vh] flex bg-[#F6F7F8] overflow-hidden relative">
+    <motion.div  className="w-[100vw] h-[400vh] flex bg-[#F6F7F8] overflow-hidden relative">
         <div id='menu-section' className='2xl:mx-12 mx-6 py-8 pb-16 xl:text-[42px] text-[36px] font-Poppins font-bold w-fit flex flex-col justify-between h-[100vh] fixed z-10'>
           <div className='flex flex-col justify-center items-start w-fit'>
             <motion.p style={{color:localpallete[3].color}} onHoverEnd={(e)=> BackColor(e)}  whileHover={{color: [(localpallete[3].color), "rgb(0,0,0)"]}} transition={{
@@ -212,8 +219,9 @@ const MainContainer = () => {
     </motion.div>
   ) 
   }else{
+
     return(
-      <div className="w-[100vw] h-[100vh] flex bg-[#F6F7F8] overflow-hidden relative">
+      <div  className="w-[100vw] h-[100vh] flex bg-[#F6F7F8] overflow-hidden relative">
         <div className='fixed z-[1] h-[100vh] w-[100%] brightness-[1.1] opacity-[0.7]'>
               <Canvas>
                   <Model6_Figurka/>
@@ -226,7 +234,7 @@ const MainContainer = () => {
               <p className='text-[21px] font-Poppins text-black'>Adamo</p>
             </div>
             <div style={{backgroundColor: localpallete[2].color}} className='relative rounded-full px-4'>
-              <div id='menu-slide-container' ref={ref}  className='rounded-full w-full py-[6px] pl-4 overflow-x-scroll'>
+              <div id='menu-slide-container' ref={ref}  className='rounded-full w-full py-[6px] pl-4 overflow-x-scroll ease-in-out duration-300'>
                 <div  className='w-max flex'>
                   {NavbarProfile.map((item, index) => (            
                     <MobileCard item={item} index={index}/>
@@ -247,7 +255,7 @@ const MainContainer = () => {
           <div className='relative z-[10] flex justify-center'>
             <div className='w-[90%] h-[30px] bg-gradient-to-b from-[#A1A1A1] to-transparent rounded-b-[17px] absolute top-0'></div>
           </div>
-          <Start r={Home} />
+          <MobileCards index={isIndex} refs={refs}/>
         </div>
       </div>
     )
@@ -255,6 +263,18 @@ const MainContainer = () => {
   
 }
 
-
+const MobileCards =({index, refs})=>{
+ 
+  if(index === 0){
+    return (
+      <Start r={refs[0]} />
+    )
+  }else if(index ===1){
+    return(
+      <ConfigCard r={refs[0]}/>
+    )
+  }
+  
+}
 
 export default MainContainer
