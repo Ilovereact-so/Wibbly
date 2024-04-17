@@ -23,6 +23,16 @@ const Start = ({r}) => {
     
     const refTabHome = [first_p_home, second_p_home, first_description_home]
 
+    const WindowRes = ()=>{
+        var winW = $(window).width()
+        var winH = $(window).height()
+        // var widthR = 1920
+        // var heightR = 1080
+        var pointR = winW / winH
+        //console.log(pointR)
+        return pointR
+      }
+
     useEffect(() => {
 
         const alertMessage = () => {
@@ -110,7 +120,7 @@ const Start = ({r}) => {
 
     if(width >= 768 ){
   return (
-    <div ref={r}  className="w-full min-h-[100vh] h-auto grid pl-6 pr-10 py-11 relative z-[2]">
+    <div ref={r} style={ WindowRes() < 1 ? {minHeight: "1080px"} : {}}  className="w-full min-h-[100vh] h-auto grid pl-6 pr-10 py-11 relative z-[2]">
         <div id='content-blur' className=' bg-[rgb(236,236,236,0.56)] rounded-3xl w-full h-full flex flex-col 01xl:pl-28 01xl:pr-20 pl-16 pr-12'>
             <div className='flex mt-14 justify-between'>
             <div className='flex flex-col 2xl:ml-[140px] xl:ml-[120px] lg:ml-[75px]'>

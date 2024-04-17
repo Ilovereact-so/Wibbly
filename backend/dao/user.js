@@ -223,14 +223,15 @@ async loginUser(password, userdata, usertype){
       {
         //console.log(Jwtdecode())
         return false
-      }else{
+      }
         const res = Jwtdecode();
         console.log(res?.user_id,"user_id")
 
         const db_projects = await db('users_projects')
         .where({user_id:res?.user_id})
 
-        if(db_projects !== null){
+        if(db_projects !== null && db_projects.length !== 0){
+          console.log(db_projects)
           const data = db_projects//[]?.project //jwt.decode(db_projects?.project, secret, 'HS512');
           //const nn = db_projects[0]?.project
           // const [data, setData] = useState(db_projects[0]?.project)
@@ -241,13 +242,13 @@ async loginUser(password, userdata, usertype){
           // }
           //console.log(data)
           return data
+        }else{
+          return false
         }
 
-      }
+      
     }
-  }
-
-  async createProject(user_id, project){
+  }  async createProject(user_id, project){
     await db("project")
   }
     

@@ -15,10 +15,17 @@ module.exports = {
       },
       screens: {
         'ss': '450px',
+        '01ss': "545px",
         'mm': '650px',
         'll': '825px',
         '1xl': '1420px',
-        '01xl':'1360px'
+        '01xl':'1360px',
+        '3xl':'1600px',
+        // orginal screens:
+        'a1':"900px",
+        'a2':"385px"
+
+
         // => @media (min-width: 640px) { ... }
       },
       backgroundImage: {
