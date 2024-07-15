@@ -31,6 +31,13 @@ module.exports = {
       backgroundImage: {
         'triangle': "url('/src/assets/Triangle.svg')",
         'MessagesCard': "url('/src/assets/MessageBg.png')",
+      },
+      colors: {
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        heading: "var(--color-heading)",
+        text: "var(--color-text)",
+        background: "var(--color-background)",
       }
     },
   },

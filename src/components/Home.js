@@ -317,7 +317,7 @@ const Home = (loaded) => {
         </div>
         <div className='absolute top-0 right-0 flex h-full'>
             <div className='relative'>
-                <div className={`right-0 sticky top-[14vh] z-[10] flex flex-col items-end ease-in-out duration-300 ${
+                <div className={`right-0 sticky top-[14vh] h-[72vh] z-[10] flex flex-col items-end ease-in-out duration-300 ${
                 nav === true ? "mm:translate-x-0 translate-x-[100%] mm:scale-[1] scale-x-[-1] scale-y-[1]" : ""
                 }`}>
                     <NavBtn r={PalleteCard}/>
