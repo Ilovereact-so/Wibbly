@@ -17,3 +17,10 @@ export { default as Settings} from "./Settings.png";
 export { default as Messages} from "./Messages.png";
 export { default as Home} from "./Home.svg";
 export { default as PathProfilelogo} from "./Path-Profile_logo.svg";
+export { default as colorBucketGif} from "./colorBucket.gif";
+export { default as Scene3D} from "./3DScene.png";
+export { default as Scene3DwebM} from "./3DScene.webm";
+export { default as MP4VIDEO} from "./AdobeXD.mp4";
+
+
+

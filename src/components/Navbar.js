@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { NavbarList } from '../constants'
-import { Arrow, Createuplogo, Figurka } from '../assets';
+import { Arrow, Createuplogo, Figurka, colorBucketGif } from '../assets';
 import $ from "jquery"
 import {useLocation, useNavigate } from 'react-router-dom';
 import Auth from './Auth';
@@ -9,7 +9,7 @@ import { Canvas } from '@react-three/fiber';
 import { Model3_figurka } from '../3D/Figurka3';
 import { Model6_Figurka } from '../3D/Figurka6';
 import { debounce } from 'lodash';
-import { useTransform, motion, useScroll } from 'framer-motion';
+import { useTransform, motion, useScroll, animate, easeInOut } from 'framer-motion';
 
 const Navbar = ({refs}) => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
@@ -208,7 +208,7 @@ const Navbar = ({refs}) => {
 
 export const NavBtn = ({r}) => {
   const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
-
+  const navigate = useNavigate();
 
   const { scrollYProgress } = useScroll({
     target: r,
@@ -226,6 +226,7 @@ export const NavBtn = ({r}) => {
     }
     
   })
+  
 
   useEffect(() => {
       
@@ -243,17 +244,46 @@ export const NavBtn = ({r}) => {
       window.removeEventListener("Pallete", alertMessage);
     }
   }, []);
+
+  const [isMOCB, setMOBC] = useState(0)
+  const [isopenDs, setopenDs] = useState(0)
+
+  const openDs=(e, type)=>{
+    if(type == "open" && isopenDs != 1){
+      setopenDs(1)
+
+    }else if(type == "close"){
+      setopenDs(0)
+
+    }else if (type == "open" && isopenDs == 1){
+      window.location.href = 'https://dev.srv45036.seohost.com.pl';
+    }
+  }
+  const [isOpenMenu,setOpenMenu] = useState(false)
   
   return(
-    <div className='flex flex-col items-end'>
-      <motion.a href='#UXPsys' style={{backgroundColor: localpallete[1].color, width}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center `}>{/**${
-              btn === true ? "w-[37px] ss:w-[47px]" : ""
-          } */}
-          <i className="gg-color-bucket text-white scale-[0.8]"></i>
-      </motion.a>
-      <div id='openMenu-Btn' style={{backgroundColor: localpallete[3].color}}  className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'> {/**onClick={()=> handleClick("nav")} */}
-          <i className="gg-menu-cake scale-[0.8]"></i>
+    <div className='flex flex-col items-end h-full justify-between'>
+      <div className='flex flex-col items-end'>
+        <motion.a href='#UXPsys' onMouseOver={()=>setMOBC(0)} onMouseLeave={()=>setMOBC(0)} style={{backgroundColor: localpallete[1].color, width}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center `}>{/**${
+                btn === true ? "w-[37px] ss:w-[47px]" : ""
+            } */}
+            <i className={`gg-color-bucket text-white scale-[0.8] ${ isMOCB === 1 ? "hidden":""}`}></i>
+            <img src={colorBucketGif} className={`${ isMOCB === 1 ? "":"hidden"}`}/>
+
+        </motion.a>
+        <div id='openMenu-Btn' style={{backgroundColor: localpallete[3].color}} onClick={()=>setOpenMenu(!isOpenMenu)}  className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'> {/**onClick={()=> handleClick("nav")} */}
+            <i className="gg-menu-cake scale-[0.8]"></i>
+        </div>
       </div>
+      
+      <motion.div id='openDevsite' onMouseLeave={(e)=>openDs(e.currentTarget, "close")} onClick={(e)=>openDs(e.currentTarget, "open")} style={{backgroundColor: localpallete[0].color}} className={`ss:h-[70px] cursor-pointer h-[50px] ease-in-out duration-300 rounded-tl-[30px] rounded-bl-[30px] flex items-center justify-start ${
+        isopenDs === 1 ? "w-[250px]":"ss:w-[37px] w-[30px]"
+      } ${
+        isOpenMenu ? "translate-x-[100%] ss:translate-x-[0]  scale-x-[-1] ss:scale-x-[1]":""
+      }`} >
+        <i className="gg-smartphone-chip scale-[0.8] text-white ml-[12px]"></i>
+        <p className={`whitespace-nowrap overflow-hidden duration-300 ease-in-out text-white font-Poppins  ${isopenDs === 1 ? "w-full ml-2":" w-0 "}`}>Przejdź do <span className='font-bold'>Createup.dev</span></p>
+      </motion.div>
     </div>
   )
 }

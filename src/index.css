@@ -22,7 +22,7 @@
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/log-out.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/color-bucket.css');
 @import url('https://unpkg.com/css.gg@2.0.0/icons/css/add.css');
-
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/smartphone-chip.css');
 
 body {
   margin: 0;
@@ -196,6 +196,51 @@ code {
 }
 .reactlogo{
   animation: rotate_infinite 8s infinite;
+}
+
+#scrollBTN p{
+  animation: hiddenBTN 3s infinite;
+  animation-delay: -6s;
+}
+#scrollBTN i{
+  animation: transformArrow 3s infinite;
+  animation-delay: -6s;
+}
+@keyframes hiddenBTN {
+  0%{
+    opacity: 1;
+  }
+  30%{
+    opacity: 0;
+  }
+  70%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes transformArrow {
+  0%{
+    opacity: 0;
+    top: 0;
+  }
+  25%{
+    opacity: 0;
+    top: 0;
+    
+  }
+  30%{
+    opacity: 1;
+  }
+  60%{
+    opacity: 0;
+    top: 60px;
+  }
+  100%{
+    opacity: 0;
+    top: 0;
+  }
 }
 
 @keyframes rotate_infinite {

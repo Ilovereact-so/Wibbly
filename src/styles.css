@@ -11,6 +11,12 @@ body {
     --red: #fe0222;
     --orange: #fd7702;
     --yellow: #ffbb00;
+    
+    --color-primary: #dcff50;
+    --color-secondary: #7b61ff;
+    --color-heading: #f5f5f7;
+    --color-text: rgba(255, 255, 255, 0.6);
+    --color-background: #090909;
   
     --background: var(--white);
     --accent: var(--red);
