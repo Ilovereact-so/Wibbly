@@ -125,11 +125,12 @@ async loginUser(password, userdata, usertype){
     
 
     async function getRefreshToken({access_token, decoded}) {
-      //console.log(decoded,"niga")
+      console.log(decoded,"niga")
       if( await db("oauth_access_tokens").where({access_token:access_token, user_id:decoded?.user_id}).del()){
         await db("oauth_refresh_tokens").where({id: decoded?.rt_id}).del()
         
         const [user_data] = await db('users')
+        .where({id: decoded?.user_id})
         var payload_user = {
           username : user_data?.username,
           email : user_data?.email

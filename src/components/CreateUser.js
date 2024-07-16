@@ -3,6 +3,7 @@ import Logo from './Logo';
 import { useNavigate } from 'react-router-dom';
 import $ from 'jquery'
 import axios from 'axios';
+import Auth from './Auth';
 
 
 const CreateUser = ({click}) => {
@@ -82,7 +83,9 @@ const CreateUser = ({click}) => {
           }).then((res)=>{
 
               // Set a cookie with the secure and HttpOnly flags
-            localStorage.setItem("at",res)
+              console.log(res)
+            localStorage.setItem("at",res?.access_token)
+            Auth()
             navigate('/')
           })
         }

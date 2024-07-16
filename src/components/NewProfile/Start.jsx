@@ -4,6 +4,7 @@ import { animate, motion, useScroll, useTransform } from 'framer-motion';
 import { Createuplogo, PathProfilelogo } from '../../assets';
 import setFilter from '../../constants/Colors';
 import { debounce } from 'lodash';
+import { isExpired, decodeToken } from "react-jwt";
 
 
 const Start = ({r}) => {
@@ -116,6 +117,13 @@ const Start = ({r}) => {
     ["0%","20%","80","100%"],
     ["blur(0px)","blur(1px)","blur(1px)","blur(0px)"]
     )
+    const [logged, setLogged] = useState(localStorage.getItem('rt'))
+    function user() {
+        if(logged != null){
+            const myDecodedToken = decodeToken(logged);
+            console.log(myDecodedToken)
+            return myDecodedToken
+    }}
     
 
     if(width >= 768 ){
@@ -125,7 +133,7 @@ const Start = ({r}) => {
             <div className='flex mt-14 justify-between'>
             <div className='flex flex-col 2xl:ml-[140px] xl:ml-[120px] lg:ml-[75px]'>
                 <p className='font-Poppins font-bold 01xl:text-[70px] text-[60px] 2xl:text-[100px] text-black'>Witaj</p>
-                <p className='2xl:text-[50px] text-[30px]  font-Poppins text-black'>Adamo</p>
+                <p className='2xl:text-[50px] text-[30px]  font-Poppins text-black'>{user()?.username}</p>
             </div>
             <div className='flex justify-center items-start'>
                 <div id='container-search-profile' className='01xl:h-[54px] h-[45px] xl:min-w-[200px] min-w-[130px] 2xl:w-[360px] 01xl:w-[300px] xl:w-[260px] w-[220px] rounded-full relative flex items-center justify-end 01xl:mr-16 mr-10 ml-8'>

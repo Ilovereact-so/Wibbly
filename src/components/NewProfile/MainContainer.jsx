@@ -177,6 +177,43 @@ const MainContainer = () => {
     console.log(e.target)
   }
 
+  var auth
+  useEffect(()=>{
+    if (process.env.NODE_ENV == 'production') {
+      auth = "https://api.srv45036.seohost.com.pl/api/logout"
+    } else {
+      auth = "http://localhost:3003/api/logout"
+    }
+  },[] )
+
+
+  function logout(){
+    const data = JSON.stringify({
+      at : localStorage.getItem('at'),
+      rt : localStorage.getItem('rt')
+    })
+    $.ajax({
+      url:auth,
+      type:"POST",
+      data: data,
+      crossDomain: true,
+      headers: {
+        "accept": "application/json",
+        "Access-Control-Allow-Origin":"*"
+      },
+      xhrFields: {cors: false},
+      contentType:"application/json; charset=utf-8",
+      dataType:"json",
+    }).then((res)=>{
+      console.log(res)
+      if(res){
+        localStorage.removeItem("at")
+        localStorage.removeItem("rt")
+        navigate("/")
+      }
+    });
+  }
+
   if(width >= 768 ){
   return(
     <motion.div  className="w-[100vw] h-[400vh] flex bg-[#F6F7F8] overflow-hidden relative">
@@ -192,7 +229,7 @@ const MainContainer = () => {
             ))}
           </div>
           <div style={{backgroundColor: localpallete[1].color}} className='rounded-full text-center lg:w-max flex items-center justify-center w-[75px] h-[57px]'>
-            <p className='font-Poppins text-white xl:text-[20px] text-[18px] xl:px-[80px] px-[75px] py-4 lg:inline-block hidden'>Wyloguj</p>
+            <p onClick={logout} className='font-Poppins text-white xl:text-[20px] text-[18px] xl:px-[80px] px-[75px] py-4 lg:inline-block hidden cursor-pointer'>Wyloguj</p>
             <i className="gg-log-out lg:hidden inline-block invert"></i>
           </div>
         </div>
