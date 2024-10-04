@@ -75,7 +75,10 @@ const MainContainer = () => {
       target: refs[index],
       offset: ["start end", "end start"],
     });
-    console.log(refs[index])
+
+    useEffect(()=>{
+      console.log(refs[index]?.current)
+    },[scrollYProgress])
 
     const backgroundColor = useTransform(scrollYProgress,  (pos) => {
       return pos >= min && pos < max ? "white" : null; 
