@@ -42,13 +42,7 @@ const MainContainer = () => {
         }
       }, []);
   
-  const Home = useRef()
-  const Config = useRef()
-  const Settings = useRef()
-  const Help =  useRef()
-
-
-  const refs ={ 0 : Home, 1 : Config, 2 : Settings,3 : Help}
+ 
 
   // ------------------- mobile
   const ref = useRef(null)
@@ -67,18 +61,32 @@ const MainContainer = () => {
 
 
     // ------------------- mobile
-  const Card = ({item, index})=>{
+  const Card = ({item, index, refTarget})=>{
     //const item.ref[index] = useRef()
     const min = 0.3;
     const max = 0.8;
+
     const { scrollYProgress } = useScroll({
-      target: refs[index],
+      target: refTarget,
       offset: ["start end", "end start"],
     });
 
-    useEffect(()=>{
-      console.log(refs[index]?.current)
-    },[scrollYProgress])
+    useEffect(() => {
+      // Definiujemy funkcję asynchroniczną wewnątrz useEffect
+      const asyncEffect = async () => {
+        // Czekamy, aż referencja będzie gotowa
+        if (refTarget.current) {
+          // Przykład - symulujemy opóźnienie, aby pokazać asynchroniczność
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+  
+          // Możemy tu wykonać jakąkolwiek operację, która wymaga asynchroniczności
+          console.log("Scroll progress for index:", index, scrollYProgress);
+        }
+      };
+  
+      // Wywołujemy asynchroniczną funkcję
+      asyncEffect();
+    }, [refTarget, scrollYProgress]);
 
     const backgroundColor = useTransform(scrollYProgress,  (pos) => {
       return pos >= min && pos < max ? "white" : null; 
@@ -216,7 +224,14 @@ const MainContainer = () => {
       }
     });
   }
+  const Home = useRef()
+  const Config = useRef()
+  const Settings = useRef()
+  const Help =  useRef()
 
+
+  const refs ={ 0 : Home, 1 : Config, 2 : Settings,3 : Help}
+  
   if(width >= 768 ){
   return(
     <motion.div  className="w-[100vw] h-[400vh] flex bg-[#F6F7F8] overflow-hidden relative">
@@ -228,7 +243,7 @@ const MainContainer = () => {
                 repeatType: "reverse",
             }} onClick={()=> navigate("/")} className='mb-[40px] lg:ml-8 cursor-pointer lg:inline-block hidden'>CreateUP</motion.p>
             {NavbarProfile.map((item, index) => (            
-              <Card item={item} index={index}/>
+              <Card item={item} index={index} refTarget={refs[index]}/>
             ))}
           </div>
           <div style={{backgroundColor: localpallete[1].color}} className='rounded-full text-center lg:w-max flex items-center justify-center w-[75px] h-[57px]'>
