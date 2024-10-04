@@ -71,22 +71,6 @@ const MainContainer = () => {
       offset: ["start end", "end start"],
     });
 
-    useEffect(() => {
-      // Definiujemy funkcję asynchroniczną wewnątrz useEffect
-      const asyncEffect = async () => {
-        // Czekamy, aż referencja będzie gotowa
-        if (refTarget.current) {
-          // Przykład - symulujemy opóźnienie, aby pokazać asynchroniczność
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-  
-          // Możemy tu wykonać jakąkolwiek operację, która wymaga asynchroniczności
-          console.log("Scroll progress for index:", index, scrollYProgress);
-        }
-      };
-  
-      // Wywołujemy asynchroniczną funkcję
-      asyncEffect();
-    }, [refTarget, scrollYProgress]);
 
     const backgroundColor = useTransform(scrollYProgress,  (pos) => {
       return pos >= min && pos < max ? "white" : null; 
@@ -231,6 +215,22 @@ const MainContainer = () => {
 
 
   const refs ={ 0 : Home, 1 : Config, 2 : Settings,3 : Help}
+
+  const [refsReady, setRefsReady] = useState(false);
+
+  // Asynchroniczny efekt do symulacji przygotowania referencji
+  useEffect(() => {
+    const prepareRefs = async () => {
+      // Można dodać opóźnienie, symulując np. pobieranie danych lub czekanie na inne zasoby
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Kiedy referencje są gotowe, ustaw stan na true
+      console.log("ready")
+      setRefsReady(true);
+    };
+
+    prepareRefs();
+  }, []);
   
   if(width >= 768 ){
   return(
@@ -242,7 +242,7 @@ const MainContainer = () => {
                 repeat: Infinity,
                 repeatType: "reverse",
             }} onClick={()=> navigate("/")} className='mb-[40px] lg:ml-8 cursor-pointer lg:inline-block hidden'>CreateUP</motion.p>
-            {NavbarProfile.map((item, index) => (            
+            {refsReady && NavbarProfile.map((item, index)=> (            
               <Card item={item} index={index} refTarget={refs[index]}/>
             ))}
           </div>
@@ -321,6 +321,7 @@ const MainContainer = () => {
 const MobileCards =({index, refs})=>{
  
   if(index === 0){
+    console.log("mobile")
     return (
       <Start r={refs[0]} />
     )
