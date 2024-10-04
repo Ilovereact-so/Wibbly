@@ -27,6 +27,7 @@ const Config = ({r}) => {
     var pointR = winW / winH
     //console.log(pointR)
     return pointR
+    
   }
   
 
