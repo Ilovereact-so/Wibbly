@@ -106,14 +106,13 @@ const Navbar = ({refs}) => {
     //     //console.log($('#Aboatme').offset().top)
       
     // },100));
-  
+   
   const Menu = ({index, item}) => {
 
     const { scrollYProgress } = useScroll({
       target: refs[index],
       offset: ["start end", "end start"],
     });
-
     const min = 0.3;
     const max = 0.8;
 
@@ -126,7 +125,7 @@ const Navbar = ({refs}) => {
       
       return pos >= min && pos < max ? "bold" : null; 
     })
-
+ 
 
     return(
       <motion.a
