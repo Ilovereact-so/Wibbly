@@ -28,7 +28,7 @@ import { PalleteProvider } from './Context/PalleteContext';
 //     navigate("/")
 //   },[])
 // }
-// const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // const userStatus =  await Auth("clasicAuth");
 
