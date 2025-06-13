@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -29,9 +29,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    - run: npm install --force
+    - run: npm install
     - run: CI=false npm run build --if-present
       if: always()
+
+    - name: Remove MP4 files
+      run: |
+        find ./build -type f -name "*.mp4" -delete
+        echo "MP4 files removed!"
     
     - name: FTP Frontend Deploy
       if: always()
@@ -40,18 +45,20 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         # ftp server
-        server: h22.seohost.pl
+        server: wibbly.pl
         # ftp username
-        username: ${{ secrets.USER }}
+        username: ${{ secrets.USERNAME }}
         # ftp password
         password: ${{ secrets.PASSWORD }}
         # Server port to connect to (read your web hosts docs)
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftps
+        timeout: 120000
+        dangerous-clean-slate: false
         # Folder to upload from, must end with trailing slash /
         local-dir: ./build/
         # Path to upload to on the server. Must end with trailing slash /
-        server-dir: srv45036.seohost.com.pl/public_html/
+        server-dir: /
         # Path and name of the state file - this file is used to track which files have been deployed
         exclude: |
           **/cgi-bin*
@@ -64,18 +71,18 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         # ftp server
-        server: h22.seohost.pl
+        server: wibbly.pl
         # ftp username
-        username: ${{ secrets.USER }}
+        username: ${{ secrets.API_USERNAME }}
         # ftp password
-        password: ${{ secrets.PASSWORD }}
+        password: ${{ secrets.API_PASSWORD }}
         # Server port to connect to (read your web hosts docs)
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         protocol: ftps
         # Folder to upload from, must end with trailing slash /
         local-dir: ./backend/
         # Path to upload to on the server. Must end with trailing slash /
-        server-dir: api.srv45036.seohost.com.pl/public_html/
+        server-dir: /
         # Path and name of the state file - this file is used to track which files have been deployed
         exclude: |
           **/cgi-bin*
