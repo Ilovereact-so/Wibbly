@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {motion} from 'framer-motion';
 import { usePallete } from '../../Context/PalleteContext';
-import { Add } from 'css.gg';
+import { CirclePlus } from 'lucide-react';
+
 const CreateCard = ({item, index, refCard, isIndex, ProjectL, offCard}) => {
     const {Pallete} = usePallete()
   return (
@@ -23,7 +24,7 @@ const CreateCard = ({item, index, refCard, isIndex, ProjectL, offCard}) => {
         </div>
         <div className='flex mx-4 my-2 justify-between items-center'>
         <div style={{backgroundColor: Pallete[3]}} className='rounded-full text-[17px] text-white py-3 px-6 font-bold'>Create</div>
-        <Add className='scale-[1.3] invert mr-4'/>
+        <CirclePlus className='scale-[1.3] invert mr-4'/>
         </div>
     </motion.div>
   )

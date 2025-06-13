@@ -12,12 +12,12 @@ import { useScroll, useTransform, motion, animate, delay } from 'framer-motion'
 import $ from 'jquery'
 import Auth from './Auth.js'
 import { useNavigate } from 'react-router-dom'
-import { ArrowDown, Moon, Sun } from 'css.gg'
 import { ColorModeProvider, useColorMode } from '../Context/ColorModeContext.js'
 import Projects from './Projects.jsx'
 import { usePallete } from '../Context/PalleteContext.js'
 import Clock from 'react-live-clock';
 import useWidth from '../Hooks/useWidth.js'
+import { MoveDown, Moon, Sun } from 'lucide-react'
 
 const Home = ({userState}) => {
 
@@ -311,7 +311,7 @@ const Home = ({userState}) => {
                         <div id='navdot' style={{backgroundColor: Pallete[0]}} className={`w-[55px] h-[55px] rounded-full top-0 cursor-pointer hover:top-[-4px] ease-in-out duration-100 relative flex justify-center items-center ${
                             nav === true ? "rotate-[-90deg]" : "rotate-0"
                         }`}>
-                            <ArrowDown className='text-white'/>
+                            <MoveDown className='text-white'/>
                         </div>
                     </div>
                 </div>

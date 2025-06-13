@@ -5,7 +5,7 @@ import $ from 'jquery'
 import axios from 'axios';
 import Auth from './Auth';
 import { usePallete } from '../Context/PalleteContext';
-import { Close } from 'css.gg';
+import { X } from 'lucide-react';
 
 
 const CreateUser = forwardRef((props, ref) => {
@@ -219,7 +219,7 @@ const CreateUser = forwardRef((props, ref) => {
               <input id='email-registerInput'  autoCapitalize='off' onChange={(e)=> E_Check(e.target.value)} type='email' autoCorrect='off'  className={`w-full h-full rounded-full text-[14px] p-4 font-Poppins bg-[#F2F2F2] ${
               e_validate === true ? "text-black" : "text-red-600 autofilinputred"
               }`}/>
-              <Close className={`gg-close scale-[1.1] text-red-500 opacity-0 w-[0px] ease-in-out duration-300 ${
+              <X className={`gg-close scale-[1.1] text-red-500 opacity-0 w-[0px] ease-in-out duration-300 ${
                   val_element === 'email' ? "w-auto opacity-100 ml-5 " : "opacity-0 w-[0px] ml-0"
               }`}/>
               
@@ -230,7 +230,7 @@ const CreateUser = forwardRef((props, ref) => {
               <input id='username-registerInput'  autoCapitalize='off' value={user.username} onChange={(e)=> U_Check(e.target.value)} type='text' autoCorrect='off'  className={`w-auto min-w-[30px] max-w-[100%] h-full rounded-full text-[14px] p-4 font-Poppins bg-[#F2F2F2] ${
               u_validate === true ? "text-black" : "text-red-600 autofilinputred"
               }`}/>
-              <Close className={`gg-close scale-[1.1] text-red-500 opacity-0 w-[0px] ease-in-out duration-300 ${
+              <X className={`gg-close scale-[1.1] text-red-500 opacity-0 w-[0px] ease-in-out duration-300 ${
                   val_element === 'username' ? "w-auto opacity-100 ml-5 " : "opacity-0 w-[0px] ml-0"
               }`}/>
           </div>

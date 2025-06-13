@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Pallete0, Pallete1, Pallete2, Pallete3, Pallete4, Pallete5, Pallets } from '../constants'
 import $ from 'jquery';
 import { usePallete } from '../Context/PalleteContext';
-import { Options } from 'css.gg';
+import { CircleEllipsis } from 'lucide-react';
 
 const PalleteSection = ({r}) => {      
     const {isPalleteNum, setPalleteNum, Pallete} = usePallete()
@@ -12,7 +12,7 @@ const PalleteSection = ({r}) => {
     <div id='UXPsys' ref={r} className='h-[100vh] mb-[100px] w-full flex md:flex-row flex-col-reverse justify-center  items-center sticky z-[2] top-[-420px] '>
         <div className=' md:w-[40vw] w-auto md:h-[65%] h-auto md:px-[35px] ss:px-[25px] px-[18px] bg-[#F6F7F8] md:rounded-[49px] rounded-[20px] md:ml-0 ss:ml-16 ml-8 ss:mr-16 mr-12'>
             <div className='pl-[25px] flex items-center mt-6'>
-                <Options className='text-black scale-125'/>
+                <CircleEllipsis className='text-black scale-125'/>
                 <div className='flex flex-col ml-12'>
                     <p className='font-bold font-Poppins md:text-[21px] text-[9px]'>Change</p>
                     <p className='font-Poppins md:text-[21px] text-[9px]'>your Color pallete</p>

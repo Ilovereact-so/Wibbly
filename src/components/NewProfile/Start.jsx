@@ -7,7 +7,7 @@ import { debounce } from 'lodash';
 import { isExpired, decodeToken } from "react-jwt";
 import WsRequest from '../WsRequest';
 import { usePallete } from '../../Context/PalleteContext';
-import { Search } from 'css.gg';
+import { Search } from 'lucide-react';
 
 
 const Start = ({r, userState}) => {

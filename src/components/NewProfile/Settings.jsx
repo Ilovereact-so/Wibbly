@@ -6,9 +6,9 @@ import $, { type, when } from 'jquery'
 import WsRequest from '../WsRequest';
 import {motion} from 'framer-motion'
 import { fetchWithAuth } from '../AuthRequest';
-import { Add, Check, Close } from 'css.gg';
 import { debounce } from 'lodash';
 import { usePallete } from '../../Context/PalleteContext';
+import { CirclePlus, X, Check } from 'lucide-react';
 
 const Settings = ({r}) => {
     
@@ -359,12 +359,12 @@ const Settings = ({r}) => {
                                 saveBTNstate === "open" && !savehBTNstate ? "duration-300 ease-in-out w-[40px] h-[40px] p-0 flex justify-center items-center":" w-[120px] h-[51px] px-8 py-3"
                             } ${
                                 !savehBTNstate && saveBTNstate ? "duration-300 ease-in-out w-[40px] h-[40px] p-0 flex justify-center items-center":" w-[120px] h-[51px] px-8 py-3"
-                            } `}>{saveBTNstate === "open" && !savehBTNstate ? <Add/>:<p className={`ease-in-out duration-[100ms] opacity-[0] ${!savehBTNstate && isOpenEditMenu ? "opacity-[1]":""}`}>Zapisz</p>}
+                            } `}>{saveBTNstate === "open" && !savehBTNstate ? <CirclePlus/>:<p className={`ease-in-out duration-[100ms] opacity-[0] ${!savehBTNstate && isOpenEditMenu ? "opacity-[1]":""}`}>Zapisz</p>}
                             </motion.div>
                             <motion.div id='closeSetBTN' onClick={()=>CloseMenu()} onHoverStart={()=>setSavecBTNstate(true)} onMouseLeave={()=>setSavecBTNstate(false)} animate={[isOpenEditMenu? "open": "closed", saveBTNstate === "open" ? "trans":""]} onAnimationComplete={(e)=> e === "open" ? setSaveBTNstate(e) :  null} variants={BTN2variants} transition={{type: "spring", duration: 0.4, bounce: 0.5,}} className={`p-2 bg-black rounded-full transition_w flex justify-center items-center absolute z-[2] ml-2 overflow-hidden cursor-pointer ${
                                 savecBTNstate ? "duration-300 ease-in-out h-[51px] w-[100px]":" h-[40px] w-[40px] "
                             }`}>
-                                { !savecBTNstate ? <Close style={{color:Pallete[0]}} />:<p style={{color:Pallete[0]}} className={`ease-in-out duration-[100ms] text-[16px] font-bold opacity-[0] `}>Anuluj</p>}
+                                { !savecBTNstate ? <X style={{color:Pallete[0]}} />:<p style={{color:Pallete[0]}} className={`ease-in-out duration-[100ms] text-[16px] font-bold opacity-[0] `}>Anuluj</p>}
                             </motion.div>
                         </div>
                         
@@ -503,12 +503,12 @@ const Settings = ({r}) => {
                                     saveBTNstate === "open" && !savehBTNstate ? "duration-300 ease-in-out w-[40px] h-[40px] p-0 flex justify-center items-center":" w-[120px] h-[51px] px-8 py-3"
                                 } ${
                                     !savehBTNstate && saveBTNstate ? "duration-300 ease-in-out w-[40px] h-[40px] p-0 flex justify-center items-center":" w-[120px] h-[51px] px-8 py-3"
-                                } `}>{saveBTNstate === "open" && !savehBTNstate ? <Add/>:<p className={`ease-in-out duration-[100ms] opacity-[0] ${!savehBTNstate && isOpenEditMenu ? "opacity-[1]":""}`}>Zapisz</p>}
+                                } `}>{saveBTNstate === "open" && !savehBTNstate ? <CirclePlus/>:<p className={`ease-in-out duration-[100ms] opacity-[0] ${!savehBTNstate && isOpenEditMenu ? "opacity-[1]":""}`}>Zapisz</p>}
                                 </motion.div>
                                 <motion.div id='closeSetBTN' onClick={()=>CloseMenu()} onHoverStart={()=>setSavecBTNstate(true)} onMouseLeave={()=>setSavecBTNstate(false)} animate={[isOpenEditMenu? "open": "closed", saveBTNstate === "open" ? "trans":""]} onAnimationComplete={(e)=> e === "open" ? setSaveBTNstate(e) :  null} variants={BTN2variants} transition={{type: "spring", duration: 0.4, bounce: 0.5,}} className={`p-2 bg-black rounded-full transition_w flex justify-center items-center absolute z-[2] ml-2 overflow-hidden cursor-pointer ${
                                     savecBTNstate ? "duration-300 ease-in-out h-[51px] w-[100px]":" h-[40px] w-[40px] "
                                 }`}>
-                                    { !savecBTNstate ? <Close style={{color:Pallete[0]}} />:<p style={{color:Pallete[0]}} className={`ease-in-out duration-[100ms] text-[16px] font-bold opacity-[0] `}>Anuluj</p>}
+                                    { !savecBTNstate ? <X style={{color:Pallete[0]}} />:<p style={{color:Pallete[0]}} className={`ease-in-out duration-[100ms] text-[16px] font-bold opacity-[0] `}>Anuluj</p>}
                                 </motion.div>
                             </div>
                             

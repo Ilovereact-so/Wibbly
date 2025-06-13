@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { githublogo, reactlogo, usemelogo } from '../assets';
-import $ from "jquery"
 import { usePallete } from '../Context/PalleteContext';
-import { ArrowDown, ArrowLeft, ArrowRight } from 'css.gg';
 import {motion} from "framer-motion"
+import { MoveDown, MoveLeft, MoveRight } from 'lucide-react';
 
 const Aboatme = ({r}) => {
   const [slide, setSlide] = useState(false);
@@ -27,7 +26,7 @@ const Aboatme = ({r}) => {
             <div className='lg:h-[70px] h-[48px] bg-white lg:w-[350px] md:w-[300px] w-[40%] rounded-full xl:static absolute bottom-16 flex items-center justify-between lg:px-11 px-8'>
                 <p className='font-Poppins lg:text-[21px] md:text-[15px] text-[13px] font-bold'>1 / 2</p>
                 <div className='lg:w-[40px] lg:h-[40px] w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center cursor-pointer' onClick={()=>setSlide(true)}>
-                  <ArrowRight className='text-white rotate-[270deg] scale-[0.75]'/>
+                  <MoveRight className='text-white rotate-[270deg] scale-[0.75]'/>
                 </div>
             </div>
           </div>
@@ -44,7 +43,7 @@ const Aboatme = ({r}) => {
                 <div className='flex justify-between h-full items-end'>
                   <p className='font-Poppins font-bold text-black lg:text-[19px] md:text-[15px] ss:text-[13px] text-[7px]'>Useme</p>
                   <div className='md:w-[40px] md:h-[40px] ss:w-[30px] ss:h-[30px] w-[19px] h-[19px] bg-black rounded-full flex items-center justify-center cursor-pointer'>
-                    <ArrowDown className='text-white rotate-[270deg] lg:scale-[0.75] scale-[0.45]'/>
+                    <MoveDown className='text-white rotate-[270deg] lg:scale-[0.75] scale-[0.45]'/>
                   </div>
                 </div>
               </div>
@@ -58,7 +57,7 @@ const Aboatme = ({r}) => {
                 <div className='flex justify-between h-full items-end'>
                   <p style={{color: Pallete[0]}} className='font-Poppins font-bold lg:text-[19px] md:text-[15px] ss:text-[14px] text-[7px]'>GitHub</p>
                   <div style={{backgroundColor: Pallete[0]}} className='md:w-[40px] md:h-[40px] ss:w-[30px] ss:h-[30px] w-[19px] h-[19px] rounded-full flex items-center justify-center cursor-pointer'>
-                    <ArrowDown className='text-white rotate-[270deg] lg:scale-[0.75] scale-[0.45]'/>
+                    <MoveDown className='text-white rotate-[270deg] lg:scale-[0.75] scale-[0.45]'/>
                   </div>
                 </div>
               </div>
@@ -81,7 +80,7 @@ const Aboatme = ({r}) => {
               <div className='md:h-[70px] h-[60px] bg-white md:w-[350px] w-auto mx-2 rounded-full flex items-center justify-between px-11'>
                   <p className='font-Poppins md:text-[21px] text-[15px] font-bold'>2 / 2</p>
                   <div className='md:w-[40px] md:h-[40px] w-[30px] h-[30px] bg-black rounded-full flex items-center justify-center cursor-pointer' onClick={()=>setSlide(false)}>
-                    <ArrowLeft className='text-white rotate-[90deg] md:scale-[0.75] scale-[0.6]'/>
+                    <MoveLeft className='text-white rotate-[90deg] md:scale-[0.75] scale-[0.6]'/>
                   </div>
               </div>
             </div>

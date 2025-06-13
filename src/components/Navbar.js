@@ -12,7 +12,7 @@ import { useTransform, motion, useScroll, animate, easeInOut } from 'framer-moti
 import WsRequest from './WsRequest';
 import { fetchWithAuth } from './AuthRequest';
 import { usePallete } from '../Context/PalleteContext';
-import { Bell, ColorBucket, MenuCake, Shield, SmartphoneChip, ToggleOff } from 'css.gg';
+import {Bell, Menu, PaintBucket, Settings, Shield, Smartphone, } from "lucide-react"
 
 const Navbar = ({refs, userState}) => {
   const [option,setOption] = useState(0)
@@ -172,7 +172,7 @@ const Navbar = ({refs, userState}) => {
                 <div className={`p-6 px-8 mb-8 bg-[rgba(195,195,195,0.2)] rounded-[20px] w-full h-full ${ userState ? "bg-white" : "bg-[rgba(195,195,195,0.2)]"}`} >
                   <div className={`w-full flex justify-end items-center mb-8 text-[#929292] ${ userState  ? "text-black" : "text-[#929292]"}`}><p className='mm:text-[16px] text-[13px] font-Poppins'>Notifications{/*user()?.username*/}</p><Bell className='scale-[0.9] ml-5'/></div>
                   <div className={`w-full flex justify-end items-center mb-8 text-[#929292] ${ userState  ? "text-black" : "text-[#929292]"}`}><p className='mm:text-[16px] text-[13px] font-Poppins'>Support</p><Shield className='scale-[0.9] ml-5'/></div>
-                  <div className={`w-full flex justify-end items-center text-[#929292] ${ userState  ? "text-black" : "text-[#929292]"}`}><p className='mm:text-[16px] text-[13px] font-Poppins'>Settings</p><ToggleOff className='scale-[0.9] ml-5'/></div>
+                  <div className={`w-full flex justify-end items-center text-[#929292] ${ userState  ? "text-black" : "text-[#929292]"}`}><p className='mm:text-[16px] text-[13px] font-Poppins'>Settings</p><Settings className='scale-[0.9] ml-5'/></div>
                 </div>
               </div>
             </div>
@@ -229,12 +229,12 @@ export const NavBtn = ({r, handleNavclick}) => {
         <motion.a href='#UXPsys' onMouseOver={()=>setMOBC(0)} onMouseLeave={()=>setMOBC(0)} style={{backgroundColor: Pallete[1], width}} className={`ss:h-[157px] h-[119px] ss:w-[37px] w-[30px] cursor-pointer hover:w-[37px] ease-in-out duration-300 mb-8 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center `}>{/**${
                 btn === true ? "w-[37px] ss:w-[47px]" : ""
             } */}
-            <ColorBucket className={`text-white scale-[0.8] ${ isMOCB === 1 ? "hidden":""}`}/>
+            <PaintBucket className={`text-white scale-[0.8] ${ isMOCB === 1 ? "hidden":""}`}/>
             <img src={colorBucketGif} className={`${ isMOCB === 1 ? "":"hidden"}`}/>
 
         </motion.a>
         <div id='openMenu-Btn' style={{backgroundColor: Pallete[3]}} onClick={()=>{handleNavclick(!isOpenMenu); setOpenMenu(!isOpenMenu)}}  className='ss:h-[157px] cursor-pointer h-[119px] ss:w-[37px] w-[30px] hover:w-[37px] ease-in-out duration-300 rounded-tl-[20px] rounded-bl-[20px] flex items-center justify-center'> {/**onClick={()=> handleClick("nav")} */}
-            <MenuCake className='scale-[0.8]'/>
+            <Menu className='scale-[0.8]'/>
         </div>
       </div>
       
@@ -243,7 +243,7 @@ export const NavBtn = ({r, handleNavclick}) => {
       } ${
         isOpenMenu ? "translate-x-[100%] ss:translate-x-[0]  scale-x-[-1] ss:scale-x-[1]":""
       }`} >
-        <SmartphoneChip className='scale-[0.8] text-white ml-[12px]'/>
+        <Smartphone className='scale-[0.8] text-white ml-[12px]'/>
         <p className={`whitespace-nowrap overflow-hidden duration-300 ease-in-out text-white font-Poppins  ${isopenDs === 1 ? "w-full ml-2":" w-0 "}`}>Przejdź do <span className='font-bold'>Createup.dev</span></p>
       </motion.div>
     </div>

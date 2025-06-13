@@ -1,4 +1,4 @@
-import { ChevronDown, Heart } from 'css.gg';
+import { ChevronDown, Heart } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react'
 import Chart from "react-apexcharts";
 import { useScroll, useTransform, motion, animate, useInView, color } from 'framer-motion'

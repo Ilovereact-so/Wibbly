@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Offer1, Offer2, Offer3 } from '../constants';
 import { Arrow} from '../assets';
 import { usePallete } from '../Context/PalleteContext';
-import { CheckO, Close } from 'css.gg';
+import { CircleCheck, X } from 'lucide-react';
 
 const Offer = ({r}) => {
     const {Pallete} = usePallete()
@@ -20,7 +20,7 @@ const Offer = ({r}) => {
                             key={index}
                             className="flex"
                             >
-                                {item.check == 1 ?<CheckO  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <Close className="mr-3" style={{color: Pallete[0]}}/>}
+                                {item.check == 1 ?<CircleCheck  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <X className="mr-3" style={{color: Pallete[0]}}/>}
                                 <p className='inline font-Poppins 2xl:text-[18px] xl:text-[15px] text-[12px] mb-4'>
                                     {item.title}
                                 </p>
@@ -45,7 +45,7 @@ const Offer = ({r}) => {
                             key={index}
                             className="flex"
                             >   
-                            {item.check == 1 ?<CheckO  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <Close className="mr-3" style={{color: Pallete[0]}}/>}
+                            {item.check == 1 ?<CircleCheck  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <X className="mr-3" style={{color: Pallete[0]}}/>}
                                 <p className='inline font-Poppins 2xl:text-[18px] xl:text-[15px] text-[12px] mb-4'>
                                     {item.title}
                                 </p>
@@ -75,7 +75,7 @@ const Offer = ({r}) => {
                                 key={index}
                                 className="flex"
                                 >
-                                    {item.check == 1 ?<CheckO  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <Close className="mr-3" style={{color: Pallete[1]}}/>}
+                                    {item.check == 1 ?<CircleCheck  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <X className="mr-3" style={{color: Pallete[1]}}/>}
                                     
                                     <p className='inline font-Poppins 2xl:text-[18px] xl:text-[15px] text-[12px] mb-4'>
                                         {item.title}

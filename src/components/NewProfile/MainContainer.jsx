@@ -14,7 +14,7 @@ import { fetchWithAuth } from '../AuthRequest';
 import WsRequest from '../WsRequest';
 import { useColorMode } from '../../Context/ColorModeContext';
 import { usePallete } from '../../Context/PalleteContext';
-import { LogOut } from 'css.gg';
+import { LogOut } from 'lucide-react';
 
 
 const MainContainer = ({userState}) => {
