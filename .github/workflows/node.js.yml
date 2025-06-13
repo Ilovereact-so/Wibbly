@@ -32,6 +32,11 @@ jobs:
     - run: npm install
     - run: CI=false npm run build --if-present
       if: always()
+
+    - name: Remove MP4 files
+      run: |
+        find ./build -type f -name "*.mp4" -delete
+        echo "MP4 files removed!"
     
     - name: FTP Frontend Deploy
       if: always()
