@@ -7,7 +7,11 @@ exports.up = function(knex) {
         table.increments("id").primary();
         table.string('access_token').notNullable().unique();
         table.string("user_id").notNullable();
+        table.string('device_id').notNullable()
         table.timestamps(true, true);
+
+        table.unique(['user_id', 'access_token']);
+
       });
 };
 
@@ -15,6 +19,6 @@ exports.up = function(knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function(knex) {
+exports.down = async knex => {
   knex.schema.dropTableIfExists("oauth_access_tokens")
 };

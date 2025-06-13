@@ -1,29 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { Offer1, Offer2, Offer3 } from '../constants';
 import { Arrow} from '../assets';
+import { usePallete } from '../Context/PalleteContext';
+import { CheckO, Close } from 'css.gg';
 
 const Offer = ({r}) => {
-    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
-    useEffect(() => {
-        const alertMessage = () => {
-          //alert('localStorage changed!');
-          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-          console.log("localStorage changed!'")
-        }
-    
-        //window.localStorage.setItem("item", 'val 1');
-        window.addEventListener('Pallete', alertMessage);
-    
-        //Remove the event listener when the component unmounts
-        return () => {
-          window.removeEventListener("Pallete", alertMessage);
-        }
-      }, []);
-
+    const {Pallete} = usePallete()
   return (
-    <div id='Offer' ref={r} className='lg:h-[100vh] h-auto relative'>
-        <div style={{color: localpallete[1].color}} className='absolute top-0 text-center w-full z-1'><p className='font-bold font-Poppins xl:text-[322px] lg:text-[300px] md:text-[230px] sm:text-[175px] ss:text-[145px] text-[100px]'>Oferta</p></div>
-        <div className='flex sm:flex-row flex-col w-full h-full relative z-2'>
+    <div id='Offer' ref={r} className='lg:h-[100vh] h-auto relative z-[2]'>
+        <div style={{color: Pallete[1]}} className='absolute top-0 text-center w-full z-1'><p className='font-bold font-Poppins xl:text-[322px] lg:text-[300px] md:text-[230px] sm:text-[175px] ss:text-[145px] text-[100px]'>Oferta</p></div>
+        <div className='flex sm:flex-row flex-col w-full h-full relative z-[2]'>
             <div className='lg:w-[66vw] sm:w-[50vw] w-full pt-[100px] ss:px-0 px-8 relative bg-[#b7b7b752] flex lg:flex-row flex-col items-center justify-evenly'>
                 <div className='bg-[rgba(246,247,248,0.82)] hover:bg-[rgba(246,247,248)] ease-in-out duration-300 ss:w-auto  w-full inline-flex flex-col 2xl:p-9 sm:p-8 ss:p-10 p-9 sm:px-10 ss:px-14 px-9 pb-5 lg:mb-0 mb-[50px] rounded-[40px]'>
                     <p className='font-Poppins font-bold 2xl:text-[23px] xl:text-[19px] text-[17px] mb-5'>Strona "wizytówka" </p>
@@ -34,11 +20,7 @@ const Offer = ({r}) => {
                             key={index}
                             className="flex"
                             >
-                                <i className={`mr-3 ${
-                                    item.check === 1 ? "gg-check-o border-transparent color-black" : "gg-close"
-                                }`}
-                                style={{color: localpallete[0].color}}
-                                ></i>
+                                {item.check == 1 ?<CheckO  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <Close className="mr-3" style={{color: Pallete[0]}}/>}
                                 <p className='inline font-Poppins 2xl:text-[18px] xl:text-[15px] text-[12px] mb-4'>
                                     {item.title}
                                 </p>
@@ -62,12 +44,8 @@ const Offer = ({r}) => {
                             <div
                             key={index}
                             className="flex"
-                            >
-                                <i className={`mr-3 ${
-                                    item.check === 1 ? "gg-check-o border-transparent color-black" : "gg-close"
-                                }`}
-                                style={{color: localpallete[0].color}}
-                                ></i>
+                            >   
+                            {item.check == 1 ?<CheckO  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <Close className="mr-3" style={{color: Pallete[0]}}/>}
                                 <p className='inline font-Poppins 2xl:text-[18px] xl:text-[15px] text-[12px] mb-4'>
                                     {item.title}
                                 </p>
@@ -97,11 +75,8 @@ const Offer = ({r}) => {
                                 key={index}
                                 className="flex"
                                 >
-                                    <i className={`mr-3 ${
-                                        item.check === 1 ? "gg-check-o border-transparent color-black" : "gg-close"
-                                    }`}
-                                    style={{color: localpallete[1].color}}
-                                    ></i>
+                                    {item.check == 1 ?<CheckO  style={{color: Pallete[0]}} className='border-transparent color-black mr-3'/> : <Close className="mr-3" style={{color: Pallete[1]}}/>}
+                                    
                                     <p className='inline font-Poppins 2xl:text-[18px] xl:text-[15px] text-[12px] mb-4'>
                                         {item.title}
                                     </p>

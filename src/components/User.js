@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import $, { post } from 'jquery'
 import { Canvas } from '@react-three/fiber'
 import { Model } from '../3D/Character';
@@ -9,30 +9,34 @@ import axios, { Axios } from 'axios';
 import CheckUser from './CheckUser';
 import CreateUser from './CreateUser';
 import { debounce } from 'lodash';
+import { usePallete } from '../Context/PalleteContext';
 
 const User = () => {
   const scale_l = 3.272727272727273; // window height() / text font size
   const scale_r = 4.2; // window height() / text font size
-  const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
   const [rotationX, setRotationX] = useState(0)
   const rotationS = -38.216560509554140127388535031847 // scale from rotation 3d object max rotation is -6.28
   const [click, setClick] = useState(false)
 
+  const {Pallete} = usePallete()
   const navigate = useNavigate()
   
+  const childBRef = useRef();
+  let minTime = 400;
+  const Next = async () => {
+    console.log(childBRef.current)
+    if (childBRef.current) {
+      $("#form-user").addClass('waiting-form')
+      
+      const btn = await childBRef.current.getAuth();
+      console.log(btn)
 
-  const Next = () => {
-    
-    $("#form-user").addClass('waiting-form')
-    
-    setTimeout(()=>{
-      $("#form-user").removeClass('waiting-form')
-      setClick(true)
-    },500)
-    setTimeout(()=>{
-      setClick(false)
-      //console.log("click-false")
-    },520)
+      setTimeout(()=>{
+        if(btn != null){
+          $("#form-user").removeClass('waiting-form')
+        }
+      },minTime)
+    }
   }
 
 
@@ -46,20 +50,8 @@ const User = () => {
         $("#form-user").css('max-height','700px')
       },500)
 
-        const alertMessage = () => {
-          //alert('localStorage changed!');
-          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-          console.log("localStorage changed!'")
-        }
-    
-        //window.localStorage.setItem("item", 'val 1');
-        window.addEventListener('Pallete', alertMessage);
-    
-        //Remove the event listener when the component unmounts
-        return () => {
-          window.removeEventListener("Pallete", alertMessage);
-        }
-      }, []);
+
+    }, []);
 
     $(window).on('resize scroll', debounce(async () => {
       let winH = $(window).height()
@@ -84,7 +76,7 @@ const User = () => {
         ball.style.zIndex = 1000;
         const dockleft = $('#dockScroll').offset().left;
         const docktop = $('#dockScroll').offset().top;
-        ball.style.backgroundColor = localpallete[1].color
+        ball.style.backgroundColor = Pallete[1]
         //document.body.append(ball);
         // move it out of any current parents directly into body
         // to make it positioned relative to the body
@@ -149,14 +141,14 @@ const User = () => {
                 </div>
                 <div className='px-[24px] w-full h-full absolute top-0 left-0'>
                 <div id='dockScroll' className='w-full relative h-full flex items-center'>
-                    <div style={{color: localpallete[1].color}} id='modelScroll' className='sm:w-[54px] w-[35px] sm:h-[28px] h-[18px] bg-black rounded-full'></div>
+                    <div style={{color: Pallete[1]}} id='modelScroll' className='sm:w-[54px] w-[35px] sm:h-[28px] h-[18px] bg-black rounded-full'></div>
                 </div>
                 </div>
             </div>
             </div>
             <div id="form-user" className='bg-[rgba(255,255,255,0.92)] relative z-10 rounded-[60px] sm:px-24 px-8 sm:w-auto w-full sm:max-w-none max-w-[500px]  ease-in-out duration-300 overflow-hidden'>
             <div className='duration-200'>
-                <CheckUser click={click}/>
+                <CheckUser ref={childBRef}/>
                 <div className='sm:mt-[90px] mt-[70px] font-Poppins font-bold text-white flex w-full justify-end'>
                     <p className='p-[10px] px-12 bg-black rounded-full sm:text-[18px] text-[13px] cursor-pointer' onClick={()=> Next()} >Dalej</p>
                 </div>

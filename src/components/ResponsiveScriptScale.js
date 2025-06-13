@@ -25,10 +25,17 @@ $(window).on('resize scroll', debounce(async () => {
         if((windowH - 400) < windowW ){
             $("#UXPsys").addClass('properties');
             $("#Home").addClass('properties');
+            $("#Home").addClass('TopM');
+            $("#ModesBtn").addClass('TopPos');
+            $("#dynamic_island_constainer").addClass('TopPos');
             $("#Aboatme > div > div").addClass('propertiesP');
         }else{
             $("#UXPsys").removeClass('properties'); 
-            $("#Home").removeClass('properties'); 
+            $("#Home").removeClass('properties');
+            $("#Home").removeClass('TopM');
+            $("#ModesBtn").removeClass('TopPos');
+            $("#dynamic_island_constainer").removeClass('TopPos');
+
             $("#Aboatme > div > div").removeClass('propertiesP'); 
         }
     }else{

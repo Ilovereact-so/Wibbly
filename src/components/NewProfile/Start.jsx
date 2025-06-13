@@ -5,10 +5,13 @@ import { Createuplogo, PathProfilelogo } from '../../assets';
 import setFilter from '../../constants/Colors';
 import { debounce } from 'lodash';
 import { isExpired, decodeToken } from "react-jwt";
+import WsRequest from '../WsRequest';
+import { usePallete } from '../../Context/PalleteContext';
+import { Search } from 'css.gg';
 
 
-const Start = ({r}) => {
-    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
+const Start = ({r, userState}) => {
+    const {Pallete} = usePallete()
     const [width, setWidth] = useState($(window).width())
     //const [multiRef, addMultiRef] = useMultiRefs();
 
@@ -34,22 +37,6 @@ const Start = ({r}) => {
         return pointR
       }
 
-    useEffect(() => {
-
-        const alertMessage = () => {
-          //alert('localStorage changed!');
-          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-          console.log("localStorage changed!'")
-        }
-    
-        //window.localStorage.setItem("item", 'val 1');
-        window.addEventListener('Pallete', alertMessage);
-    
-        //Remove the event listener when the component unmounts
-        return () => {
-          window.removeEventListener("Pallete", alertMessage);
-        }
-      }, []);
 
     const Clock = () =>{
         const [minutes, setMinutes] = useState("")
@@ -117,13 +104,19 @@ const Start = ({r}) => {
     ["0%","20%","80","100%"],
     ["blur(0px)","blur(1px)","blur(1px)","blur(0px)"]
     )
-    const [logged, setLogged] = useState(localStorage.getItem('rt'))
-    function user() {
-        if(logged != null){
-            const myDecodedToken = decodeToken(logged);
-            console.log(myDecodedToken)
-            return myDecodedToken
-    }}
+
+    const[userData, setUserData] = useState(null)
+    useEffect(()=>{
+        async function user() {
+        if(userState){
+            const data = await WsRequest.getDataUser()
+            console.log(data)
+            setUserData(data)
+        }
+        }
+
+        user()
+    },[])
     
 
     if(width >= 768 ){
@@ -133,15 +126,15 @@ const Start = ({r}) => {
             <div className='flex mt-14 justify-between'>
             <div className='flex flex-col 2xl:ml-[140px] xl:ml-[120px] lg:ml-[75px]'>
                 <p className='font-Poppins font-bold 01xl:text-[70px] text-[60px] 2xl:text-[100px] text-black'>Witaj</p>
-                <p className='2xl:text-[50px] text-[30px]  font-Poppins text-black'>{user()?.username}</p>
+                <p className='2xl:text-[50px] text-[30px]  font-Poppins text-black'>{userData?.username}</p>
             </div>
             <div className='flex justify-center items-start'>
                 <div id='container-search-profile' className='01xl:h-[54px] h-[45px] xl:min-w-[200px] min-w-[130px] 2xl:w-[360px] 01xl:w-[300px] xl:w-[260px] w-[220px] rounded-full relative flex items-center justify-end 01xl:mr-16 mr-10 ml-8'>
                 <motion.input whileFocus={() => data()} type='text' id='search-profile' className='01xl:h-[60px] h-[48px] font-Poppins w-full rounded-full p-4 px-16 focus:outline-none'/>
-                <i className="gg-search absolute right-8 arrow 01xl:scale-[1] scale-[0.9]"></i>
+                <Search className='absolute right-8 arrow 01xl:scale-[1] scale-[0.9]'/>
                 </div>
                 <div className='relative flex justify-center items-center 01xl:scale-[1] scale-[0.8] origin-top'>
-                <img style={{filter: setFilter(localpallete[0].color)}} id='PathProfilelogo' className='' src={PathProfilelogo}/>
+                <img style={{filter: setFilter(Pallete[0])}} id='PathProfilelogo' className='' src={PathProfilelogo}/>
                 <img src={Createuplogo} className=" absolute invert-[1] xl:scale-[1] scale-[0.7]"/>
                 </div>
             </div>
@@ -153,7 +146,7 @@ const Start = ({r}) => {
                 </motion.p>
             <div className='font-Poppins '>
                 <motion.p style={{x: Pull(refTabHome[1])}} ref={second_p_home} className='2xl:text-[65px] 01xl:text-[50px] text-[40px] font-bold text-white mb-3 ease-in-out duration-300'>Dziękujemy za</motion.p>
-                <motion.div style={{backgroundColor: localpallete[2].color, x: Pull(refTabHome[2])}} ref={first_description_home} className='font-normal 01xl:text-[18px] text-[16px]  text-white rounded-[30px] p-10 max-w-[50vw] ease-in-out duration-300'>
+                <motion.div style={{backgroundColor: Pallete[2], x: Pull(refTabHome[2])}} ref={first_description_home} className='font-normal 01xl:text-[18px] text-[16px]  text-white rounded-[30px] p-10 max-w-[50vw] ease-in-out duration-300'>
                 zaufanie związane z korzystaniem z naszych usług. Skorzystaj z opcji
                 konfiguratora byśmy mogli dokładnie sie zrozumieć na drodze tworzenia strony
                 </motion.div>
@@ -173,7 +166,7 @@ const Start = ({r}) => {
                 <div id='content-blur' className='absolute w-full h-full bg-[rgb(236,236,236,0.56)] rounded-[50px] z-[1]'></div>
                 <div className='relative z-[5] ss:px-6 px-3 w-full'>
                     <div className='relative flex justify-center items-center 01xl:scale-[1] scale-[0.8] origin-top top-[-25px]'>
-                        <img style={{filter: setFilter(localpallete[0].color)}} id='PathProfilelogo' className='scale-[1.2]' src={PathProfilelogo}/>
+                        <img style={{filter: setFilter(Pallete[0])}} id='PathProfilelogo' className='scale-[1.2]' src={PathProfilelogo}/>
                         <img src={Createuplogo} className=" absolute invert-[1] scale-[1.1] "/>
                     </div>
                     <p className='font-Poppins text-black text-[14px] max-w-[490px] mb-9 mx-4'>
@@ -182,15 +175,15 @@ const Start = ({r}) => {
                     </p>
                     <div id='container-search-profile' className='h-[45px]  min-w-[200px] w-full rounded-full relative flex items-center justify-end mb-10 px-4'>
                         <motion.input whileFocus={() => data()} type='text' id='search-profile' className='ss:h-[54px] h-[48px] font-Poppins w-full rounded-full p-4 px-16 focus:outline-none '/>
-                        <i className="gg-search absolute right-12 arrow ss:scale-[0.9] scale-[0.8] "></i>
+                        <Search className='absolute right-12 arrow ss:scale-[0.9] scale-[0.8]'/>
                     </div>
                     <p className='ss:text-[30px] text-[27px] font-bold text-white mb-3 ease-in-out duration-300 font-Poppins ml-3'>Dziękujemy za</p>
-                    <div style={{backgroundColor: localpallete[2].color}} className='font-normal mx-3 text-[14px] font-Poppins text-white rounded-[30px] p-5 ease-in-out duration-300 mb-14'>
+                    <div style={{backgroundColor: Pallete[2]}} className='font-normal mx-3 text-[14px] font-Poppins text-white rounded-[30px] p-5 ease-in-out duration-300 mb-14'>
                     zaufanie związane z korzystaniem z naszych usług. Skorzystaj z opcji
                     konfiguratora byśmy mogli dokładnie sie zrozumieć na drodze tworzenia strony
                     </div>
                     <div className='flex ss:justify-start justify-center items-center w-full'>
-                        <div style={{backgroundColor: localpallete[1].color}} className='rounded-full text-center w-full flex items-center justify-center h-[47px] max-w-[260px] mb-4 mx-5'>
+                        <div style={{backgroundColor: Pallete[1]}} className='rounded-full text-center w-full flex items-center justify-center h-[47px] max-w-[260px] mb-4 mx-5'>
                         <p className='font-Poppins text-white text-[17px] px-[75px] py-4 font-bold'>Wyloguj</p>
                         </div>   
                     </div>

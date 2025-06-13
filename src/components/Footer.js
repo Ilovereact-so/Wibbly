@@ -1,33 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Createuplogo } from '../assets';
 import $ from "jquery";
+import { usePallete } from '../Context/PalleteContext';
 
 const Footer = () => {
-    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
     const [info, setInfo] = useState(false)
+    const {Pallete} = usePallete()
 
-    useEffect(() => {
-        const alertMessage = () => {
-          //alert('localStorage changed!');
-          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-          console.log("localStorage changed!'")
-        }
-    
-        //window.localStorage.setItem("item", 'val 1');
-        window.addEventListener('Pallete', alertMessage);
-    
-        //Remove the event listener when the component unmounts
-        return () => {
-          window.removeEventListener("Pallete", alertMessage);
-        }
-      }, []);
-
-      const handleClick = () => {
+    const handleClick = () => {
         setInfo(!info)
         var n = $(document).height();
         $('html ').animate({ scrollTop: n }, 300);
 
-      }
+    }
   return (
     <div className='h-full w-auto px-10'>
         <div onClick={()=>handleClick() } className='py-8 ss:px-8 ss:pr-24 bg-white flex ss:justify-between justify-center cursor-pointer'>
@@ -39,7 +24,7 @@ const Footer = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="11.98" height="17.955" viewBox="0 0 11.98 17.955" className={`rotate-[180deg] sm:scale-[1] scale-[0.8] ease-in-out duration-300 ${
                     info === true ? "rotate-[270deg]" : "rotate-[180deg]"
                 }`}>
-                    <path id="Path_32" style={{fill: localpallete[2].color}} data-name="Path 32" d="M19.734,14.848l.008.008-3,3-.008-.008-.008.008-3-3,.008-.008L7.761,8.865l3-3,5.982,5.982L22.721,5.87l3,3Z" transform="translate(17.851 -7.761) rotate(90)"/>
+                    <path id="Path_32" style={{fill: Pallete[2]}} data-name="Path 32" d="M19.734,14.848l.008.008-3,3-.008-.008-.008.008-3-3,.008-.008L7.761,8.865l3-3,5.982,5.982L22.721,5.87l3,3Z" transform="translate(17.851 -7.761) rotate(90)"/>
                 </svg>
             </div>
         </div>
@@ -71,7 +56,7 @@ const Footer = () => {
                 zrobienie błędnie oczekiwać klienta
             </p>
         </div>
-        <div style={{backgroundColor: localpallete[0].color}} className='py-4 flex ss:flex-row flex-col w-full ll:justify-center justify-between ll:px-0 px-8 relative rounded-full mb-5'>
+        <div style={{backgroundColor: Pallete[0]}} className='py-4 flex ss:flex-row flex-col w-full ll:justify-center justify-between ll:px-0 px-8 relative rounded-full mb-5'>
             <div className='flex ss:mr-8 relative items-center'>
                 <img src={Createuplogo} className='color-white pr-6 sm:scale-[1] scale-[0.7]'/>
                 <p className='font-bold font-Poppins xl:text-[28px] lg:text-[24px] md:text-[18px] sm:text-[16px] text-[13px] ss:static absolute ss:w-auto w-full justify-center flex items-center text-white'>CreateUp</p>

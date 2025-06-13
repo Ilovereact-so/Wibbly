@@ -1,15 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 import $ from 'jquery'
-import { debounce, toString } from 'lodash';
+import { debounce, method, toString } from 'lodash';
 import CreateCard from './CreateCard';
 import EmptyCard from './EmptyCard';
 import { Arrow } from '../../assets';
 import { animate, useMotionValueEvent, motion, useScroll , useTransform } from 'framer-motion';
 import { decodeToken } from 'react-jwt';
 import ProjectCard from './ProjectCard';
+import { fetchWithAuth } from '../AuthRequest';
+import { useColorMode } from '../../Context/ColorModeContext';
+import { usePallete } from '../../Context/PalleteContext';
+
 
 const Config = ({r}) => {
-    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
+    const {Pallete} = usePallete()
     const [isIndex, SetIndex] = useState()
     const [isProject, setProject] = useState([])
     const [isScale, setScale] = useState(1)
@@ -31,29 +35,20 @@ const Config = ({r}) => {
   }
   
 
-    useEffect(() => {
 
-      const alertMessage = () => {
-        //alert('localStorage changed!');
-        setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-        console.log("localStorage changed!'")
-      }
-  
-      //window.localStorage.setItem("item", 'val 1');
-      window.addEventListener('Pallete', alertMessage);
-  
-      //Remove the event listener when the component unmounts
-      return () => {
-        window.removeEventListener("Pallete", alertMessage);
-      }
-    }, []);
 
     $(window).on('resize scroll', debounce(async () => {
       var winW = $(window).width()
       if(winW >= 768){
         let winH = $(window).height()
-        $('#text-firstInfo').css('font-size', winH / scale_f )
-        $('#text-project').css('font-size', winH / scale_p )
+        if(winW <= 1800){
+          $('#text-firstInfo').css('font-size', (winH / scale_f ) - ((1800 - winW)/40) )
+          $('#text-project').css('font-size', (winH / scale_p) - ((1800 - winW)/50) )
+
+        }else{
+          $('#text-firstInfo').css('font-size', winH / scale_f )
+          $('#text-project').css('font-size', winH / scale_p )
+        }
       }else{
         $('#text-firstInfo').css('font-size', "" )
         $('#text-project').css('font-size', "")
@@ -64,8 +59,14 @@ const Config = ({r}) => {
       var winW = $(window).width()
       if(winW >= 768){
         let winH = $(window).height()
-        $('#text-firstInfo').css('font-size', winH / scale_f )
-        $('#text-project').css('font-size', winH / scale_p )
+        if(winW <= 1800){
+          $('#text-firstInfo').css('font-size', (winH / scale_f ) - ((1800 - winW)/40) )
+          $('#text-project').css('font-size', (winH / scale_p) - ((1800 - winW)/50) )
+        }else{
+          $('#text-firstInfo').css('font-size', winH / scale_f )
+          $('#text-project').css('font-size', winH / scale_p )
+        }
+        
       }
     });
     
@@ -73,8 +74,14 @@ const Config = ({r}) => {
     const CardContainerSize = ()=>{
       let winW = $(window).width()
       if(oldWinSize !== winW){
-        setScale(winW * 0.00052)
-        setWinSize(winW)
+        if(winW > 1370){
+          setScale(winW * 0.00052)
+          setWinSize(winW)
+        }else{
+          setScale(1370 * 0.00052)
+          setWinSize(winW)
+        }
+        
         //console.log(isScale)
       }
       return isScale
@@ -85,7 +92,7 @@ const Config = ({r}) => {
     if (process.env.NODE_ENV === 'production') {
       database_URL = "https://api.srv45036.seohost.com.pl/api/viewprojects"
     } else {
-      database_URL = "http://localhost:3003/api/viewprojects"
+      database_URL = `${process.env.REACT_APP_TUNNEL_URL}/api/viewprojects`
     }
 
     const min = 0.1;
@@ -176,30 +183,50 @@ const Config = ({r}) => {
     // console.log(isProject)
     // console.log(array)
     
-  
-    const send = JSON.stringify({access_token: localStorage.getItem('at')})
+    const at = localStorage.getItem('at')
+    const d_id = localStorage.getItem('d_id')
+    //const send = JSON.stringify({access_token: localStorage.getItem('at')})
     
-    const projectView = () => {
-      $.ajax({
-        url:database_URL,
-        type:"POST",
-        data: send,
-        crossDomain: true,
-        headers: {
-          "accept": "application/json",
-          "Access-Control-Allow-Origin":"*"
-        },
-        xhrFields: {cors: false},
-        contentType:"application/json; charset=utf-8",
-        dataType:"json",
-      }).then((res)=>{
-        console.log(res)
-        translate(res)
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
-    }
+    // const projectView = async () => {
+    //   try {
+    //      const response = await fetch(database_URL, {
+    //       method: 'GET',
+    //       headers: {
+    //         'authorization': at,
+    //         'device_id': d_id
+    //       }
+    //     });
+    //     // .then(data => {
+    //     //   console.log(data)
+    //     //   translate(data)
+    //     // })
+
+    //     if(response.ok){
+    //       console.log(response)
+    //       translate(response)
+    //       return response.json();
+          
+    //     }else if(response.status === 403){
+    //       console.log('Token expired, attempting to refresh...');
+
+    //       const newAccessToken = await refreshAccessToken();
+    //     }
+    //   } catch(error){
+    //     console.log(error)
+    //   }
+      
+      
+    // }
+    const projectView = async () => {
+      try {
+          const data = await fetchWithAuth({url:database_URL});
+          console.log('Project data:', data);
+          translate(data)
+          // Funkcja przetwarzająca dane np. translate(data)
+      } catch (error) {
+          console.error('Error fetching project data:', error);
+      }
+  };
 
 
     
@@ -224,7 +251,7 @@ const Config = ({r}) => {
       const Card = useRef(null)
       //NNN.offsetLeft
       
-      const xRange = [560,280,0]
+      const xRange = oldWinSize > 768 ?  [0,-280,-560] :  [560,280,0]
       const x = (
         [0,1],
         [xRange[2],xRange[1]]
@@ -307,7 +334,7 @@ const Config = ({r}) => {
         $(Card.current).css(`display`,`none`)
       }
       else if(current === 1){
-
+        oldWinSize > 768 ? $(Card.current).css(`transform`,`translateX(${xRange[2]}px)`) : console.log("mobile")
         animate(Card.current, {opacity: oOpacity} , { duration: 1, type: "keyframes", ease: "easeIn"})
       }
       //console.log(current)
@@ -358,26 +385,52 @@ const Config = ({r}) => {
         })
         return x
     }
+  const {colorMode} = useColorMode()
+
+
+
+  const resizeContener = ()=>{
+    let scale = isScale // Container scale
+    let Cwidth =  parseInt($("#sliderContener").width()) // Container width
+    const elementsWidth = $("#sliderContener").children().map( (index, el) => ([el.offsetWidth ])).get() // Width list
+    //const elementsWidth = $("#sliderContener").children().map((index, el) => ({ width: el.offsetWidth })).get();
+    let maxW = Math.max(...elementsWidth) // max elemet width 
+    let SumW = 3 * (maxW * scale) + (6 * 8) // sum width + margins
+    
+    var space = Cwidth* scale- SumW
+    //console.log(space, `Cwidth: ${Cwidth * scale}`, `SumW:  ${SumW}`)
+    if(space < -10){
+      return 1
+    }else{
+      return 0
+    }
+  }
+
+  
+
   return (
-    <div className='md:h-auto h-full w-full md:overflow-visible overflow-auto relativ'>
-    <div style={ WindowRes() < 1 && oldWinSize >= 768 ? {minHeight: "1080px"} : {minHeight:"100vh"}} ref={r} className="w-full min-h-[100vh] h-auto grid ss:pl-6 md:pr-10 ss:pr-6 pr-2 pl-2 py-11 relative z-[2]">
+    <div className='md:h-auto h-full w-full md:overflow-visible overflow-auto relative'>
+    <div ref={r} className="w-full min-h-[100vh] h-auto grid ss:pl-6 md:pr-10 ss:pr-6 pr-2 pl-2 py-11 relative z-[2]">
         <div id='content-blur' className=' bg-[rgb(236,236,236,0.56)] md:rounded-3xl rounded-[34px] w-full h-full flex flex-col justify-between 01xl:pl-28 01xl:pr-8 md:pl-16 pl-5 md:pr-12 pr-4 overflow-x-hidden'>
             <div className='w-full flex justify-between h-full'>
               <div className='mt-[20px] h-auto w-full flex flex-col justify-between'>
                 <motion.div style={{x: Pull(refTab[0], "classic")}} ref={refTab[0]}  className='flex ease-in-out a2:flex-row flex-col duration-300'>
-                  <div style={{backgroundColor: localpallete[0].color}} onClick={()=> projectView()} className={`font-Poppins cursor-pointer 01ss:text-[16px] text-[12px] px-5 py-2 text-white rounded-2xl my-4 01ss:mx-2 mx-[3px] inline-block a1:w-auto w-min`}>Stwórz projekt</div>
-                  <div style={{backgroundColor: localpallete[0].color}} className={`font-Poppins 01ss:text-[16px] text-[12px] px-5 py-2 opacity-[0.6] text-white rounded-2xl a2:my-4 my-1 01ss:mx-2 mx-[3px] a1:w-auto w-min`}>Importuj projekt</div>
+                  <div style={{backgroundColor: Pallete[0]}} onClick={()=> projectView()} className={`font-Poppins cursor-pointer 01ss:text-[16px] text-[12px] px-5 py-2 text-white rounded-2xl my-4 01ss:mx-2 mx-[3px] inline-block a1:w-auto w-min`}>Stwórz projekt</div>
+                  <div style={{backgroundColor: Pallete[0]}} className={`font-Poppins 01ss:text-[16px] text-[12px] px-5 py-2 opacity-[0.6] text-white rounded-2xl a2:my-4 my-1 01ss:mx-2 mx-[3px] a1:w-auto w-min`}>Importuj projekt</div>
                 </motion.div>
-                <div className='flex items-center mt-16 w-full'>
-                  <motion.div style={oldWinSize >= 768 ? {scale: CardContainerSize().toString()} : {}} className='flex w-full relative z-[3] h-[320px] lg:ml-12 ml-5 ss:origin-left origin-top-left md:left-0 ss:left-[-190px] left-[-130px] md:scale-100 ss:scale-[0.7] scale-[0.5] '>
+                <div className='flex items-center mt-16 w-full overflow-hidden rounded-l-[20%] 02xl:pr-0 pr-8 relative h-auto'>
+                  <div className='w-full h-auto'>
+                  <motion.div id='sliderContener' style={oldWinSize >= 768 ? {scale: CardContainerSize().toString()} : {}} className='flex w-full relative z-[3] h-[320px] ss:origin-right origin-top-left  02xl:left-0  md:left-[100px] ss:left-[-190px] left-[-130px] md:scale-100 ss:scale-[0.7] scale-[0.5] '>
                     {isProject.map((item, index)=>(
-                      <DefaultCard index={index} item={item} />
+                      <DefaultCard key={index} index={index} item={item} />
                     ))}
                   </motion.div>
-                  <div onClick={()=> handleClick()} className='bg-black select-none lg:rounded-[24px] ss:rounded-[20px] rounded-[15px] inline-flex justify-center items-center lg:min-w-[60px] ss:min-w-[50px] min-w-[38px] lg:min-h-[60px] ss:min-h-[50px] min-h-[38px] ml-16 3xl:translate-x-0 translate-x-10 z-[4] cursor-pointer ss:translate-y-0 translate-y-[-80px]'><img src={Arrow} className='invert rotate-180 ss:scale-75 scale-[0.6] '/></div>
+                  </div>
+                  <div onClick={()=> handleClick()} className='bg-black select-none lg:rounded-[24px] ss:rounded-[20px] rounded-[15px] inline-flex justify-center items-center lg:min-w-[60px] ss:min-w-[50px] min-w-[38px] lg:min-h-[60px] ss:min-h-[50px] min-h-[38px] 01xl:ml-16 md:ml-10 ml-16  z-[12] cursor-pointer ss:translate-y-0 translate-y-[-80px] relative'><img src={Arrow} className='invert rotate-180 ss:scale-75 scale-[0.6] '/></div>
+                <div  style={{background:`linear-gradient(90deg, ${Pallete[3]}, transparent)`,opacity: resizeContener() }} className={`absolute backdrop-blur-[5px] left-0 w-[40px] h-[90%] ease-in-out duration-300 z-10`}></div>
                 </div>
                 
-                <div className='w-full relative md:pl-14 pl-0 translate-x-[-60px] md:mb-4 mb-0 ss:mt-0 mt-7'>
+                <div className='w-full relative md:pl-14 pl-0 translate-x-[-60px] md:mb-6 mb-0 ss:mt-0 mt-7'>
                   <div className='mainOI bottom-0 a1:right-[0px] right-[-100px] absolute translate-x-[100%] rounded-br-[35px] w-[200px] h-[400px]'>
                     <div className="out">
                       <div className="in"></div>
@@ -399,7 +452,7 @@ const Config = ({r}) => {
                       <motion.div style={{x: Pull(refTab[1], "classic")}} ref={refTab[1]} className='flex items-center duration-300 ease-in-out'>
                         <p className='leading-[33px] xl:leading-[1px] xl:text-[15px] text-[13px] a1:w-auto ss:w-[300px] w-auto'>
                           Wybierz
-                          <span style={{backgroundColor: localpallete[3].color}} className='rounded-full xl:text-[17px] text-[13px] text-white mx-2 py-3 xl:px-6 px-4 font-bold scale-75'>Create</span>
+                          <span style={{backgroundColor: Pallete[3]}} className='rounded-full xl:text-[17px] text-[13px] text-white mx-2 py-3 xl:px-6 px-4 font-bold scale-75'>Create</span>
                           by utworzyć kompozycje.
                         </p>
                       </motion.div>
@@ -417,8 +470,10 @@ const Config = ({r}) => {
               </div>
               <div className='h-auto mt-[30px]'>
                 <div className='font-Poppins font-bold text-black w-auto relative z-[10] flex justify-center items-start'>
-                  <p id='text-project' className='inline-block font-normal 01ss:text-[22px] text-[16px]'>projekt</p>
-                  <p id='text-firstInfo' className='rotate--180 inline-block drop-shadow-bottomRight 01ss:text-[40px] text-[29px]'>Twój pierwszy</p>                
+                  <p id='text-project' className='inline-block font-normal 01ss:text-[22px] text-[16px] 02xl:relative absolute top-0 02xl:right-0 right-20'>projekt</p>
+                  <p id='text-firstInfo' className={`rotate--180 inline-block 01ss:text-[40px] text-[29px] ${
+                    colorMode  === "dark"? "drop-shadow-bottomRight_dark":"drop-shadow-bottomRight"
+                  }`}>Twój pierwszy</p>                
                 </div>
               </div>
             </div>

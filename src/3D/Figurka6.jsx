@@ -6,27 +6,14 @@ Command: npx gltfjsx@6.2.13 figurka6.gltf
 import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF, PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
+import { usePallete } from '../Context/PalleteContext'
 export function Model6_Figurka(props) {
   const { nodes, materials } = useGLTF('/figurka6.gltf')
-  const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
+  const {Pallete} = usePallete()
   const materiall = new THREE.MeshPhongMaterial({ 
-    color: localpallete[1].color,
+    color: Pallete[1],
   });
-  useEffect(() => {
-    const alertMessage = () => {
-      //alert('localStorage changed!');
-      setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-      console.log("localStorage changed!'")
-    }
 
-    //window.localStorage.setItem("item", 'val 1');
-    window.addEventListener('Pallete', alertMessage);
-
-    //Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("Pallete", alertMessage);
-    }
-  }, []);
   return (
     <group {...props} dispose={null}>
       <directionalLight intensity={0.7} decay={2} color="#fff4f1" position={[0, 4.873, -6.298]} rotation={[-2.763, 0, 0]} />

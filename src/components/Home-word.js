@@ -46,6 +46,3 @@ var
     },speed);
     };
 
-    $(document).ready(function(){
-    wordflick();
-    });

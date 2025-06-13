@@ -25,6 +25,69 @@ import { ImagePallete1,ImagePallete2, ImagePallete3, ImagePallete4, ImagePallete
       link: "#Offer"
     },
   ];
+  export const LetterList = [
+    {
+      text: "t",
+      semiID: "letter_0",
+
+    },
+    {
+      text: "e",
+      semiID: "letter_1",
+
+    },
+    {
+      text: "c",
+      semiID: "letter_2",
+
+    },
+    {
+      text: "h",
+      semiID: "letter_3",
+
+    },
+    {
+      text: "n",
+      semiID: "letter_4",
+
+    },
+    {
+      text: "o",
+      semiID: "letter_5",
+
+    },
+    {
+      text: "l",
+      semiID: "letter_6",
+
+    },
+    {
+      text: "o",
+      semiID: "letter_7",
+
+    },
+    {
+      text: "g",
+      semiID: "letter_8",
+
+    },
+    {
+      text: "i",
+      semiID: "letter_9",
+
+    },
+    {
+      text: "i",
+      semiID: "letter_10",
+
+    },
+    {
+      text: ".",
+      semiID: "letter_11",
+
+    },
+
+  ];
 
 
 
@@ -154,98 +217,26 @@ import { ImagePallete1,ImagePallete2, ImagePallete3, ImagePallete4, ImagePallete
     },
   ];
   export const Pallete0 = [
-      {
-        color: "#8294C4",
-        number: 0
-      },
-      {
-        color: "#ACB1D6"
-      },
-      {
-        color: "#DBDFEA"
-      },
-      {
-        color: "#FFEAD2"
-      },
+    "#8294C4","#ACB1D6","#DBDFEA","#FFEAD2"
     ];
 
   export const Pallete1 = [
-    {
-      color: "#967E76",
-      number: 1
-    },
-    {
-      color: "#D7C0AE"
-    },
-    {
-      color: "#B7C4CF"
-    },
-    {
-      color: "#EEE3CB"
-    },
+      "#967E76","#D7C0AE","#B7C4CF","#EEE3CB"
   ];
 
   export const Pallete2 = [
-    {
-      color: "#577D86",
-      number: 2
-    },
-    {
-      color: "#569DAA"
-    },
-    {
-      color: "#87CBB9"
-    },
-    {
-      color: "#B9EDDD"
-    },
+    "#577D86","#569DAA","#87CBB9","#B9EDDD"
   ];
 
   export const Pallete3 = [
-    {
-      color: "#4A55A2",
-      number: 3
-    },
-    {
-      color: "#7895CB"
-    },
-    {
-      color: "#A0BFE0"
-    },
-    {
-      color: "#C5DFF8"
-    },
+    "#4A55A2","#7895CB","#A0BFE0","#C5DFF8"
   ];
   
   export const Pallete4 = [
-    {
-      color: "#748DA6",
-      number: 4
-    },
-    {
-      color: "#9CB4CC"
-    },
-    {
-      color: "#D3CEDF"
-    },
-    {
-      color: "#F2D7D9"
-    },
+    "#748DA6","#9CB4CC","#D3CEDF","#F2D7D9"
   ];
   export const Pallete5 = [
-    {
-      color: "#9BCDD2",
-      number: 5
-    },
-    {
-      color: "#FF8551"
-    },
-    {
-      color: "#FFDEDE"
-    },
-    {
-      color: "#FAF0E4"
-    },
+    "#9BCDD2","#FF8551","#FFDEDE","#FAF0E4"
   ];
 
   export const Pallets = [

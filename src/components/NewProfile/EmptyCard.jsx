@@ -1,27 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {motion} from 'framer-motion';
+import { usePallete } from '../../Context/PalleteContext';
 
 const EmptyCard = ({item, index, refCard, isIndex, ProjectL, offCard}) => {
-    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
-    useEffect(() => {
-
-        const alertMessage = () => {
-          //alert('localStorage changed!');
-          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-          console.log("localStorage changed!'")
-        }
-    
-        //window.localStorage.setItem("item", 'val 1');
-        window.addEventListener('Pallete', alertMessage);
-    
-        //Remove the event listener when the component unmounts
-        return () => {
-          window.removeEventListener("Pallete", alertMessage);
-        }
-      }, []);
+  const {Pallete} = usePallete()
   return (
     <motion.div key={index} ref={refCard} animate={index === isIndex ? {opacity: 0.6} : ""}
-     className={`absolute w-[240px] h-[300px] font-Poppins inline-flex flex-col justify-between rounded-[55px] p-3 py-4 m-2 to-[#FFFFFF] from-[#808080] bg-gradient-to-t EmptyCard-Opacity${
+     className={`absolute md:right-0 w-[240px] h-[300px] font-Poppins inline-flex flex-col justify-between rounded-[55px] p-3 py-4 m-2 to-[#FFFFFF] from-[#808080] bg-gradient-to-t EmptyCard-Opacity${
       offCard === 1 || index === isIndex ? "" :""
      }`}>
       <div className='flex w-full justify-center'>

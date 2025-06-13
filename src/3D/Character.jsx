@@ -7,30 +7,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF, PerspectiveCamera } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'  // Import the useFrame hook
 import * as THREE from 'three';
+import { usePallete } from '../Context/PalleteContext'
 
 export function Model(props) {
   const group = useRef()
+  const {Pallete} = usePallete()
   const { nodes, materials } = useGLTF('/character.gltf')
-  const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
-  const materiall = new THREE.MeshBasicMaterial({ color: localpallete[0].color });
+  const materiall = new THREE.MeshBasicMaterial({ color: Pallete[0] });
   // useFrame(() => {
   //   group.current.rotation.y = 1;
   // })
-  useEffect(() => {
-    const alertMessage = () => {
-      //alert('localStorage changed!');
-      setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-      console.log("localStorage changed!'")
-    }
-
-    //window.localStorage.setItem("item", 'val 1');
-    window.addEventListener('Pallete', alertMessage);
-
-    //Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("Pallete", alertMessage);
-    }
-  }, []);
 
   return (
     <group >

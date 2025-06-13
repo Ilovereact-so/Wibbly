@@ -1,18 +1,19 @@
 import $ from 'jquery'
-import React, {useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import "jquery-ui";
 import Auth from './Auth';
+import { usePallete } from '../Context/PalleteContext';
 
-const CheckUser = ({ click }) => {
+const CheckUser = forwardRef((props, ref) => {
     const navigate = useNavigate()
     const[validate, setValidate] = useState(true)
     const[status, setStatus] = useState("checkUser")
     const [user, setUser] = useState({username: "", email: "", password: ""})
     const [logindata, setLogindata] = useState()
   
-    
+    const {Pallete} = usePallete()
     const send = JSON.stringify(user)
     
     const Check = (e) => {
@@ -33,31 +34,26 @@ const CheckUser = ({ click }) => {
       checkaccount_database_URL = "https://api.srv45036.seohost.com.pl/api/checkaccount"
       login_database_URL = "https://api.srv45036.seohost.com.pl/api/login"
     } else {
-      checkaccount_database_URL = "http://localhost:3003/api/checkaccount"
-      login_database_URL = "http://localhost:3003/api/login"
+      checkaccount_database_URL = `${process.env.REACT_APP_TUNNEL_URL}/api/checkaccount`
+      login_database_URL = `${process.env.REACT_APP_TUNNEL_URL}/api/login`
     }
     
-    useEffect(() => {
-      
-      if(click === true && status === "checkUser"){
+    const getAuth = async () => {
+      if(status === "checkUser"){
         console.log(send)
-        $.ajax({
-          url:checkaccount_database_URL,
-          type:"POST",
-          data: send,
-          crossDomain: true,
+        const response = await fetch(checkaccount_database_URL, {
+          method: 'POST',
           headers: {
-            "accept": "application/json",
-            "Access-Control-Allow-Origin":"*"
-          },
-          xhrFields: {cors: false},
-          contentType:"application/json; charset=utf-8",
-          dataType:"json",
-        }).then((res)=>{
-          console.log("niga")
+              'Content-Type': 'application/json'
+        },
+          body: send
+        });
+        console.log(response)
+        if (response.ok) {
+          const data = await response.json();
           setValidate(true)
-          setLogindata(res)
-          //-----------------------
+          setLogindata(data)
+
           $("#form-user > div").css("transition","ease-in-out 200ms").css("transform",'translateX(-100%)').css("opacity","0")
           //let form =  $("#form-user > div").css('opacity')
           setTimeout(()=>{
@@ -66,76 +62,65 @@ const CheckUser = ({ click }) => {
           setTimeout(()=>{
             $("#form-user > div").css("transition","ease-in-out 100ms").css('opacity',"1")
           },300)
-          //---------------------
+
           setUser({password : "", username : user.username, email : user.email})
           setStatus("enterPassword")
-          
-        }).catch((err)=>{
-          console.log(err.status)
-          if(err.status === 409){
-            setValidate(false)
-          }
-        })
-
-      }else if (click === true && status === "enterPassword" && validate === true){
-        var correctdata;
-        if(logindata === "username"){
-          correctdata = JSON.stringify({
-            password : user.password,
-            usertype : logindata,
-            userdata : user.username
-          })
+          return true
         }else{
-          correctdata = JSON.stringify({
-            password : user.password,
-            usertype : logindata,
-            userdata : user.email,
-          })
+          setValidate(false)
+          return false
         }
-        console.log(correctdata)
-        $.ajax({
-          url:login_database_URL,
-          type:"POST",
-          data: correctdata,
-          crossDomain: true,
-          headers: {
-            "accept": "application/json",
-            "Access-Control-Allow-Origin":"*"
-          },
-          xhrFields: {cors: false},
-          contentType:"application/json; charset=utf-8",
-          dataType:"json",
-        }).then((res)=>{
-          if(res !== false){
-            console.log(res)
-            localStorage.setItem("at",res)
-            navigate("/")
-            Auth();
-          }else{
-            console.log(res)
-            setValidate(res)
-          }
-          
-        })
-      }
-    })
+      }else if(status === "enterPassword" && validate === true){
 
-    const [localpallete, setLocalpallete] = useState(JSON.parse(localStorage.getItem('Pallete')))
-    useEffect(() => {
-        const alertMessage = () => {
-          //alert('localStorage changed!');
-          setLocalpallete(JSON.parse(localStorage.getItem('Pallete')))
-          console.log("localStorage changed!'")
+        var correctdata = JSON.stringify({
+          password : user.password,
+          usertype : logindata,
+          userdata : logindata === "username" ? user.username : user.email
+        })
+        console.log(correctdata)
+        try{
+          const response = await fetch(login_database_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+          },
+            body: correctdata
+          });
+  
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            localStorage.setItem('at', data?.at);
+            localStorage.setItem('d_id', data?.device_id);
+            const auth = await Auth("firstAuth" ,false, data?.at, data?.device_id)
+            if(auth){
+              console.log("niga")
+              navigate('/')
+              window.location.reload()
+              return true
+            }else{
+              localStorage.removeItem("at")
+              localStorage.removeItem("d_id")
+              return false
+            }
+          } else {
+            console.log(response)
+            setValidate(false)
+            return false
+          }
+        } catch (error) {
+          console.error("Wystąpił błąd:", error);
+          return false;
         }
+        
+      }
+    }
+
+     useImperativeHandle(ref, () => ({
+          getAuth,
+        }));
     
-        //window.localStorage.setItem("item", 'val 1');
-        window.addEventListener('Pallete', alertMessage);
-    
-        //Remove the event listener when the component unmounts
-        return () => {
-          window.removeEventListener("Pallete", alertMessage);
-        }
-      }, []);
+      
 
       if(status === "checkUser"){
         return (
@@ -144,7 +129,7 @@ const CheckUser = ({ click }) => {
                     <div onClick={()=> navigate("/")} className='sm:scale-[0.33] scale-[0.6] h-[130px] cursor-pointer'>
                     <Logo loaded={true}/>
                     </div>
-                    <p style={{color: localpallete[1].color}} className='font-Poppins relative font-bold text-[27px] sm:text-[35px] sm:mx-[130px]  mb-8'>Log in</p>
+                    <p style={{color: Pallete[1]}} className='font-Poppins relative font-bold text-[27px] sm:text-[35px] sm:mx-[130px]  mb-8'>Log in</p>
 
                 </div>
                 <p className='font-Poppins font-bold text-black sm:text-[22px] text-[15px]'>Wpisz</p>
@@ -154,7 +139,7 @@ const CheckUser = ({ click }) => {
                     validate === true ? "text-black" : "text-red-600 autofilinputred"
                     }`}/>
                 </div>
-                <p style={{color: localpallete[1].color}} className='font-Poppins font-bold sm:text-[15px] text-[10px]'>nie pamiętasz ?</p>
+                <p style={{color: Pallete[1]}} className='font-Poppins font-bold sm:text-[15px] text-[10px]'>nie pamiętasz ?</p>
                 
             </div>
           )
@@ -165,7 +150,7 @@ const CheckUser = ({ click }) => {
                     <div onClick={()=> navigate("/")} className='scale-[0.33] h-[130px] cursor-pointer'>
                     <Logo loaded={true}/>
                     </div>
-                    <p style={{color: localpallete[1].color}} className='font-Poppins relative font-bold text-[35px] mx-[130px] mb-8'>Log in</p>
+                    <p style={{color: Pallete[1]}} className='font-Poppins relative font-bold text-[35px] mx-[130px] mb-8'>Log in</p>
                 </div>
                 <p className='font-Poppins font-bold text-black text-[22px]'>Wpisz</p>
                 <p className='font-Poppins text-black text-[19px] mb-6'>hasło</p>
@@ -174,12 +159,12 @@ const CheckUser = ({ click }) => {
                     validate === true ? "text-black" : "text-red-600 autofilinputred"
                     }`}/>
                 </div>
-                <p style={{color: localpallete[1].color}} className='font-Poppins font-bold text-[15px]'>nie pamiętasz ?</p>
+                <p style={{color: Pallete[1]}} className='font-Poppins font-bold text-[15px]'>nie pamiętasz ?</p>
                 
             </div>
           )
       }
   
-}
+});
 
 export default CheckUser
