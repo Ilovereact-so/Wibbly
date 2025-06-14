@@ -37,6 +37,8 @@ jobs:
       run: |
         find ./build -type f -name "*.mp4" -delete
         echo "MP4 files removed!"
+        find ./build -type f -name "*.gif" -delete
+        echo "GIF files removed!"
     
     - name: FTP Frontend Deploy
       if: always()
