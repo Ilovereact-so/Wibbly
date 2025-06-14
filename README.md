@@ -8,7 +8,7 @@ Strona internetowa mająca na celu ukazać możliwości developerskie, portfolio
 ## 🧪 Demo online *(status: coming soon)*
 
 Projekt dostępny pod adresem:  
-🔗 [https://konfigurator-3d.wibbly.pl](https://konfigurator-3d.wibbly.pl)
+🔗 [https://wibbly.pl](https://wibbly.pl)
 
 ## 🚀 Funkcje
 
